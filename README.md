@@ -2,8 +2,7 @@
  A SoundCloud Clone
 
 ## Database Schema Design
-
-`<insert database schema design here>`
+<img width="1227" alt="Screen Shot 2022-09-29 at 19 50 37" src="https://user-images.githubusercontent.com/92768343/193161737-07d9f76d-0ee3-460d-9d2d-70764e6f1c5d.png">
 
 ## API Documentation
 
