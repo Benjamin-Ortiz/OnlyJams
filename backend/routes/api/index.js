@@ -39,10 +39,10 @@ router.use(restoreUser);
 //   setTokenCookie(res, user);
 //   return res.json({ user });
 // });
-// router.post('/test', function(req, res) {
-//     res.json({ requestBody: req.body });
-//   });
 
+router.post('/test', function(req, res) {
+    res.json({ requestBody: req.body });
+  });
 
 router.use('/users', usersRouter)
 router.use('/session', sessionRouter)
