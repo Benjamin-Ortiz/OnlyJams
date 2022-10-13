@@ -1,6 +1,7 @@
 'use strict';
 const bcrypt = require("bcryptjs");
 const {Model, Validator} = require('sequelize');
+const jwt = require("jsonwebtoken");
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -67,7 +68,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init({
     username: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(30),
       allowNull: false,
       unique: true,
       validate: {
@@ -124,7 +125,7 @@ module.exports = (sequelize, DataTypes) => {
 
     scopes: {
       currentUser: {
-        attributes: { exclude: ["hashedPassword"] },
+        attributes: { exclude: ["hashedPassword", "createdAt", "updatedAt"] },
       },
       loginUser: {
         attributes: {},
