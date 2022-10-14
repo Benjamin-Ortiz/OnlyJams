@@ -1,6 +1,12 @@
 const router = require('express').Router();
 const usersRouter = require('./users.js')
-const sessionRouter = require('./session.js')
+const sessionRouter = require('./session.js');
+const songsRouter = require('./songs.js');
+//const albumsRouter = require('./albums.js')
+//const playlistsRouter = require('./playlists.js')
+
+
+
 
 // GET /api/restore-user
 const { restoreUser } = require('../../utils/auth.js');
@@ -46,6 +52,11 @@ router.use(restoreUser);
 
 router.use('/users', usersRouter)
 router.use('/session', sessionRouter)
+//router.use('/albums', albumsRouter)
+router.use('/songs', songsRouter)
+//router.use('/comments', commentsRouter)
+//router.use('/playlists', playlistsRouter)
+
 
 
 module.exports = router;

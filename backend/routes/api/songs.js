@@ -9,11 +9,15 @@ const router = express.Router();
 
 //getall songs
 router.get('/', async (req, res) => {
-    const allSongs = Song.getAllSongs()
+    res.send('HELLLLOOOOOO');
+    return Song.getAllsongs()
 
-    return res.json({
-        allSongs
-    })
+    // const allSongs = await Song.findAll()
+    // //console.log('---------------------',allSongs);
+
+    // return res.json({
+    //     allSongs
+    // })
 })
 
 module.exports = router;
