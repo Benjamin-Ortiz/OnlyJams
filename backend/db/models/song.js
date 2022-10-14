@@ -1,7 +1,9 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+
+const bcrypt = require("bcryptjs");
+const {Model, Validator} = require('sequelize');
+const jwt = require("jsonwebtoken");
+
 module.exports = (sequelize, DataTypes) => {
   class Song extends Model {
     /**
@@ -9,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+
+    static getAllSongs(){
+      return Song.findAll()
+    }
+
     static associate(models) {
       // define association here
       Song.belongsTo(models.User, {
@@ -36,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
   },
     description: {
       type: DataTypes.STRING,
-      
+
   },
     url: {
       type: DataTypes.STRING
