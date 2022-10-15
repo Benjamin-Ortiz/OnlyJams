@@ -35,8 +35,9 @@ const validateSignup = [
 // Sign up
 router.post("/", validateSignup, async (req, res) => {
   const { email, password, username, firstName, lastName } = req.body;
-  const errors = validationResult(req);
-  console.log("------------------", errors);
+  // const errors = validationResult(req);
+  // console.log("------------------", errors);
+  // const token = await setTokenCookie (req, res)
 
   const duplicateEmail = await User.findOne({
     where: { email },
@@ -77,10 +78,11 @@ router.post("/", validateSignup, async (req, res) => {
     password,
   });
 
-  await setTokenCookie(res, user);
+ let token = await setTokenCookie(res, user);
+//  user[token] = token;
 
   return res.json({
-    user,
+    user
   });
 });
 

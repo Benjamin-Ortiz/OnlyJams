@@ -1,5 +1,5 @@
 const express = require('express');
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { User, Song, Album } = require('../../db/models');
 
 const { check } = require('express-validator');
@@ -9,11 +9,11 @@ const router = express.Router();
 
 
  //create album
- router.post("/", async (req, res) => {
-    const userId = User.id
-    console.log('------------',userId);
+ router.post("/", restoreUser, async (req, res) => {
+    const currentUser = await User
+    console.log('------------', currentUser );
 
-    const {title, description,imageUrl } = req.body;
+    const { title, description,imageUrl } = req.body;
     // const errors = validationResult(req);
     // console.log("------------------", errors);
 
@@ -37,10 +37,11 @@ const router = express.Router();
     //   }
 
       const newAlbum = await Album.create({
-     userId,title, description,imageUrl
+     //userId,
+     title, description,imageUrl
     })
 
-    return res.json({newAlbum})
+     return res.json({newAlbum})
 })
 
 //? // create album beta
