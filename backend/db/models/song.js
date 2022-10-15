@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId'
       }),
       Song.belongsTo(models.Album, {
-        foreignKey: 'albumId'
+        foreignKey: 'albumId',
+        //!on delete cascades
       })
     }
   }

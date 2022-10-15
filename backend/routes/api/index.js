@@ -1,9 +1,11 @@
 const router = require('express').Router();
-const usersRouter = require('./users.js')
 const sessionRouter = require('./session.js');
+const usersRouter = require('./users.js')
 const songsRouter = require('./songs.js');
-//const albumsRouter = require('./albums.js')
-//const playlistsRouter = require('./playlists.js')
+const albumsRouter = require('./albums.js')
+const playlistsRouter = require('./playlists.js')
+const commentsRouter = require('./comments.js')
+
 
 
 
@@ -50,12 +52,13 @@ router.use(restoreUser);
 //     res.json({ requestBody: req.body });
 //   });
 
-router.use('/users', usersRouter)
-router.use('/session', sessionRouter)
-//router.use('/albums', albumsRouter)
-router.use('/songs', songsRouter)
-//router.use('/comments', commentsRouter)
-//router.use('/playlists', playlistsRouter)
+router.use('/users', usersRouter);
+router.use('/session', sessionRouter);
+router.use('/songs', songsRouter);
+router.use('/comments', commentsRouter);
+router.use('/albums', albumsRouter)
+router.use('/playlists', playlistsRouter)
+
 
 
 
