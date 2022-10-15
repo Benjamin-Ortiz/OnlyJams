@@ -25,8 +25,9 @@ const validateLogin = [
 // Log in
 router.post('/', validateLogin, async (req, res, next) => {
     const { credential, password } = req.body;
+    // let token;
 
-    const user = await User.login({ credential, password });
+    let user = await User.login({ credential, password });
 
     if (!user) {
       res.statusCode = 401;
@@ -51,13 +52,17 @@ router.post('/', validateLogin, async (req, res, next) => {
     // }).then(res => res.json()).then(data => console.log(data));
 
 
-     await setTokenCookie(res, user);
+    let userObj = user.toJSON(); //creates user promise aka js obj
+    
+    token = await setTokenCookie(res, user);
+    userObj.token = token
     //  const token = res.cookie
     //  user[token] = token,
+   // user.token = 'jijij';
 
      //console.log(token);
-     res.json({
-        user
+      res.json({
+        userObj
     });
 }
 );

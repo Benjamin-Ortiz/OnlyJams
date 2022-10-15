@@ -20,4 +20,17 @@ router.get('/', async (req, res) => {
     })
 })
 
+//Create a Song Based on Album Id
+router.post('/', requireAuth, async (req, res) => {
+    // return Song.getAllsongs()
+    const {user} = req
+
+    // const allSongs = await Song.findAll()
+    //console.log('---------------------',allSongs);
+
+    return res.json({
+        user
+    })
+})
+
 module.exports = router;

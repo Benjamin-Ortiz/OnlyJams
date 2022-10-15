@@ -1,73 +1,76 @@
-const express = require('express');
-const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
-const { User, Song, Album } = require('../../db/models');
+const express = require("express");
+const {
+  setTokenCookie,
+  requireAuth,
+  restoreUser,
+} = require("../../utils/auth");
+const { User, Song, Album } = require("../../db/models");
 
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
+//create album, requireAuth, check is a user is logged in and returns the user obj
+router.post("/", requireAuth, async (req, res) => {
+  const { user } = req;
+  //   const userId = user.id;
+  //console.log("------------", user.id);
 
- //create album
- router.post("/", restoreUser, async (req, res) => {
-    const currentUser = await User
-    console.log('------------', currentUser );
+  const { title, description, imageUrl } = req.body;
+  // const errors = validationResult(req);
+  // console.log("------------------", errors);
 
-    const { title, description,imageUrl } = req.body;
-    // const errors = validationResult(req);
-    // console.log("------------------", errors);
+  if (!title) {
+    res.statusCode = 400;
+    res.json({
+      message: "Validation Error",
+      statusCode: 400,
+      errors: {
+        title: "Album title is required",
+      },
+    });
+  }
 
-    if (!title) {
-      res.statusCode = 400;
-      res.json({
-        message: "Validation Error",
-        statusCode: 400,
-        errors: {
-          title:  "Album title is required"
-        }
-      });
-    }
+  // if (!id) {
+  //     res.statusCode = 404;
+  //     res.json({
+  //       message: "Album couldn't be found",
+  //       statusCode: 404,
+  //     });
+  //   }
 
-    // if (!id) {
-    //     res.statusCode = 404;
-    //     res.json({
-    //       message: "Album couldn't be found",
-    //       statusCode: 404,
-    //     });
-    //   }
 
-      const newAlbum = await Album.create({
-     //userId,
-     title, description,imageUrl
-    })
+  const newAlbum = await Album.create({
+    userId: user.id,
+    title,
+    description,
+    imageUrl,
+  });
 
-     return res.json({newAlbum})
-})
-
-//? // create album beta
-// router.post("/", async (req, res) => {
-//     const { userId, title, description,imageUrl } = req.body;
-//     // const errors = validationResult(req);
-//     // console.log("------------------", errors);
-
-//     if (!title) {
-//       res.statusCode = 400;
-//       res.json({
-//         message: "Validation Error",
-//         statusCode: 400,
-//         errors: {
-//           title:  "Album title is required"
-//         },
-//       });
-//     } else {
-//         const newAblum = await Album.create({
-//             userId, title, description,imageUrl
-//         })
-//         return res.json({newAblum})
+//   const checkAlbum = await Album.findAll({
+//     where: {
+//         title: title
 //     }
+//   })
 
-// }),
+  //console.log(checkAlbum);
+   return res.json(newAlbum);
+});
 
+// //?get all albums by current user id
 
+// router.get("/current", requireAuth, async (req, res) => {
+//   const { user } = req;
+
+//   const allAlbums = await Album.findAll({
+//     where: {
+//         userId: user.id
+//     }
+//   })
+
+//   res.json(allAlbums)
+
+// });
 
 module.exports = router;

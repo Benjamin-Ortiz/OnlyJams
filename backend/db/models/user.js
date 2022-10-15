@@ -59,16 +59,26 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.Album, {
-        foreignKey: 'userId'
+        foreignKey: 'userId',
+        onDelete: 'cascade'
       }),
       User.hasMany(models.Song, {
-        foreignKey: 'userId'
+        foreignKey: 'userId',
+        onDelete: 'cascade'
+
       }),
       User.hasMany(models.Comment, {
-        foreignKey: 'userId'
+        foreignKey: 'userId',
+        onDelete: 'cascade'
+
       }),
       User.hasMany(models.Playlist, {
-        foreignKey: 'userId'
+        foreignKey: 'userId',
+        onDelete: 'cascade'
+      }),
+      User.hasMany(models.Comment, {
+        foreignKey: 'userId',
+        onDelete: 'cascade'
       })
     }
   }
