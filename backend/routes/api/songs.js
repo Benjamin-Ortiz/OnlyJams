@@ -96,6 +96,8 @@ router.get("/current", requireAuth, async (req, res) => {
   res.json(allSongs);
 });
 
+
+//Get a Song By Id
 router.get("/:songId", requireAuth, async (req, res) => {
   const { songId } = req.params;
   //console.log('+++++++++++++++++++++',songId);
@@ -103,20 +105,15 @@ router.get("/:songId", requireAuth, async (req, res) => {
 //!! NEED TO FIND A MODEL.INCLUDES(THING) METHOD
 
   const song = await Song.findByPk(songId, {
-    include: [
-      {
+    include: [{
         model: User,
-        // as: 'Artist',
-        // through: {
-        //      attributes:
-        //       ['id']
-        //     },
-        },
-      {
+        attributes: ['id', 'username', 'imageUrl']
+    },
+    {
         model: Album,
-        // through: { attributes: ['id'] },
-      },
-    ],
+        attributes: ['id', 'title', 'imageUrl']
+    }
+]
   });
 
   res.json(song);

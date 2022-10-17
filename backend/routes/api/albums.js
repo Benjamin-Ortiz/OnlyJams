@@ -58,19 +58,51 @@ router.post("/", requireAuth, async (req, res) => {
    return res.json(newAlbum);
 });
 
-// //?get all albums by current user id
 
-// router.get("/current", requireAuth, async (req, res) => {
-//   const { user } = req;
 
-//   const allAlbums = await Album.findAll({
-//     where: {
-//         userId: user.id
-//     }
-//   })
 
-//   res.json(allAlbums)
+//?Get All Albums
+router.get("/", requireAuth, async (req, res) => {
 
-// });
+    const allAlbums = await Album.findAll()
+
+          res.json(allAlbums)
+})
+
+
+//?get all albums by current user id
+
+router.get("/current", requireAuth, async (req, res) => {
+  const { user } = req;
+
+  const allAlbums = await Album.findAll({
+    where: {
+        userId: user.id
+    }
+  })
+
+  res.json(allAlbums)
+
+});
+
+
+//? Get Details of an Album By Id
+router.get("/:albumId", requireAuth, async (req, res) => {
+    const {albumId} = req.params;
+
+    const album = await Album.findByPk(albumId, {
+        include: [{
+            model: User,
+            attributes: ['id', 'username', 'imageUrl']
+        },
+        {
+            model: Song
+        }
+    ]
+    })
+
+    res.json(album)
+})
+
 
 module.exports = router;
