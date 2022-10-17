@@ -20,17 +20,70 @@ router.get('/', async (req, res) => {
     })
 })
 
-//Create a Song Based on Album Id
-router.post('/', requireAuth, async (req, res) => {
-    // return Song.getAllsongs()
-    const {user} = req
+//! Create a Song Based on Album Id (need clarification)
+//? AND Create a Song without an Album Id
+router.post("/", requireAuth, async (req, res) => {
+    const { user } = req;
+    console.log(user);
+    let { title, description, url, imageUrl, albumId } = req.body;
 
-    // const allSongs = await Song.findAll()
-    //console.log('---------------------',allSongs);
 
-    return res.json({
-        user
-    })
+    //todo check if album is in system
+
+    if (albumId === null) {
+      const newSingle = await Song.create({
+        userId: user.id,
+        title,
+        description,
+        url,
+        imageUrl,
+      });
+
+
+
+    if (!albumId) {
+        res.statusCode = 404;
+        res.json({
+          message: "albumId not found/does not exist",
+          statusCode: 404,
+
+        //   errors: {
+        //     title: "Album title is required",
+        //   },
+        });
+    }
+
+      return res.json(newSingle);
+    //   get album, nope, songs are issued by id
+    //   create Song
+    //   add song to album, nope, songs are issued by id
+    }
+    //  let album = await Album.findByPk(albumId)
+    //  console.log('++++++++++++++++++++',album);
+
+
+
+    let newSong = await Song.create({
+      userId: user.id,
+      albumId:albumId,
+      title: title,
+      description: description,
+      url: url,
+      imageUrl: imageUrl
+    });
+
+    //console.log("--------------", newSong);
+
+    // console.log('==================', albumSongs);
+    // await Album.addSong(song1);
+    //await album.add(newSong);
+
+
+    return res.json(newSong);
+
 })
+
+
+
 
 module.exports = router;

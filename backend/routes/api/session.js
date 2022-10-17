@@ -52,8 +52,8 @@ router.post('/', validateLogin, async (req, res, next) => {
     // }).then(res => res.json()).then(data => console.log(data));
 
 
-    let userObj = user.toJSON(); //creates user promise aka js obj
-    
+    let userObj = user.toJSON(); //! creates user promise aka js obj
+
     token = await setTokenCookie(res, user);
     userObj.token = token
     //  const token = res.cookie
@@ -76,14 +76,20 @@ router.delete('/',(_req, res) => {
 );
 
 
-// Restore session user
-router.get('/', restoreUser, (req, res) => {
+// Restore session user/ get current user
+router.get('/', restoreUser, async (req, res) => {
       const { user } = req;
+      token = await setTokenCookie(res, user);
+
 
       if (user) {
-        return res.json({
-          user: user.toSafeObject()
-        });
+        let userObj = user.toJSON(); //! creates user promise aka js obj
+        userObj.token = token
+        user.toSafeObject()
+
+      return res.json({
+        user: userObj
+      });
       } else return res.json({});
     }
   );
