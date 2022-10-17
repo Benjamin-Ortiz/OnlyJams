@@ -28,7 +28,7 @@ router.post("/", requireAuth, async (req, res) => {
     let { title, description, url, imageUrl, albumId } = req.body;
 
 
-    //todo check if album is in system
+    //todo check if album is in system Model.has(this num)
 
     if (albumId === null) {
       const newSingle = await Song.create({
@@ -83,6 +83,12 @@ router.post("/", requireAuth, async (req, res) => {
 
 })
 
+
+//? Get All Songs By Current User
+
+router.get('/current', async, (req, res)=> {
+
+})
 
 
 
