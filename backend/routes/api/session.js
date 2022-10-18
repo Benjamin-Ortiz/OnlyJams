@@ -56,14 +56,37 @@ router.post('/', validateLogin, async (req, res, next) => {
 
     token = await setTokenCookie(res, user);
     userObj.token = token
-    //  const token = res.cookie
-    //  user[token] = token,
-   // user.token = 'jijij';
+    let userAnswer = {};
+
+    const userFilter = (userObj) => {
+
+      for (let k in userObj) {
+        console.log('++++++++',k) //[userObj[k]]);
+
+        if (k === 'id') {
+          userAnswer.id = userObj[k]
+        }
+        if (k === 'firstName') {
+          userAnswer.firstName = userObj[k]
+        }
+        if (k === 'lastName') {
+          userAnswer.lastName = userObj[k]
+        }
+        if (k === 'email') {
+          userAnswer.email = userObj[k]
+        }
+        if (k === 'token') {
+          userAnswer.token = userObj[k]
+        }
+      }
+    }
+
+    userFilter(userObj)
 
      //console.log(token);
-      res.json({
-        userObj
-    });
+      res.json(
+        userAnswer
+    );
 }
 );
 
@@ -84,12 +107,40 @@ router.get('/', restoreUser, async (req, res) => {
 
       if (user) {
         let userObj = user.toJSON(); //! creates user promise aka js obj
-        userObj.token = token
-        user.toSafeObject()
 
-      return res.json({
-        user: userObj
-      });
+        token = await setTokenCookie(res, user);
+        userObj.token = token
+        let userAnswer = {};
+
+        const userFilter = (userObj) => {
+
+          for (let k in userObj) {
+            //console.log('++++++++',k) //[userObj[k]]);
+
+            if (k === 'id') {
+              userAnswer.id = userObj[k]
+            }
+            if (k === 'firstName') {
+              userAnswer.firstName = userObj[k]
+            }
+            if (k === 'lastName') {
+              userAnswer.lastName = userObj[k]
+            }
+            if (k === 'email') {
+              userAnswer.email = userObj[k]
+            }
+            if (k === 'token') {
+              userAnswer.token = userObj[k]
+            }
+          }
+        }
+
+        userFilter(userObj)
+
+         //console.log(token);
+          res.json(
+            userAnswer
+        );
       } else return res.json({});
     }
   );

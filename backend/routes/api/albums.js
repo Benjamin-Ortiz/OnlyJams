@@ -90,6 +90,7 @@ router.get("/current", requireAuth, async (req, res) => {
 router.get("/:albumId", requireAuth, async (req, res) => {
     const {albumId} = req.params;
 
+
     const album = await Album.findByPk(albumId, {
         include: [{
             model: User,
@@ -102,6 +103,14 @@ router.get("/:albumId", requireAuth, async (req, res) => {
     })
 
     res.json(album)
+})
+
+//? edit an album
+router.put("/:albumId", requireAuth, async (req, res) => {
+    const {albumId} = req.params;
+
+    
+
 })
 
 

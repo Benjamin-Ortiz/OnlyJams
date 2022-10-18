@@ -5,6 +5,7 @@ const songsRouter = require('./songs.js');
 const albumsRouter = require('./albums.js')
 const playlistsRouter = require('./playlists.js')
 const commentsRouter = require('./comments.js')
+const artistsRouter = require('./artists.js')
 
 
 
@@ -58,6 +59,8 @@ router.use('/songs', songsRouter);
 router.use('/comments', commentsRouter);
 router.use('/albums', albumsRouter)
 router.use('/playlists', playlistsRouter)
+router.use('/artists', artistsRouter)
+
 
 
 
