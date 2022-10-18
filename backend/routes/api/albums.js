@@ -105,11 +105,41 @@ router.get("/:albumId", requireAuth, async (req, res) => {
     res.json(album)
 })
 
+
+
+
 //? edit an album
 router.put("/:albumId", requireAuth, async (req, res) => {
-    const {albumId} = req.params;
+    const { user } = req;
+    const { albumId } = req.params;
+    const { title, description,  imageUrl } = req.body;
 
-    
+    const album = await Album.findByPk(albumId, {
+    //   include: {
+    //     model: Album,
+    //   },
+    });
+
+    // //! have to update not create
+    if (album) {
+      album.set({
+          userId: user.id,
+          title,
+          description,
+          imageUrl,
+        });
+
+        res.json(album);
+    }
+    else
+    {
+        res.statusCode = 404;
+        res.json({
+          message: "Album i.d does not exist",
+          statusCode: 404,
+
+        });
+      }
 
 })
 

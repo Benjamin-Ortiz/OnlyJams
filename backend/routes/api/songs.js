@@ -118,27 +118,31 @@ router.put("/:songId", requireAuth, async (req, res) => {
   });
 
   //! SONG ID DOESNT EXIST
-  // if () {
-  //     res.statusCode = 404;
-  //     res.json({
-  //       message: "Validation Error",
-  //       statusCode: 404,
+  if (song) {
+     song.set({
+        userId: user.id,
+        albumId: song.albumId,
+        title,
+        description,
+        url,
+        imageUrl,
+      });
 
-  //     });
-  //   }
+      res.json(song);
+  }
+  else
+  {
+      res.statusCode = 404;
+      res.json({
+        message: "Song i.d does not exist",
+        statusCode: 404,
+
+      });
+    }
 
   //! find albumId and add to response
 
-  const editedSong = await Song.create({
-    userId: user.id,
-    albumId: song.albumId,
-    title,
-    description,
-    url,
-    imageUrl,
-  });
 
-  res.json(editedSong);
 
   //res.json()
 });

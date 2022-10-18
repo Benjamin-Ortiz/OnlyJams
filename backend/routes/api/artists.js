@@ -9,43 +9,49 @@ const { where, Op } = require("sequelize");
 const router = express.Router();
 router.use(express.json());
 
-//! Get Details of an Artist by Id
+//? Get Details of an Artist by Id
 router.get("/:userId", requireAuth, async (req, res) => {
   const { user } = req;
   const { userId } = req.params;
-  console.log("++++++++++++++", userId);
-
+  //console.log("++++++++++++++", userId);
 
   let songCount = await Song.count({
     where: {
-    userId: userId
-},
-attributes: ['imageUrl']
-});
+      userId: userId
+    }
+    // attributes: ["imageUrl"],
+  });
   let albumCount = await Album.count({
     where: {
-        userId: userId
-    }
+      userId: userId,
+    },
   });
-
-
-  console.log(albumCount);
 
   const artistFind = await User.findByPk(userId, {
     attributes: ["id", "username", "imageUrl"],
-    include: {
-        models: Song,
-        // attributes: ['imageUrl']
-    }
+    include: [{
+        model: Song,
+         attributes: ['imageUrl']
+      },
+    ],
   });
 
-  let artist = artistFind.toJSON();
+  if (artistFind) {
+    let artist = artistFind.toJSON();
 
-  artist.totalSongs = songCount
-  artist.totalAlbums = albumCount
-
+    artist.totalSongs = songCount
+    artist.totalAlbums = albumCount
 
   res.json(artist);
+  } else {
+    res.status = 404;
+    res.json({
+        message: "Artist does not exist with provided id",
+        statusCode: 404,
+      });
+  }
+
+
 });
 
 //? Get All Songs of an Artist By Id
@@ -53,15 +59,57 @@ attributes: ['imageUrl']
 router.get("/:userId/songs", requireAuth, async (req, res) => {
   const { userId } = req.params;
   //console.log('++++++++++++++++',userId);
+  let artist = await User.findByPk(userId);
 
-  const allSongs = await Song.findAll({
-    where: {
-      userId: userId,
-    },
-  });
+  if (artist) {
+    const allSongs = await Song.findAll({
+        where: {
+          userId: userId,
+        },
+      });
 
-  res.json(allSongs);
+      res.json(allSongs);
+  } else {
+    //todo Get All Songs of an Artist By Id - Error Check Invalid Id
+    res.status = 404;
+    res.json({
+        message: "Artist does not exist with provided id",
+        statusCode: 404,
+      });
+
+  }
+
+
 });
+
+//! Get All Albums of an Artist By Id
+//! ON SPEC BUT NOT ON POSTMAN, it works though, dont worry ;)
+
+router.get("/:userId/albums", requireAuth, async (req, res) => {
+    const { userId } = req.params;
+    //console.log('++++++++++++++++',userId);
+    let artist = await User.findByPk(userId);
+
+    if (artist) {
+      const allAlbums = await Album.findAll({
+          where: {
+            userId: userId,
+          },
+        });
+
+        res.json(allAlbums);
+    } else {
+      //todo Get All Albums of an Artist By Id - Error Check Invalid Id
+      res.status = 404;
+      res.json({
+          message: "Artist does not exist with provided id",
+          statusCode: 404,
+        });
+
+    }
+
+
+  });
 
 //Get a Song By Id
 router.get("/:songId", requireAuth, async (req, res) => {
