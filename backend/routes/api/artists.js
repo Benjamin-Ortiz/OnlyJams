@@ -4,78 +4,59 @@ const { User, Song, Album } = require("../../db/models");
 
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-const { where } = require("sequelize");
+const { where, Op } = require("sequelize");
 
 const router = express.Router();
+router.use(express.json());
 
-//getall songs
-router.get("/", async (req, res) => {
-  //res.send('HELLLLOOOOOO');
-  // return Song.getAllsongs()
+//! Get Details of an Artist by Id
+router.get("/:userId", requireAuth, async (req, res) => {
+  const { user } = req;
+  const { userId } = req.params;
+  console.log("++++++++++++++", userId);
 
-  const allSongs = await Song.findAll();
-  //console.log('---------------------',allSongs);
 
-  return res.json(allSongs);
+  let songCount = await Song.count({
+    where: {
+    userId: userId
+},
+attributes: ['imageUrl']
+});
+  let albumCount = await Album.count({
+    where: {
+        userId: userId
+    }
+  });
+
+
+  console.log(albumCount);
+
+  const artistFind = await User.findByPk(userId, {
+    attributes: ["id", "username", "imageUrl"],
+    include: {
+        models: Song,
+        // attributes: ['imageUrl']
+    }
+  });
+
+  let artist = artistFind.toJSON();
+
+  artist.totalSongs = songCount
+  artist.totalAlbums = albumCount
+
+
+  res.json(artist);
 });
 
-//! Create a Song Based on Album Id (need clarification)
-router.post("/", requireAuth, async (req, res) => {
-  const { user } = req;
-  //console.log(user);
-  let { title, description, url, imageUrl, albumId } = req.body;
-  // albumId = this.toString(albumId);
+//? Get All Songs of an Artist By Id
 
-  //todo check if album is in db Model.has(this num)
+router.get("/:userId/songs", requireAuth, async (req, res) => {
+  const { userId } = req.params;
+  //console.log('++++++++++++++++',userId);
 
-  let album = await Album.findByPk(albumId);
-  //console.log("+++++++++++++", album);
-  // const albumExists = await A
-
-
-   //?  Create a Song without an Album Id
-   if (albumId === null) {
-    const newSingle = await Song.create({
-        userId: user.id,
-        albumId: albumId,
-        title,
-        description,
-        url,
-        imageUrl,
-      });
-
-      return res.json(newSingle);
-   }
-
-
-  if (album) {
-    //logic
-    const newSingle = await Song.create({
-        userId: user.id,
-        albumId: albumId,
-        title,
-        description,
-        url,
-        imageUrl,
-      });
-
-      return res.json(newSingle);
-  } //?  Error Check Invalid Id
-  else {
-    res.json({
-      message: "albumId not found/does not exist",
-      statusCode: 404,
-    });
-  }
-});
-
-//? Get All Songs By Current User
-
-router.get("/current", requireAuth, async (req, res) => {
-  const { user } = req;
   const allSongs = await Song.findAll({
     where: {
-      userId: user.id,
+      userId: userId,
     },
   });
 
@@ -103,44 +84,6 @@ router.get("/:songId", requireAuth, async (req, res) => {
   });
 
   res.json(song);
-});
-
-//? Edit a Song
-router.put("/:songId", requireAuth, async (req, res) => {
-  const { user } = req;
-  const { songId } = req.params;
-  const { title, description, url, imageUrl } = req.body;
-
-  const song = await Song.findByPk(songId, {
-    include: {
-      model: Album,
-    },
-  });
-
-  //! SONG ID DOESNT EXIST
-  // if () {
-  //     res.statusCode = 404;
-  //     res.json({
-  //       message: "Validation Error",
-  //       statusCode: 404,
-
-  //     });
-  //   }
-
-  //! find albumId and add to response
-
-  const editedSong = await Song.create({
-    userId: user.id,
-    albumId: song.albumId,
-    title,
-    description,
-    url,
-    imageUrl,
-  });
-
-  res.json(editedSong);
-
-  //res.json()
 });
 
 module.exports = router;
