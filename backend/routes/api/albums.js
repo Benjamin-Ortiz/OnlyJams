@@ -102,7 +102,18 @@ router.get("/:albumId", requireAuth, async (req, res) => {
     ]
     })
 
-    res.json(album)
+    if(album) {res.json(album)}
+    else
+    {
+        res.statusCode = 404;
+        res.json({
+          message: "Album couldn't be found",
+          statusCode: 404,
+
+        });
+      }
+
+
 })
 
 
@@ -122,7 +133,7 @@ router.put("/:albumId", requireAuth, async (req, res) => {
 
     // //! have to update not create
     if (album) {
-      album.set({
+      album.update({
           userId: user.id,
           title,
           description,
@@ -135,7 +146,7 @@ router.put("/:albumId", requireAuth, async (req, res) => {
     {
         res.statusCode = 404;
         res.json({
-          message: "Album i.d does not exist",
+          message: "Album couldn't be found",
           statusCode: 404,
 
         });
@@ -143,5 +154,29 @@ router.put("/:albumId", requireAuth, async (req, res) => {
 
 })
 
+//? delete an album
+
+router.delete("/:albumId", requireAuth, async (req, res) => {
+    const { albumId } = req.params;
+    const album = await Album.findByPk(albumId);
+
+    if (album) {
+
+      await album.destroy();
+
+      res.status = 200;
+
+      res.json({
+        message: "Successfully deleted",
+        statusCode: 200,
+      });
+    } else {
+      res.statusCode = 404;
+      res.json({
+        message: "Album couldn't be found",
+        statusCode: 404,
+      });
+    }
+  });
 
 module.exports = router;

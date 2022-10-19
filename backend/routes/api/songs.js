@@ -32,34 +32,32 @@ router.post("/", requireAuth, async (req, res) => {
   //console.log("+++++++++++++", album);
   // const albumExists = await A
 
-
-   //?  Create a Song without an Album Id
-   if (albumId === null) {
+  //?  Create a Song without an Album Id
+  if (albumId === null) {
     const newSingle = await Song.create({
-        userId: user.id,
-        albumId: albumId,
-        title,
-        description,
-        url,
-        imageUrl,
-      });
+      userId: user.id,
+      albumId: albumId,
+      title,
+      description,
+      url,
+      imageUrl,
+    });
 
-      return res.json(newSingle);
-   }
-
+    return res.json(newSingle);
+  }
 
   if (album) {
     //logic
     const newSingle = await Song.create({
-        userId: user.id,
-        albumId: albumId,
-        title,
-        description,
-        url,
-        imageUrl,
-      });
+      userId: user.id,
+      albumId: albumId,
+      title,
+      description,
+      url,
+      imageUrl,
+    });
 
-      return res.json(newSingle);
+    return res.json(newSingle);
   } //?  Error Check Invalid Id
   else {
     res.json({
@@ -119,32 +117,46 @@ router.put("/:songId", requireAuth, async (req, res) => {
 
   //! SONG ID DOESNT EXIST
   if (song) {
-     song.set({
-        userId: user.id,
-        albumId: song.albumId,
-        title,
-        description,
-        url,
-        imageUrl,
-      });
+    song.update({
+      userId: user.id,
+      albumId: song.albumId,
+      title,
+      description,
+      url,
+      imageUrl,
+    });
 
-      res.json(song);
+    res.json(song);
+  } else {
+    res.statusCode = 404;
+    res.json({
+      message: "Song i.d does not exist",
+      statusCode: 404,
+    });
   }
-  else
-  {
-      res.statusCode = 404;
-      res.json({
-        message: "Song i.d does not exist",
-        statusCode: 404,
+});
 
-      });
-    }
+router.delete("/:songId", requireAuth, async (req, res) => {
+  const { songId } = req.params;
+  const song = await Song.findByPk(songId);
 
-  //! find albumId and add to response
+  if (song) {
 
+    await song.destroy();
 
+    res.status = 200;
 
-  //res.json()
+    res.json({
+      message: "Successfully deleted",
+      statusCode: 200,
+    });
+  } else {
+    res.statusCode = 404;
+    res.json({
+      message: "Song couldn't be found",
+      statusCode: 404,
+    });
+  }
 });
 
 module.exports = router;
