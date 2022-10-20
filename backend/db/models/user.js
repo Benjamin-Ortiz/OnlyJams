@@ -64,7 +64,6 @@ module.exports = (sequelize, DataTypes) => {
       }),
       User.hasMany(models.Song, {
         foreignKey: 'userId',
-        // as: 'Artist',
         onDelete: 'cascade'
 
       }),

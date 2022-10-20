@@ -32,28 +32,12 @@ router.post("/", requireAuth, async (req, res) => {
     });
   }
 
-  // if (!id) {
-  //     res.statusCode = 404;
-  //     res.json({
-  //       message: "Album couldn't be found",
-  //       statusCode: 404,
-  //     });
-  //   }
-
-
   const newAlbum = await Album.create({
     userId: user.id,
     title,
     description,
     imageUrl,
   });
-
-//   const checkAlbum = await Album.findAll({
-//     where: {
-//         title: title
-//     }
-//   })
-
   //console.log(checkAlbum);
    return res.json(newAlbum);
 });
@@ -94,6 +78,7 @@ router.get("/:albumId", requireAuth, async (req, res) => {
     const album = await Album.findByPk(albumId, {
         include: [{
             model: User,
+            // as: "Artist",
             attributes: ['id', 'username', 'imageUrl']
         },
         {
@@ -103,15 +88,13 @@ router.get("/:albumId", requireAuth, async (req, res) => {
     })
 
     if(album) {res.json(album)}
-    else
-    {
+    else {
         res.statusCode = 404;
         res.json({
           message: "Album couldn't be found",
           statusCode: 404,
-
         });
-      }
+    }
 
 
 })
@@ -178,5 +161,36 @@ router.delete("/:albumId", requireAuth, async (req, res) => {
       });
     }
   });
+
+
+
+//   //? Get Details of an Artist by Id
+// router.get("/:userId", requireAuth, async (req, res) => {
+//   const {userId} = req.params;
+
+
+//   const album = await Album.findByPk(albumId, {
+//       include: [{
+//           model: User,
+//           as: "Artist",
+//           attributes: ['id', 'username', 'imageUrl']
+//       },
+//       {
+//           model: Song
+//       }
+//   ]
+//   })
+
+//   if(album) {res.json(album)}
+//   else {
+//       res.statusCode = 404;
+//       res.json({
+//         message: "Album couldn't be found",
+//         statusCode: 404,
+//       });
+//   }
+
+
+// })
 
 module.exports = router;

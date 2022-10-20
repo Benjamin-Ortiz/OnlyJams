@@ -1,6 +1,6 @@
 const express = require("express");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Song, Album } = require("../../db/models");
+const { User, Song, Album, Playlist, Comments, PlaylistSong } = require("../../db/models");
 
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -17,8 +17,8 @@ router.get("/:userId", requireAuth, async (req, res) => {
 
   let songCount = await Song.count({
     where: {
-      userId: userId
-    }
+      userId: userId,
+    },
     // attributes: ["imageUrl"],
   });
   let albumCount = await Album.count({
@@ -29,9 +29,11 @@ router.get("/:userId", requireAuth, async (req, res) => {
 
   const artistFind = await User.findByPk(userId, {
     attributes: ["id", "username", "imageUrl"],
-    include: [{
+    include: [
+      {
         model: Song,
-         attributes: ['imageUrl']
+        as: "Artist",
+        attributes: ["imageUrl"],
       },
     ],
   });
@@ -39,19 +41,17 @@ router.get("/:userId", requireAuth, async (req, res) => {
   if (artistFind) {
     let artist = artistFind.toJSON();
 
-    artist.totalSongs = songCount
-    artist.totalAlbums = albumCount
+    artist.totalSongs = songCount;
+    artist.totalAlbums = albumCount;
 
-  res.json(artist);
+    res.json(artist);
   } else {
     res.status = 404;
     res.json({
-        message: "Artist does not exist with provided id",
-        statusCode: 404,
-      });
+      message: "Artist does not exist with provided id",
+      statusCode: 404,
+    });
   }
-
-
 });
 
 //? Get All Songs of an Artist By Id
@@ -62,54 +62,48 @@ router.get("/:userId/songs", requireAuth, async (req, res) => {
   let artist = await User.findByPk(userId);
 
   if (artist) {
-    const allSongs = await Song.findAll({
-        where: {
-          userId: userId,
-        },
-      });
+    const Songs = await Song.findAll({
+      where: {
+        userId: userId,
+      },
+    });
 
-      res.json(allSongs);
+    res.json({ Songs });
   } else {
     //todo Get All Songs of an Artist By Id - Error Check Invalid Id
     res.status = 404;
     res.json({
-        message: "Artist does not exist with provided id",
-        statusCode: 404,
-      });
-
+      message: "Artist does not exist with provided id",
+      statusCode: 404,
+    });
   }
-
-
 });
 
 //! Get All Albums of an Artist By Id
 //! ON SPEC BUT NOT ON POSTMAN, it works though, dont worry ;)
 
 router.get("/:userId/albums", requireAuth, async (req, res) => {
-    const { userId } = req.params;
-    //console.log('++++++++++++++++',userId);
-    let artist = await User.findByPk(userId);
+  const { userId } = req.params;
+  //console.log('++++++++++++++++',userId);
+  let artist = await User.findByPk(userId);
 
-    if (artist) {
-      const allAlbums = await Album.findAll({
-          where: {
-            userId: userId,
-          },
-        });
+  if (artist) {
+    const allAlbums = await Album.findAll({
+      where: {
+        userId: userId,
+      },
+    });
 
-        res.json(allAlbums);
-    } else {
-      //todo Get All Albums of an Artist By Id - Error Check Invalid Id
-      res.status = 404;
-      res.json({
-          message: "Artist does not exist with provided id",
-          statusCode: 404,
-        });
-
-    }
-
-
-  });
+    res.json(allAlbums);
+  } else {
+    //todo Get All Albums of an Artist By Id - Error Check Invalid Id
+    res.status = 404;
+    res.json({
+      message: "Artist does not exist with provided id",
+      statusCode: 404,
+    });
+  }
+});
 
 //Get a Song By Id
 router.get("/:songId", requireAuth, async (req, res) => {
@@ -122,6 +116,7 @@ router.get("/:songId", requireAuth, async (req, res) => {
     include: [
       {
         model: User,
+        as: "Artist",
         attributes: ["id", "username", "imageUrl"],
       },
       {
@@ -132,6 +127,34 @@ router.get("/:songId", requireAuth, async (req, res) => {
   });
 
   res.json(song);
+});
+
+//? Get All Playlists By Artist Id
+
+router.get("/:userId/playlists", requireAuth, async (req, res) => {
+  const { userId } = req.params;
+  //console.log('++++++++++++++++',userId);
+  let artist = await User.findByPk(userId);
+
+  if (artist) {
+    const Playlists = await Playlist.findAll({
+      where: {
+        userId: userId,
+        // include: [{
+        //     model: PlaylistSong
+        //   }],
+      },
+    });
+
+    res.json({Playlists});
+  } else {
+    //todo Get All Playlists By Artist Id - Error Check Invalid Id
+    res.status = 404;
+    res.json({
+      message: "Artist does not exist with provided id",
+      statusCode: 404,
+    });
+  }
 });
 
 module.exports = router;
