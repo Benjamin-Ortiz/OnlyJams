@@ -1,6 +1,6 @@
 const express = require("express");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Song, Album, Comment, Playlist } = require("../../db/models");
+const { User, Song, Album, Comment, Playlist,PlaylistSong } = require("../../db/models");
 
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -38,8 +38,8 @@ router.post("/", requireAuth, async (req, res) => {
 //? Add a Song to a Playlist
 router.post("/:playlistId/songs", requireAuth, async (req, res) => {
   const { user } = req;
-  const playlistId = req.params;
-  //console.log("------------", user.id);
+  const {playlistId} = req.params;
+  console.log("------------", playlistId);
 
   const { songId } = req.body;
 
@@ -71,12 +71,12 @@ router.post("/:playlistId/songs", requireAuth, async (req, res) => {
     });
   }
 
-  const newPlaylist = await Playlist.add({
+  const newPlaylistSong = await PlaylistSong.create({
 playlistId: playlistId,
 songId: songId
   });
   //console.log(checkPlaylist);
-  return res.json(newPlaylist);
+  return res.json(newPlaylistSong);
 });
 
 // //? Get All Songs By Current User
