@@ -32,7 +32,6 @@ router.get("/:userId", requireAuth, async (req, res) => {
     include: [
       {
         model: Song,
-        as: "Artist",
         attributes: ["imageUrl"],
       },
     ],
@@ -116,7 +115,6 @@ router.get("/:songId", requireAuth, async (req, res) => {
     include: [
       {
         model: User,
-        as: "Artist",
         attributes: ["id", "username", "imageUrl"],
       },
       {

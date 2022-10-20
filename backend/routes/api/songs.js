@@ -8,17 +8,15 @@ const { where } = require("sequelize");
 
 const router = express.Router();
 
-//getall songs
+//? getall songs, add
 router.get("/", async (req, res) => {
-  const Songs = await Song
-    .findAll
-    //add pagination
-    ();
+  const Songs = await Song.findAll();
+  //add pagination
 
   return res.json({ Songs });
 });
 
-//! Create a Song Based on Album Id (need clarification)
+//? Create a Song Based on Album Id
 router.post("/", requireAuth, async (req, res) => {
   const { user } = req;
   //console.log(user);
@@ -77,7 +75,7 @@ router.get("/current", requireAuth, async (req, res) => {
   res.json({ Songs });
 });
 
-//Get a Song By Id
+//? Get a Song By Id
 router.get("/:songId", requireAuth, async (req, res) => {
   const { songId } = req.params;
   //console.log('+++++++++++++++++++++',songId);
@@ -88,7 +86,6 @@ router.get("/:songId", requireAuth, async (req, res) => {
     include: [
       {
         model: User,
-        as: "Artist",
         attributes: ["id", "username", "imageUrl"],
       },
       {

@@ -13,16 +13,16 @@ module.exports = {
         type: Sequelize.INTEGER,
         references:{
           model:'Songs',
-          key: "id"
+          key: 'id'
         },
       },
       playlistId: {
         type: Sequelize.INTEGER,
         references:{
           model:'Playlists',
-          key: "id"
+          key: 'id'
         },
-        onDelete: 'CASCADE'
+        // onDelete: 'CASCADE'
       },
       order: {
         type: Sequelize.INTEGER

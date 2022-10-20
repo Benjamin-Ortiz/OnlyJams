@@ -48,9 +48,9 @@ router.post("/", requireAuth, async (req, res) => {
 //?Get All Albums
 router.get("/", requireAuth, async (req, res) => {
 
-    const allAlbums = await Album.findAll()
+    const Albums = await Album.findAll()
 
-          res.json(allAlbums)
+          res.json({Albums})
 })
 
 

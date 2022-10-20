@@ -1,22 +1,20 @@
 const express = require("express");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Song, Album, Comment, Playlist,PlaylistSong } = require("../../db/models");
+const {
+  User,
+  Song,
+  Album,
+  Comment,
+  Playlist,
+  PlaylistSong,
+} = require("../../db/models");
 
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { where } = require("sequelize");
+const song = require("../../db/models/song");
 
 const router = express.Router();
-
-// //getall songs
-// router.get("/", async (req, res) => {
-//   const Songs = await Song
-//     .findAll
-//     //add pagination
-//     ();
-
-//   return res.json({ Songs });
-// });
 
 //? Create a Playlist
 router.post("/", requireAuth, async (req, res) => {
@@ -35,19 +33,32 @@ router.post("/", requireAuth, async (req, res) => {
   return res.json(newPlaylist);
 });
 
+//? Get All playlists By Current User
+
+router.get("/current", requireAuth, async (req, res) => {
+  const { user } = req;
+
+  const Playlists = await Playlist.findAll({
+    where: {
+      userId: user.id,
+    },
+  });
+
+  res.json({ Playlists });
+});
+
 //? Add a Song to a Playlist
 router.post("/:playlistId/songs", requireAuth, async (req, res) => {
   const { user } = req;
-  const {playlistId} = req.params;
-  console.log("------------", playlistId);
-
+  const { playlistId } = req.params;
+  //console.log("------------", playlistId);
   const { songId } = req.body;
 
   const playlist = await Playlist.findOne({
     where: {
-        id : playlistId
-    }
-  })
+      id: playlistId,
+    },
+  });
 
   const song = await Song.findOne({
     where: {
@@ -71,112 +82,166 @@ router.post("/:playlistId/songs", requireAuth, async (req, res) => {
     });
   }
 
-  const newPlaylistSong = await PlaylistSong.create({
-playlistId: playlistId,
-songId: songId
+  // const newPlaylistSong = await playlist.addSong(
+  //   song
+  // );
+
+  //find most recent id in playlistSong, return it
+  //? effective workaround
+  const mostRecentId = await PlaylistSong.findOne({
+    where: {
+      songId: songId,
+    },
+    attributes: ["id", "playlistId", "songId"],
+    order: [["id", "DESC"]],
   });
+
   //console.log(checkPlaylist);
-  return res.json(newPlaylistSong);
+  return res.json(mostRecentId);
 });
 
-// //? Get All Songs By Current User
+//? Get Details of a Playlist By Id
 
-// router.get("/current", requireAuth, async (req, res) => {
+router.get("/:playlistId", requireAuth, async (req, res) => {
+  const { playlistId } = req.params;
+  //console.log('+++++++++++++++++++++',playlistId);
+
+  const playlist = await Playlist.findByPk(playlistId, {
+    include: [
+      {
+        model: Song,
+        // attributes: ["id", "username", "imageUrl"],
+      },
+    ],
+  });
+
+  let playlistObj = playlist.toJSON(); //! creates playlist promise aka js obj
+  //console.log("++++++++++++++", playlistObj.Songs[0].PlaylistSong);
+  delete playlistObj.Songs[0].PlaylistSong;
+
+  if (playlist) {
+    res.json(playlistObj);
+  } else {
+    res.statusCode = 404;
+    res.json({
+      message: "Playlist couldn't be found",
+      statusCode: 404,
+    });
+  }
+});
+
+//? Edit a playlist
+router.put("/:playlistId", requireAuth, async (req, res) => {
+  const { user } = req;
+  const { playlistId } = req.params;
+  const { name, imageUrl } = req.body;
+
+  const playlist = await Playlist.findByPk(playlistId, {
+    // include: {
+    //   model: Album,
+    // },
+  });
+
+  //! playlist ID DOESNT EXIST
+  if (playlist) {
+    playlist.update({
+      name,
+      imageUrl,
+    });
+
+    res.json(playlist);
+  } else {
+    res.statusCode = 404;
+    res.json({
+      message: "Playlist couldn't be found",
+      statusCode: 404,
+    });
+  }
+});
+
+//? Delete a playlist
+router.delete("/:playlistId", requireAuth, async (req, res) => {
+  const { playlistId } = req.params;
+  const playlist = await Playlist.findByPk(playlistId);
+
+  if (playlist) {
+    await playlist.destroy();
+
+    res.status = 200;
+
+    res.json({
+      message: "Successfully deleted",
+      statusCode: 200,
+    });
+  } else {
+    res.statusCode = 404;
+    res.json({
+      message: "Playlist couldn't be found",
+      statusCode: 404,
+    });
+  }
+});
+
+// //? Delete A Song From A Playlist
+// router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res) => {
 //   const { user } = req;
-//   const Songs = await Song.findAll({
+//   const { playlistId, songId } = req.params;
+//   // console.log("------------", playlistId);
+//   // console.log("++++++++++++", songId);
+
+//   // const { songId } = req.body;
+
+//   const song = await Song.findOne({
+//     where:{
+//       id:songId
+//     }
+//   })
+
+//   const playlist = await Playlist.findOne({
 //     where: {
-//       userId: user.id,
+//       id: playlistId
 //     },
 //   });
 
-//   res.json({ Songs });
-// });
-
-// //Get a Song By Id
-// router.get("/:songId", requireAuth, async (req, res) => {
-//   const { songId } = req.params;
-//   //console.log('+++++++++++++++++++++',songId);
-
-//   //!! NEED TO FIND A MODEL.INCLUDES(THING) METHOD
-
-//   const song = await Song.findByPk(songId, {
-//     include: [
-//       {
-//         model: User,
-//         as: "Artist",
-//         attributes: ["id", "username", "imageUrl"],
-//       },
-//       {
-//         model: Album,
-//         attributes: ["id", "title", "imageUrl"],
-//       },
-//     ],
-//   });
-
-//   if (song) {
-//     res.json(song);
-//   } else {
-//     res.statusCode = 404;
-//     res.json({
-//       message: "Song couldn't be found",
-//       statusCode: 404,
-//     });
-//   }
-// });
-
-// //? Edit a Song
-// router.put("/:songId", requireAuth, async (req, res) => {
-//   const { user } = req;
-//   const { songId } = req.params;
-//   const { title, description, url, imageUrl } = req.body;
-
-//   const song = await Song.findByPk(songId, {
-//     include: {
-//       model: Album,
+//   const songOnPlaylist = await PlaylistSong.findOne({
+//     where: {
+//       songId: songId,
+//       // playlistId: playlistId
 //     },
+//     // include: [{
+//     //   model: 'PlaylistSongs'
+//     // }]
 //   });
 
-//   //! SONG ID DOESNT EXIST
-//   if (song) {
-//     song.update({
-//       userId: user.id,
-//       albumId: song.albumId,
-//       title,
-//       description,
-//       url,
-//       imageUrl,
+//   if (!playlist) {
+//     res.statusCode = 404;
+//     res.json({
+//       message: "Playlist couldn't be found",
+//       statusCode: 404,
 //     });
+//   }
 
-//     res.json(song);
-//   } else {
+//   if (!song) {
 //     res.statusCode = 404;
 //     res.json({
 //       message: "Song couldn't be found",
 //       statusCode: 404,
 //     });
 //   }
-// });
 
-// router.delete("/:songId", requireAuth, async (req, res) => {
-//   const { songId } = req.params;
-//   const song = await Song.findByPk(songId);
+//   // if (songOnPlaylist) {
+//   //  await songOnPlaylist.destroy()
 
-//   if (song) {
-//     await song.destroy();
+//   //  res.status = 200;
 
-//     res.status = 200;
+//   //  res.json({
+//   //    message: "Successfully deleted",
+//   //    statusCode: 200,
+//   //  });
+//   // }
 
-//     res.json({
-//       message: "Successfully deleted",
-//       statusCode: 200,
-//     });
-//   } else {
-//     res.statusCode = 404;
-//     res.json({
-//       message: "Song couldn't be found",
-//       statusCode: 404,
-//     });
-//   }
+//   //console.log(checkPlaylist);
+//   return res.json(songOnPlaylist);
 // });
 
 // //! Create a Comment Based on a Song Id
