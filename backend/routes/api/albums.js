@@ -11,7 +11,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
-//create album, requireAuth, check is a user is logged in and returns the user obj
+//? create album, requireAuth, check is a user is logged in and returns the user obj
 router.post("/", requireAuth, async (req, res) => {
   const { user } = req;
   //   const userId = user.id;
