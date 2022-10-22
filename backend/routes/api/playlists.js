@@ -114,6 +114,9 @@ router.get("/:playlistId", requireAuth, async (req, res) => {
     include: [
       {
         model: Song,
+        through: {
+          attributes:[]
+        }
         // attributes: ["id", "username", "imageUrl"],
       },
     ],
@@ -122,9 +125,10 @@ router.get("/:playlistId", requireAuth, async (req, res) => {
 
 
   if (playlist) {
-    // let playlistObj = playlist.toJSON(); //! creates playlist promise aka js obj
-    // //console.log("++++++++++++++", playlistObj.Songs[0].PlaylistSong);
-    // delete playlistObj.Songs[0].PlaylistSong;
+    let playlistObj = playlist.toJSON(); //! creates playlist promise aka js obj
+    //console.log("++++++++++++++", playlistObj.Songs[0].PlaylistSong);
+    // delete playlist.Songs[0].PlaylistSong;
+    // for each through each song, delete Playlist song
 
     res.json(playlist);
   } else {
