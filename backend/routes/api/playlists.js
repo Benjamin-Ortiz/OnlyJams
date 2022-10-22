@@ -19,15 +19,15 @@ const router = express.Router();
 //? Create a Playlist
 router.post("/", requireAuth, async (req, res) => {
   const { user } = req;
-  //console.log(user);
+  console.log(user.dataValues.id);
   let { name, imageUrl } = req.body;
 
   //console.log("+++++++++++++", album);
 
   const newPlaylist = await Playlist.create({
-    userId: user.id,
+    userId: user.dataValues.id,
     name,
-    imageUrl,
+    imageUrl
   });
 
   return res.json(newPlaylist);
@@ -40,7 +40,7 @@ router.get("/current", requireAuth, async (req, res) => {
 
   const Playlists = await Playlist.findAll({
     where: {
-      userId: user.id,
+      userId: user.dataValues.id,
     },
   });
 
@@ -119,11 +119,13 @@ router.get("/:playlistId", requireAuth, async (req, res) => {
     ],
   });
 
-  let playlistObj = playlist.toJSON(); //! creates playlist promise aka js obj
-  //console.log("++++++++++++++", playlistObj.Songs[0].PlaylistSong);
-  delete playlistObj.Songs[0].PlaylistSong;
+
 
   if (playlist) {
+    let playlistObj = playlist.toJSON(); //! creates playlist promise aka js obj
+    //console.log("++++++++++++++", playlistObj.Songs[0].PlaylistSong);
+    delete playlistObj.Songs[0].PlaylistSong;
+
     res.json(playlistObj);
   } else {
     res.statusCode = 404;

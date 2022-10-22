@@ -32,7 +32,7 @@ router.get("/:userId", requireAuth, async (req, res) => {
     include: [
       {
         model: Song,
-        attributes: ["imageUrl"],
+        attributes: ["imageUrl"]
       },
     ],
   });
@@ -104,7 +104,7 @@ router.get("/:userId/albums", requireAuth, async (req, res) => {
   }
 });
 
-//Get a Song By Id
+//? Get a Song By Id
 router.get("/:songId", requireAuth, async (req, res) => {
   const { songId } = req.params;
   //console.log('+++++++++++++++++++++',songId);
@@ -115,11 +115,11 @@ router.get("/:songId", requireAuth, async (req, res) => {
     include: [
       {
         model: User,
-        attributes: ["id", "username", "imageUrl"],
+        attributes: ["id", "username", "imageUrl"]
       },
       {
         model: Album,
-        attributes: ["id", "title", "imageUrl"],
+        attributes: ["id", "title", "imageUrl"]
       },
     ],
   });
