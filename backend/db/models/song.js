@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
         // as:"Artist"
       }),
       Song.belongsTo(models.Album, {
-        foreignKey: 'albumId'
-        //!on delete CASCADE, hooks true
+        foreignKey: 'albumId',
+        onDelete: 'cascade'
       }),
       Song.hasMany(models.Comment,{
         foreignKey: 'songId',
