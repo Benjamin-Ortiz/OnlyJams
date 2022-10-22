@@ -59,13 +59,15 @@ router.get("/", requireAuth, async (req, res) => {
 router.get("/current", requireAuth, async (req, res) => {
   const { user } = req;
 
-  const allAlbums = await Album.findAll({
+  const Albums = await Album.findAll({
     where: {
         userId: user.id
     }
   })
 
-  res.json(allAlbums)
+ //let [albums] = allAlbums
+
+  res.json({Albums})
 
 });
 

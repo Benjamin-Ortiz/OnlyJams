@@ -43,9 +43,10 @@ router.get("/:userId", requireAuth, async (req, res) => {
     artist.totalSongs = songCount;
     artist.totalAlbums = albumCount;
 
+    //res.status = 200;
     res.json(artist);
   } else {
-    res.status = 404;
+    res.statusCode = 404;
     res.json({
       message: "Artist does not exist with provided id",
       statusCode: 404,
@@ -70,7 +71,7 @@ router.get("/:userId/songs", requireAuth, async (req, res) => {
     res.json({ Songs });
   } else {
     //todo Get All Songs of an Artist By Id - Error Check Invalid Id
-    res.status = 404;
+    res.statusCode = 404;
     res.json({
       message: "Artist does not exist with provided id",
       statusCode: 404,

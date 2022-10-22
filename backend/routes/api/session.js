@@ -83,7 +83,6 @@ router.post('/', validateLogin, async (req, res, next) => {
 
     userFilter(userObj)
 
-     //console.log(token);
       res.json(
         userAnswer
     );
