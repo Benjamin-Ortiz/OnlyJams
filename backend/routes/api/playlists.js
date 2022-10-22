@@ -122,11 +122,11 @@ router.get("/:playlistId", requireAuth, async (req, res) => {
 
 
   if (playlist) {
-    let playlistObj = playlist.toJSON(); //! creates playlist promise aka js obj
-    //console.log("++++++++++++++", playlistObj.Songs[0].PlaylistSong);
-    delete playlistObj.Songs[0].PlaylistSong;
+    // let playlistObj = playlist.toJSON(); //! creates playlist promise aka js obj
+    // //console.log("++++++++++++++", playlistObj.Songs[0].PlaylistSong);
+    // delete playlistObj.Songs[0].PlaylistSong;
 
-    res.json(playlistObj);
+    res.json(playlist);
   } else {
     res.statusCode = 404;
     res.json({
