@@ -15,6 +15,7 @@ module.exports = {
           model:'Songs',
           key: 'id'
         },
+        onDelete: 'cascade'
       },
       playlistId: {
         type: Sequelize.INTEGER,
@@ -22,7 +23,7 @@ module.exports = {
           model:'Playlists',
           key: 'id'
         },
-        // onDelete: 'CASCADE'
+         onDelete: 'cascade'
       },
       order: {
         type: Sequelize.INTEGER
