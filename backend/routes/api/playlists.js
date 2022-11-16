@@ -19,10 +19,11 @@ const router = express.Router();
 //? Create a Playlist
 router.post("/", requireAuth, async (req, res) => {
   const { user } = req;
-  console.log(user.dataValues.id);
-  let { name, imageUrl } = req.body;
 
-  //console.log("+++++++++++++", album);
+// * proudest find
+ //(user.dataValues.id);
+
+  let { name, imageUrl } = req.body;
 
   const newPlaylist = await Playlist.create({
     userId: user.dataValues.id,
@@ -51,7 +52,6 @@ router.get("/current", requireAuth, async (req, res) => {
 router.post("/:playlistId/songs", requireAuth, async (req, res) => {
   const { user } = req;
   const { playlistId } = req.params;
-  //console.log("------------", playlistId);
   const { songId } = req.body;
 
   const playlist = await Playlist.findOne({
@@ -81,10 +81,7 @@ router.post("/:playlistId/songs", requireAuth, async (req, res) => {
       statusCode: 404,
     });
   }
-  // const newPlaylistSong = await playlist.addSong({
-  //   songId: songId,
-  //   playlistId: playlist.id
-  // });
+
   await PlaylistSong.create({
     songId: songId,
     playlistId: playlistId
@@ -100,7 +97,7 @@ router.post("/:playlistId/songs", requireAuth, async (req, res) => {
     order: [["id", "DESC"]],
   });
 
-  //console.log(checkPlaylist);
+
   return res.json(mostRecentId);
 });
 
@@ -108,7 +105,7 @@ router.post("/:playlistId/songs", requireAuth, async (req, res) => {
 
 router.get("/:playlistId", requireAuth, async (req, res) => {
   const { playlistId } = req.params;
-  //console.log('+++++++++++++++++++++',playlistId);
+
 
   const playlist = await Playlist.findByPk(playlistId, {
     include: [
@@ -126,7 +123,7 @@ router.get("/:playlistId", requireAuth, async (req, res) => {
 
   if (playlist) {
     let playlistObj = playlist.toJSON(); //! creates playlist promise aka js obj
-    //console.log("++++++++++++++", playlistObj.Songs[0].PlaylistSong);
+    //("++++++++++++++", playlistObj.Songs[0].PlaylistSong);
     // delete playlist.Songs[0].PlaylistSong;
     // for each through each song, delete Playlist song
 
@@ -175,8 +172,8 @@ router.put("/:playlistId", requireAuth, async (req, res) => {
 router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res) => {
   const { user } = req;
   const { playlistId, songId } = req.params;
-  // console.log("------------", playlistId);
-  // console.log("++++++++++++", songId);
+  // ("------------", playlistId);
+  // ("++++++++++++", songId);
 
   // const { songId } = req.body;
 
@@ -202,7 +199,7 @@ router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res) => {
     // }]
   });
 
-  //console.log('+++++++++',songOnPlaylist);
+  //('+++++++++',songOnPlaylist);
 
   if (!playlist) {
     res.statusCode = 404;
@@ -238,7 +235,7 @@ router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res) => {
     });
   }
 
-  //console.log(checkPlaylist);
+  //(checkPlaylist);
   // return res.json(songOnPlaylist);
 });
 

@@ -13,7 +13,7 @@ router.use(express.json());
 router.get("/:userId", requireAuth, async (req, res) => {
   const { user } = req;
   const { userId } = req.params;
-  //console.log("++++++++++++++", userId);
+
 
   let songCount = await Song.count({
     where: {
@@ -43,7 +43,8 @@ router.get("/:userId", requireAuth, async (req, res) => {
     artist.totalSongs = songCount;
     artist.totalAlbums = albumCount;
 
-    //res.status = 200;
+    //! res.status = 200;
+
     res.json(artist);
   } else {
     res.statusCode = 404;
@@ -58,7 +59,7 @@ router.get("/:userId", requireAuth, async (req, res) => {
 
 router.get("/:userId/songs", requireAuth, async (req, res) => {
   const { userId } = req.params;
-  //console.log('++++++++++++++++',userId);
+
   let artist = await User.findByPk(userId);
 
   if (artist) {
@@ -79,12 +80,11 @@ router.get("/:userId/songs", requireAuth, async (req, res) => {
   }
 });
 
-//! Get All Albums of an Artist By Id
-//! ON SPEC BUT NOT ON POSTMAN, it works though, dont worry ;)
+//? Get All Albums of an Artist By Id
 
 router.get("/:userId/albums", requireAuth, async (req, res) => {
   const { userId } = req.params;
-  //console.log('++++++++++++++++',userId);
+  
   let artist = await User.findByPk(userId);
 
   if (artist) {
@@ -108,9 +108,9 @@ router.get("/:userId/albums", requireAuth, async (req, res) => {
 //? Get a Song By Id
 router.get("/:songId", requireAuth, async (req, res) => {
   const { songId } = req.params;
-  //console.log('+++++++++++++++++++++',songId);
 
-  //!! NEED TO FIND A MODEL.INCLUDES(THING) METHOD
+
+
 
   const song = await Song.findByPk(songId, {
     include: [
@@ -132,7 +132,7 @@ router.get("/:songId", requireAuth, async (req, res) => {
 
 router.get("/:userId/playlists", requireAuth, async (req, res) => {
   const { userId } = req.params;
-  //console.log('++++++++++++++++',userId);
+
   let artist = await User.findByPk(userId);
 
   if (artist) {

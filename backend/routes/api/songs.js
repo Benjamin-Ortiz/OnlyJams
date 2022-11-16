@@ -13,18 +13,20 @@ router.get("/", async (req, res) => {
   const Songs = await Song.findAll();
   //add pagination
 
+
+
   return res.json({ Songs });
 });
 
 //? Create a Song Based on Album Id
 router.post("/", requireAuth, async (req, res) => {
   const { user } = req;
-  //console.log(user);
+
   let { title, description, url, imageUrl, albumId } = req.body;
   // albumId = this.toString(albumId);
 
   let album = await Album.findByPk(albumId);
-  //console.log("+++++++++++++", album);
+
   // const albumExists = await A
 
   //?  Create a Song without an Album Id
@@ -78,7 +80,7 @@ router.get("/current", requireAuth, async (req, res) => {
 //? Get a Song By Id
 router.get("/:songId", requireAuth, async (req, res) => {
   const { songId } = req.params;
-  //console.log('+++++++++++++++++++++',songId);
+
 
   //!! NEED TO FIND A MODEL.INCLUDES(THING) METHOD
 

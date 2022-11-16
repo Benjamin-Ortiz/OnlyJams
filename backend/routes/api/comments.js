@@ -20,14 +20,14 @@ const router = express.Router();
 //   //! Create a Song Based on Album Id (need clarification)
 //   router.post("/", requireAuth, async (req, res) => {
 //     const { user } = req;
-//     //console.log(user);
+//
 //     let { title, description, url, imageUrl, albumId } = req.body;
 //     // albumId = this.toString(albumId);
 
 //     //todo check if album is in db Model.has(this num)
 
 //     let album = await Album.findByPk(albumId);
-//     //console.log("+++++++++++++", album);
+//
 //     // const albumExists = await A
 
 //     //?  Create a Song without an Album Id
@@ -81,7 +81,7 @@ const router = express.Router();
 //   //Get a Song By Id
 //   router.get("/:songId", requireAuth, async (req, res) => {
 //     const { songId } = req.params;
-//     //console.log('+++++++++++++++++++++',songId);
+
 
 //     //!! NEED TO FIND A MODEL.INCLUDES(THING) METHOD
 
@@ -116,11 +116,7 @@ const router = express.Router();
     const { commentId } = req.params;
     const { body } = req.body;
 
-    const comment = await Comment.findByPk(commentId, {
-    //   include: {
-    //     model: Album,
-    //   },
-    });
+    const comment = await Comment.findByPk(commentId);
 
     //! comment ID DOESNT EXIST
     if (comment) {
@@ -151,7 +147,8 @@ const router = express.Router();
         message: "Successfully deleted",
         statusCode: 200,
       });
-    } else {
+    }
+    else {
       res.statusCode = 404;
       res.json({
         message: "Comment couldn't be found",

@@ -15,11 +15,11 @@ const router = express.Router();
 router.post("/", requireAuth, async (req, res) => {
   const { user } = req;
   //   const userId = user.id;
-  //console.log("------------", user.id);
+
 
   const { title, description, imageUrl } = req.body;
   // const errors = validationResult(req);
-  // console.log("------------------", errors);
+
 
   if (!title) {
     res.statusCode = 400;
@@ -38,7 +38,7 @@ router.post("/", requireAuth, async (req, res) => {
     description,
     imageUrl,
   });
-  //console.log(checkAlbum);
+ 
    return res.json(newAlbum);
 });
 
@@ -65,7 +65,7 @@ router.get("/current", requireAuth, async (req, res) => {
     }
   })
 
- //let [albums] = allAlbums
+
 
   res.json({Albums})
 
@@ -110,13 +110,8 @@ router.put("/:albumId", requireAuth, async (req, res) => {
     const { albumId } = req.params;
     const { title, description,  imageUrl } = req.body;
 
-    const album = await Album.findByPk(albumId, {
-    //   include: {
-    //     model: Album,
-    //   },
-    });
+    const album = await Album.findByPk(albumId);
 
-    // //! have to update not create
     if (album) {
       album.update({
           userId: user.id,
@@ -166,33 +161,5 @@ router.delete("/:albumId", requireAuth, async (req, res) => {
 
 
 
-//   //? Get Details of an Artist by Id
-// router.get("/:userId", requireAuth, async (req, res) => {
-//   const {userId} = req.params;
-
-
-//   const album = await Album.findByPk(albumId, {
-//       include: [{
-//           model: User,
-//           as: "Artist",
-//           attributes: ['id', 'username', 'imageUrl']
-//       },
-//       {
-//           model: Song
-//       }
-//   ]
-//   })
-
-//   if(album) {res.json(album)}
-//   else {
-//       res.statusCode = 404;
-//       res.json({
-//         message: "Album couldn't be found",
-//         statusCode: 404,
-//       });
-//   }
-
-
-// })
 
 module.exports = router;
