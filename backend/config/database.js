@@ -8,9 +8,7 @@ module.exports = {
     seederStorage: "sequelize",
     logQueryParameters: true,
     typeValidation: true,
-    define: {        
-      schema: process.env.SCHEMA
-    }
+
   },
   production: {
     use_env_variable: 'DATABASE_URL',
@@ -21,6 +19,9 @@ module.exports = {
         require: true,
         rejectUnauthorized: false
       }
+    },
+    define: {
+      schema: process.env.SCHEMA
     }
   }
 };
