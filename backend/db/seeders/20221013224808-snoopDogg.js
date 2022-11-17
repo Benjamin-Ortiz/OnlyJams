@@ -1,9 +1,14 @@
 'use strict';
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
 const bcrypt = require("bcryptjs");
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
+    options.tableName = 'Users';
     /**
      * Add seed commands here.
      *
@@ -13,7 +18,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-      await queryInterface.bulkInsert('Users', [{
+      await queryInterface.bulkInsert(options, [{
         firstName: 'Calvin',
         username : 'Snoop Dogg',
         lastName: 'Broadus',
@@ -53,13 +58,14 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
+    options.tableName = 'Users';
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     await queryInterface.bulkDelete('Users', {
+     await queryInterface.bulkDelete(options, {
       username: { [Op.in]: ['Snoop Dogg',
       'Lady Gaga',
       'Micheal Jackson',

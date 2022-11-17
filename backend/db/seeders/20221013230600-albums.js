@@ -1,4 +1,8 @@
 'use strict';
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
 const bcrypt = require("bcryptjs");
 //const albumImg = require('../../../assests/images/albumImg')
 //?use real url for photos
@@ -6,6 +10,7 @@ const bcrypt = require("bcryptjs");
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
+    options.tableName = 'Albums';
     /**
      * Add seed commands here.
      *
@@ -15,7 +20,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-      await queryInterface.bulkInsert('Albums', [{
+      await queryInterface.bulkInsert(options, [{
         userId: 4,
         title: 'Doggy Style',
         description: 'karma sutra recodings',
@@ -51,13 +56,14 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
+    options.tableName = 'Albums';
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     await queryInterface.bulkDelete('Albums', {
+     await queryInterface.bulkDelete(options, {
       userId: { [Op.in]: [4,5,6,7,8] }
      }, {});
   }
