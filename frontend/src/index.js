@@ -11,7 +11,17 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 
 import configureStore from './store';
 
+import * as sessionActions from './store/session';
+
 const store = configureStore();
+
+if (process.env.NODE_ENV !== 'production') {
+  restoreCSRF();
+
+  window.csrfFetch = csrfFetch;
+  window.store = store;
+  window.sessionActions = sessionActions;
+}
 
 if (process.env.NODE_ENV !== 'production') {
   window.store = store;
@@ -24,20 +34,20 @@ if (process.env.NODE_ENV !== 'production') {
   window.store = store;
 }
 
-
-function Root() {
-  return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  );
-  }
-
   ReactDOM.render(
     <React.StrictMode>
       <Root />
     </React.StrictMode>,
     document.getElementById('root'),
   );
+
+
+  function Root() {
+    return (
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    );
+    }
