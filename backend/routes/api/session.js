@@ -88,7 +88,6 @@ router.delete('/',(_req, res) => {
 //? Restore session user/ get current user
 router.get('/', restoreUser, async (req, res) => {
       const { user } = req;
-      token = await setTokenCookie(res, user);
 
 
       if (user) {
@@ -102,7 +101,7 @@ router.get('/', restoreUser, async (req, res) => {
           res.json(
             userObj
         );
-      } else return res.json({});
+      } else return res.json(null);
     }
   );
 
