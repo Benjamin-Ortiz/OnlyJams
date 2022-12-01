@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage/LoginForm";
 import SignupFormPage from "./components/SignupFormPage/SignupFrom";
+import SongDetailsPage from "./components/SongDetails/SongDetailsIdx";
 
 import * as sessionActions from "./store/session";
 import * as songActions from './store/song';
@@ -15,8 +16,8 @@ function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(songActions.getAllSongs());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(songActions.getAllSongs());
   }, [dispatch]);
 
   return (
@@ -24,6 +25,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path='/songs/:songId'>
+              <SongDetailsPage />
+            </Route>
           <Route exact path='/songs'>
             <SongsPage />
           </Route>

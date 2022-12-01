@@ -25,9 +25,8 @@ function SongsPage() {
 
 
     return (
-        <div className='song-content'>
+        <div className='main-div-song'>
             <h1 className='song-header'>Songs</h1>
-            {/* <button className='create-song'>Create Song</button> */}
             {songs && songs.map((song) => {
                 return (
                     <div className='song-row' key={song.id}>
@@ -40,6 +39,7 @@ function SongsPage() {
                             <div className='song-title'>
                                 <NavLink className='song-title-nav' to={`/songs/${song.id}`}>{song.title}</NavLink>
                             </div>
+                            {/* <div className='song-artist'>{song.username}</div> */}
                             <div className='song-description'>{song.description}</div>
                         </div>
                     </div>

@@ -23,9 +23,9 @@ module.exports = {
         {
         albumId: 1,
         userId: 4,
-        title: 'whoopdidtty woop, poopity Snoop',
-        description: 'Smoke Weed idk',
-        imageUrl: 'image url',
+        title: 'Beautiful',
+        description: "Snoop Dogg letting you know you're special",
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/4/46/Snoop_Dogg_-_Beautiful.jpg/220px-Snoop_Dogg_-_Beautiful.jpg',
         url: 'url'
       },
       {
@@ -33,7 +33,7 @@ module.exports = {
         userId: 5,
         title: 'Bad romance',
         description: 'I want your design',
-        imageUrl: "image url",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/en/c/cc/Lady_Gaga_-_Bad_Romance.png",
         url: 'url'
     },
     {
@@ -41,7 +41,7 @@ module.exports = {
       userId: 6,
       title: 'Heaven can wait',
       description: 'because they dont want me yet',
-      imageUrl: "image url",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/en/9/98/Mjinvincible.jpg",
       url: 'url'
   },
   {
@@ -49,15 +49,15 @@ module.exports = {
     userId: 7,
     title: 'Suit and Tie?',
     description: 'stupid beatbox noises',
-    imageUrl: "image url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/en/e/ed/Justin_Timberlake_-_The_2020_Experience.pngurl",
     url: 'url'
 },
 {
   albumId: 5,
   userId: 8,
   title: 'Your Love is King',
-  description: 'I know helen, now marry me',
-  imageUrl: "image url",
+  description: 'Scientifically a perfect song',
+  imageUrl: "https://upload.wikimedia.org/wikipedia/en/1/1d/Sade_-_Your_Love_Is_King.pngrl",
   url: 'url'
 },
 
