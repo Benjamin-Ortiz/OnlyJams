@@ -23,15 +23,16 @@ const getSongs = (songs) => {
   };
 };
 
+// const addSong = (songs) => {
+//     type: ADD_SONG,
+//         songs
+// }
+
 // const editSong = (songs) => {
 //     type: EDIT_SONG,
 //         songs
 // }
 
-// const addSong = (songs) => {
-//     type: ADD_SONG,
-//         songs
-// }
 
 // const removeSong = (songs) => {
 //     type: REMOVE_SONG,
@@ -59,6 +60,17 @@ export const getAllSongs = () => async (dispatch) => {
   }
 };
 
+// export const addSongThunk = () => async (dispatch) => {
+//     const response = await csrfFetch("/api/songs");
+
+//     if (response.ok) {
+//         const data = await response.json();
+
+//         dispatch(addSong(data));
+//         return response
+//     }
+// };
+
 //reducer, connects front to backend by packaging all the thunk action functions
 // seeders = states, migration files = actions
 let newState = {};
@@ -78,6 +90,10 @@ const songReducer = (state = newState, action) => {
         newState[song.id] = song;
       });
       return newState;
+
+      //? case ADD_SONG:
+
+
 
     default:
       return state; //in case no action takes place, state is returned
