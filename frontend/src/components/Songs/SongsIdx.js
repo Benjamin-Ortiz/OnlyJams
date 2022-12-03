@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as songActions from '../../store/song';
+import CreateSongForm from '../CreateSong/CreateSongForm';
 import './Songs.css';
 
 //establish function component
@@ -23,8 +24,9 @@ function SongsPage() {
 
     if (!songs) return null;
 
-
+//! if user
     return (
+        
         <div className='main-div-song'>
             <h1 className='song-header'>Songs</h1>
             {songs && songs.map((song) => {

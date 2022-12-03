@@ -3,14 +3,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage/LoginForm";
-import SignupFormPage from "./components/SignupFormPage/SignupFrom";
+import SignupFormPage from "./components/SignupFormPage/SignupFormIdx";
+import CreateSongForm from "./components/CreateSong/CreateSongForm";
 import SongDetailsPage from "./components/SongDetails/SongDetailsIdx";
 
 import * as sessionActions from "./store/session";
-import * as songActions from './store/song';
+import * as songActions from "./store/song";
 
 import Navigation from "./components/Navigation/NavigationIdx";
-import SongsPage from './components/Songs/SongsIdx';
+import SongsPage from "./components/Songs/SongsIdx";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,18 +26,27 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path='/songs/:songId'>
-              <SongDetailsPage />
-            </Route>
-          <Route exact path='/songs'>
+
+          <Route exact path="/songs/create">
+            <CreateSongForm />
+          </Route>
+
+          <Route exact path="/songs/:songId">
+            <SongDetailsPage />
+          </Route>
+
+          <Route exact path="/songs">
             <SongsPage />
           </Route>
+
           <Route path="/login">
             <LoginFormPage />
           </Route>
+
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+
         </Switch>
       )}
     </>

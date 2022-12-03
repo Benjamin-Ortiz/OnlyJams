@@ -30,10 +30,9 @@ router.post("/", requireAuth, async (req, res) => {
   // const albumExists = await A
 
   //?  Create a Song without an Album Id
-  if (albumId === null) {
+  if (albumId === null || albumId === undefined) {
     const newSingle = await Song.create({
       userId: user.id,
-      albumId: albumId,
       title,
       description,
       url,
@@ -81,31 +80,71 @@ router.get("/current", requireAuth, async (req, res) => {
 router.get("/:songId", requireAuth, async (req, res) => {
   const { songId } = req.params;
 
+  const album = await Album.findOne({
+    where:{
+      // include: [
+      //   {model: Song}
+      // ],
 
-  //!! NEED TO FIND A MODEL.INCLUDES(THING) METHOD
+      id: songId
+    }
+  })
 
-  const song = await Song.findByPk(songId, {
-    include: [
-      {
-        model: User,
-        attributes: ["id", "username", "imageUrl"],
-      },
-      {
-        model: Album,
-        attributes: ["id", "title", "imageUrl"],
-      },
-    ],
-  });
+  console.log(album, '------------');
 
-  if (song) {
-    res.json(song);
-  } else {
-    res.statusCode = 404;
-    res.json({
-      message: "Song couldn't be found",
-      statusCode: 404,
+  //if no ablum/albumId
+  //send song, albumId === null
+  //else
+
+  if (album) {
+    const song = await Song.findByPk(songId, {
+      include: [
+        {
+          model: User,
+          attributes: ["id", "username", "imageUrl"],
+        },
+        {
+          model: Album,
+          attributes: ["id", "title", "imageUrl"],
+        },
+      ],
     });
+
+    if (song) {
+      res.json(song);
+    } else {
+      res.statusCode = 404;
+      res.json({
+        message: "Song couldn't be found",
+        statusCode: 404,
+      });
+    }
+
+  } else {
+    const song = await Song.findByPk(songId, {
+      include: [
+        {
+          model: User,
+          attributes: ["id", "username", "imageUrl"],
+        },
+      ],
+    });
+
+    if (song) {
+      res.json(song);
+    } else {
+      res.statusCode = 404;
+      res.json({
+        message: "Song couldn't be found",
+        statusCode: 404,
+      });
+    }
   }
+
+
+
+
+
 });
 
 //? Edit a Song

@@ -1,10 +1,13 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import * as sessionActions from '../../store/session';
-import SurfingIcon from '@mui/icons-material/Surfing';
+// import SurfingIcon from '@mui/icons-material/Surfing';
+import * as songActions from "../../store/song";
 
 function ProfileButton({ user }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -28,7 +31,13 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    history.push('/');
   };
+
+  const addSong = (e) => {
+    e.preventDefault();
+   history.push('/songs/create')
+  }
 
   return (
     <>
@@ -40,6 +49,7 @@ function ProfileButton({ user }) {
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
+            <button onClick={addSong}>Create a Song</button>
             <button onClick={logout}>Log Out</button>
           </li>
         </ul>

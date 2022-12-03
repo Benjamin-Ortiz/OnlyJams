@@ -5,34 +5,30 @@ import { csrfFetch } from "./csrf";
 const GET_SONG = "song/getSong";
 const GET_SONGS = "song/getSongs";
 // const EDIT_SONG = 'song/editSong';
-// const ADD_SONG = 'song/addSong';
+const ADD_SONG = "song/addSong";
 // const REMOVE_SONG = 'song/removeSong';
 
 //action functions
-const getSong = (song) => {
- return {
-    type: GET_SONG, //assigned action
-    song //payload
- }
-}
 
-const getSongs = (songs) => {
-  return {
-    type: GET_SONGS,
-    songs,
-  };
-};
+const getSong = (song) => ({
+  type: GET_SONG, //assigned action
+  song, //payload
+})
 
-// const addSong = (songs) => {
-//     type: ADD_SONG,
-//         songs
-// }
+const getSongs = (songs) => ({
+  type: GET_SONGS, //assigned action
+  songs, //payload
+})
+
+const addSong = (song) => ({
+  type: ADD_SONG,
+  song
+});
 
 // const editSong = (songs) => {
 //     type: EDIT_SONG,
 //         songs
 // }
-
 
 // const removeSong = (songs) => {
 //     type: REMOVE_SONG,
@@ -60,39 +56,71 @@ export const getAllSongs = () => async (dispatch) => {
   }
 };
 
-// export const addSongThunk = () => async (dispatch) => {
-//     const response = await csrfFetch("/api/songs");
+// export const addSpot = (data) => async(dispatch)=>{
+//   const response = await csrfFetch(`/api/spots`,{
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(data)
+//   })
+//   if(response.ok){
+//     const spot = await response.json()
+//     console.log(dispatch(add(spot)))
+//     dispatch(add(spot))
+//     return spot
+//   }
+//   return response
+// }
 
-//     if (response.ok) {
-//         const data = await response.json();
+export const createSong = (data) => async (dispatch) => {
+  const response = await csrfFetch("/api/songs", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 
-//         dispatch(addSong(data));
-//         return response
-//     }
-// };
+  if (response.ok) {
+    const newSong = await response.json();
+
+    dispatch(addSong(newSong));
+    return response;
+  }
+};
 
 //reducer, connects front to backend by packaging all the thunk action functions
 // seeders = states, migration files = actions
-let newState = {};
+let intialState = {};
 
-const songReducer = (state = newState, action) => {
+const songReducer = (state = intialState, action) => {
   //switch between actions, always NEEDS to return something
   //complex version of an if statement
+
   switch (action.type) {
-    case GET_SONG:
+    case GET_SONG: {
       return {
         ...state,
         [action.song.id]: action.song,
       };
-    case GET_SONGS:
-      newState = {};
+    }
+
+    case GET_SONGS: {
+      const newState = {};
       action.songs.forEach((song) => {
         newState[song.id] = song;
       });
       return newState;
+    }
 
-      //? case ADD_SONG:
 
+    case ADD_SONG:{
+      return {
+        ...state,
+        [action.song.id]: action.song,
+      };
+    }
 
 
     default:
