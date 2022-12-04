@@ -34,10 +34,7 @@ function ProfileButton({ user }) {
     history.push('/');
   };
 
-  const addSong = (e) => {
-    e.preventDefault();
-   history.push('/songs/create')
-  }
+
 
   return (
     <>
@@ -49,7 +46,6 @@ function ProfileButton({ user }) {
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
-            <button onClick={addSong}>Create a Song</button>
             <button onClick={logout}>Log Out</button>
           </li>
         </ul>

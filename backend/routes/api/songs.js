@@ -90,7 +90,7 @@ router.get("/:songId", requireAuth, async (req, res) => {
     }
   })
 
-  console.log(album, '------------');
+  // console.log(album, '------------');
 
   //if no ablum/albumId
   //send song, albumId === null

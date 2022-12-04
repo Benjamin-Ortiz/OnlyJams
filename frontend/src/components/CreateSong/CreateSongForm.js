@@ -2,14 +2,18 @@ import "./CreateSongForm.css";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import * as songActions from "../../store/song";
-import { createSong } from "../../store/song";
+import * as songActions from "../../store/song";
+//import { createSong } from "../../store/song";
 //album actions?
+
+
 
 const CreateSongForm = ({ hideform }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const history = useHistory();
+  const song = useSelector((state)=> state)
+
   // const {albumId} = useParams();
   // const albums = useSelector(state => Object.values(state.albums));
   // const album = useSelector(state => Object.values(state.albums[albumId]));
@@ -33,9 +37,16 @@ const CreateSongForm = ({ hideform }) => {
   // const createimageUrl = e => setimageUrl(e.target.value);
   // const createUrl = e => setUrl(e.target.value);
 
+  useEffect(() => {
+    console.log(song, "-=-=-=-=-=");
+  }, [song])
+
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     setErrorMessages([]);
+
+    // console.log(user);
 
     const payload = {
       userId: user.id,
@@ -45,32 +56,20 @@ const CreateSongForm = ({ hideform }) => {
       imageUrl,
     }
 
+    //? find a way to make url === futuresong id
 
+    // let createASong;
 
-    let createASong;
-    try{
+    console.log(song.songs.songs);
 
-      createASong = await dispatch(createSong(payload))
-      setErrorMessages([])
-      history.push(`/songs/${createASong.id}`)
-    }catch(e){
-      const response = await e.json()
-      setErrorMessages(response.errors)
-    }
-
-    // return dispatch(songActions.createSong(newSong))
-    //   .then(() => dispatch(songActions.getAllSongs()))
-    //   .catch(async (rejected) => {
-    //     const data = await rejected.json();
-    //     if (data && data.errors) setErrorMessages(data.errors);
-    //     history.push(`/songs/`)
-    //   });
-
-
-
+    dispatch(songActions.createSong(payload))
+    //  history.push(`/songs/${song.songs.songs.id}`) //?work on for later
+    history.push(`/songs`)
+    history.go(0)
 
   };
 
+  // console.log(song, "+++++");
 
   return (
     <form className="create-song-form" onSubmit={handleSubmit}>
@@ -100,17 +99,6 @@ const CreateSongForm = ({ hideform }) => {
           placeholder="Song Description"
           value={description}
           onChange={updateDescription}
-        />
-      </label>
-
-      <label>
-        URL
-        <input
-          className="create-url-text"
-          type="text"
-          placeholder="URL"
-          value={url}
-          onChange={updateUrl}
         />
       </label>
 

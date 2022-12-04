@@ -10,13 +10,12 @@ function SongsPage() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const songs = useSelector(state => {
-        return Object.values(state.songs);
+        return state.songs;
     });
 
     useEffect( () => {
         dispatch(songActions.getAllSongs())
-    }, [dispatch])
-
+    }, [])
 
     if (!user) return (
         <Redirect to='/' />
@@ -26,10 +25,9 @@ function SongsPage() {
 
 //! if user
     return (
-        
         <div className='main-div-song'>
             <h1 className='song-header'>Songs</h1>
-            {songs && songs.map((song) => {
+            {songs.songs && songs.songs.map((song) => {
                 return (
                     <div className='song-row' key={song.id}>
                         <div className='song-image-container'>
@@ -49,6 +47,7 @@ function SongsPage() {
             })}
         </div>
     )
+
 }
 
 export default SongsPage;

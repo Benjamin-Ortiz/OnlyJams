@@ -1,0 +1,15 @@
+.nav-links-logged-in {
+ display: flex;
+ justify-content: end;
+}
+
+.nav-to-songs-link {
+    display: flex;
+    justify-content: center;
+
+}
+
+.nav-links-logged-out {
+    display: flex;
+    justify-content: end;
+   }

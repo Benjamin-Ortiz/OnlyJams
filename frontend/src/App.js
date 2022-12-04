@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage/LoginForm";
 import SignupFormPage from "./components/SignupFormPage/SignupFormIdx";
 import CreateSongForm from "./components/CreateSong/CreateSongForm";
 import SongDetailsPage from "./components/SongDetails/SongDetailsIdx";
+import EditSongForm from "./components/EditSong/EditSongIdx";
 
 import * as sessionActions from "./store/session";
 import * as songActions from "./store/song";
@@ -34,6 +35,10 @@ function App() {
           <Route exact path="/songs/:songId">
             <SongDetailsPage />
           </Route>
+
+          {/* <Route exact path="/songs/:songId">
+            <EditSongForm />
+          </Route> */}
 
           <Route exact path="/songs">
             <SongsPage />
