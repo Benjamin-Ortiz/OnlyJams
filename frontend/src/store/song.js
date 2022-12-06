@@ -17,7 +17,7 @@ const getSong = (song) => ({
  song
 })
 
-export const getSongbyId = (songId) => async (dispatch) => {
+export const getSongById = (songId) => async (dispatch) => {
   const response = await csrfFetch(`/api/songs/${songId}`);
 
   if (response.ok) {
@@ -112,23 +112,6 @@ export const removeSong = (songId) => async (dispatch) => {
 }
 
 
-
-
-
-// export const deleteSong = (songId) => async dispatch=>{
-//   const response = await csrfFetch(`/api/songs/${songId}`,{
-//     method: 'delete'
-//   })
-//   if(response.ok){
-//      await response.json()
-//     dispatch(remove(songId))
-//     return response
-//   }
-// }
-
-
-
-
 //? REDUCER
 
 let intialState = {};
@@ -145,11 +128,6 @@ const songReducer = (state = intialState, action) => {
       return{
         ...action.song
       }
-      //  newState = Object.assign({}, state);
-      //  newState.songs = action.song;
-        // [action.song.id]: action.song,
-        //return newState
-
 
     case GET_SONGS:
 

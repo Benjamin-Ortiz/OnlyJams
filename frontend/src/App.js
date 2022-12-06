@@ -8,11 +8,19 @@ import CreateSongForm from "./components/CreateSong/CreateSongFormIdx";
 import SongDetailsPage from "./components/SongDetails/SongDetailsIdx";
 import EditSongForm from "./components/EditSong/EditSongIdx";
 
+import CreateAlbumForm from "./components/CreateAlbum/CreateAlbumFormIdx";
+import AlbumPage from "./components/AlbumPage/AlbumPageIdx";
+import EditAlbumForm from "./components/EditAlbum/EditAlbumIdx";
+
+
 import * as sessionActions from "./store/session";
 import * as songActions from "./store/song";
+import * as albumActions from "./store/album";
+
 
 import Navigation from "./components/Navigation/NavigationIdx";
 import SongsPage from "./components/Songs/SongsIdx";
+import AlbumsPage from "./components/AlbumsAllPage/AlbumsIdx"
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +55,22 @@ function App() {
           {/* <Route exact path="/artists/:userId/:songId">
             <SongDetailsPage />
           </Route> */}
+
+          <Route exact path="/albums/edit/:albumId">
+            <EditAlbumForm />
+          </Route>
+
+          <Route exact path="/albums/create">
+            <CreateAlbumForm />
+          </Route>
+
+          <Route exact path="/albums/:albumId">
+            <AlbumPage />
+          </Route>
+
+          <Route exact path="/albums">
+            <AlbumsPage />
+          </Route>
 
           <Route path="/login">
             <LoginFormPage />
