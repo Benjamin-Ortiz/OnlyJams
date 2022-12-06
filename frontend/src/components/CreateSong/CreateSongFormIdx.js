@@ -28,7 +28,7 @@ const CreateSongForm = ({ hideform }) => {
   //* Updates
   const updateTitle = (e) => setTitle(e.target.value);
   const updateDescription = (e) => setDescription(e.target.value);
-  const updateUrl = (e) => setUrl(e.target.value);
+  // const updateUrl = (e) => setUrl(e.target.value);
   const updateImageUrl = (e) => setImageUrl(e.target.value);
 
   //*creates
@@ -38,17 +38,17 @@ const CreateSongForm = ({ hideform }) => {
   // const createUrl = e => setUrl(e.target.value);
 
   useEffect(() => {
-    console.log(song, "-=-=-=-=-=");
+    // console.log(song, "-=-=-=-=-=");
   }, [song])
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
     setErrorMessages([]);
 
     // console.log(user);
 
     const payload = {
+     // id,
       userId: user.id,
       title,
       description,
@@ -57,11 +57,6 @@ const CreateSongForm = ({ hideform }) => {
     }
 
     //? find a way to make url === futuresong id
-
-    // let createASong;
-
-    console.log(song.songs.songs);
-
     dispatch(songActions.createSong(payload))
     //  history.push(`/songs/${song.songs.songs.id}`) //?work on for later
     history.push(`/songs`)
@@ -85,9 +80,8 @@ const CreateSongForm = ({ hideform }) => {
         <input
           className="create-song-text"
           type="text"
-          placeholder="Song Title"
           value={title}
-          onChange={updateTitle}
+          onChange={(e) => setTitle(e.target.value)}
         />
       </label>
 
@@ -96,9 +90,8 @@ const CreateSongForm = ({ hideform }) => {
         <input
           className="create-song-text"
           type="text"
-          placeholder="Song Description"
           value={description}
-          onChange={updateDescription}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </label>
 
@@ -109,9 +102,10 @@ const CreateSongForm = ({ hideform }) => {
           type="text"
           placeholder="Image URL"
           value={imageUrl}
-          onChange={updateImageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
         />
       </label>
+
       <button className="button-create-song" type="submit">
         Make The Next Hit!
       </button>

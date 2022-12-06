@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage/LoginForm";
 import SignupFormPage from "./components/SignupFormPage/SignupFormIdx";
-import CreateSongForm from "./components/CreateSong/CreateSongForm";
+import CreateSongForm from "./components/CreateSong/CreateSongFormIdx";
 import SongDetailsPage from "./components/SongDetails/SongDetailsIdx";
 import EditSongForm from "./components/EditSong/EditSongIdx";
 
@@ -19,7 +19,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    dispatch(songActions.getAllSongs());
+    // dispatch(songActions.getAllSongs());
   }, [dispatch]);
 
   return (
@@ -27,6 +27,10 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+
+          <Route exact path="/songs/edit/:songId">
+            <EditSongForm />
+          </Route>
 
           <Route exact path="/songs/create">
             <CreateSongForm />
@@ -36,13 +40,13 @@ function App() {
             <SongDetailsPage />
           </Route>
 
-          {/* <Route exact path="/songs/:songId">
-            <EditSongForm />
-          </Route> */}
-
           <Route exact path="/songs">
             <SongsPage />
           </Route>
+
+          {/* <Route exact path="/artists/:userId/:songId">
+            <SongDetailsPage />
+          </Route> */}
 
           <Route path="/login">
             <LoginFormPage />

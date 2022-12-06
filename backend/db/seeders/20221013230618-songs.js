@@ -49,7 +49,7 @@ module.exports = {
     userId: 7,
     title: 'Suit and Tie?',
     description: 'stupid beatbox noises',
-    imageUrl: "https://upload.wikimedia.org/wikipedia/en/e/ed/Justin_Timberlake_-_The_2020_Experience.pngurl",
+    imageUrl: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/7954/7954662_so.jpg",
     url: 'url'
 },
 {

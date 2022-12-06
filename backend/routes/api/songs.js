@@ -80,67 +80,20 @@ router.get("/current", requireAuth, async (req, res) => {
 router.get("/:songId", requireAuth, async (req, res) => {
   const { songId } = req.params;
 
-  const album = await Album.findOne({
-    where:{
-      // include: [
-      //   {model: Song}
-      // ],
-
-      id: songId
-    }
-  })
-
-  // console.log(album, '------------');
-
-  //if no ablum/albumId
-  //send song, albumId === null
-  //else
-
-  if (album) {
-    const song = await Song.findByPk(songId, {
-      include: [
-        {
-          model: User,
-          attributes: ["id", "username", "imageUrl"],
-        },
-        {
-          model: Album,
-          attributes: ["id", "title", "imageUrl"],
-        },
-      ],
-    });
-
-    if (song) {
-      res.json(song);
-    } else {
-      res.statusCode = 404;
-      res.json({
-        message: "Song couldn't be found",
-        statusCode: 404,
-      });
-    }
-
-  } else {
-    const song = await Song.findByPk(songId, {
-      include: [
-        {
-          model: User,
-          attributes: ["id", "username", "imageUrl"],
-        },
-      ],
-    });
-
-    if (song) {
-      res.json(song);
-    } else {
-      res.statusCode = 404;
-      res.json({
-        message: "Song couldn't be found",
-        statusCode: 404,
-      });
-    }
-  }
-
+	const song = await Song.findOne({
+		where: { id: songId },
+		include: [
+			{ model: Album, attributes: ['id', 'title', 'imageUrl'] },
+			{ model: User, attributes: ['id', 'username', 'imageUrl'] },
+		],
+	});
+	if (!song) {
+		return res.status(404).json({
+			message: "Song couldn't be found",
+			statusCode: 404,
+		});
+	}
+	return res.json(song);
 
 
 

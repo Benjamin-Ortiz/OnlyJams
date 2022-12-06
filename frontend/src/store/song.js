@@ -6,48 +6,33 @@ const GET_SONG = "song/GET_SONG";
 const GET_SONGS = "song/GET_SONGS";
 const EDIT_SONG = 'song/EDIT_SONG';
 const ADD_SONG = "song/ADD_SONG";
-// const REMOVE_SONG = 'song/removeSong';
-
+const DELETE_SONG = 'song/DELETE_SONG';
+// const GET_ARTIST = 'artist/GET_ARTIST'
 //action functions
 
+
+ //todo GET
 const getSong = (song) => ({
   type: GET_SONG, //assigned action
-  payload: song
+ song
 })
 
-const getSongs = (songs) => ({
-  type: GET_SONGS, //assigned action
-  payload: songs, //payload
-})
-
-const addSong = (song) => ({
-  type: ADD_SONG,
-  payload: song
-});
-
-const putSong = (song) => ({
-    type: EDIT_SONG,
-        payload:song
-})
-
-// const removeSong = (song) => ({
-//     type: REMOVE_SONG,
-//     payload: song
-// })
-
-//todo Thunk
 export const getSongbyId = (songId) => async (dispatch) => {
   const response = await csrfFetch(`/api/songs/${songId}`);
 
   if (response.ok) {
     const data = await response.json();
 
-
-
     dispatch(getSong(data));
-    return response;
   }
 };
+
+//TODO GET ALL SONGS
+
+const getSongs = (songs) => ({
+  type: GET_SONGS, //assigned action
+  songs, //payload
+})
 
 export const getAllSongs = () => async (dispatch) => {
   const response = await csrfFetch("/api/songs");
@@ -59,6 +44,13 @@ export const getAllSongs = () => async (dispatch) => {
     return response;
   }
 };
+
+//todo CREATE
+
+const addSong = (song) => ({
+  type: ADD_SONG,
+  payload: song
+});
 
 export const createSong = (data) => async (dispatch) => {
   const response = await csrfFetch("/api/songs", {
@@ -77,15 +69,26 @@ export const createSong = (data) => async (dispatch) => {
   }
 };
 
-export const editSong = (data) => async (dispatch) => {
-  const response = await csrfFetch("/api/songs/:songId", {
+
+//todo EDIT
+
+const putSong = (song) => ({
+    type: EDIT_SONG,
+        payload:song
+})
+
+export const editSong = (payload) => async (dispatch) => {
+  const {songId,title,description,imageUrl,} = payload;
+
+  console.log(payload, '+-=-=-=-=');
+
+  const response = await csrfFetch(`/api/songs/${songId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(payload),
   });
-
   if (response.ok) {
     const updatedSong = await response.json();
 
@@ -94,10 +97,42 @@ export const editSong = (data) => async (dispatch) => {
   }
 }
 
+//todo DELETE
+const deleteSong = (songId) =>({
+  type:DELETE_SONG,
+  songId
+})
+
+export const removeSong = (songId) => async (dispatch) => {
+  const song = await csrfFetch(`/api/songs/${songId}`, {
+      method: "DELETE"
+  });
+
+  if (song.ok) {
+      dispatch(deleteSong(songId));
+  }
+}
 
 
-//reducer, connects front to backend by packaging all the thunk action functions
-// seeders = states, migration files = actions
+
+
+
+// export const deleteSong = (songId) => async dispatch=>{
+//   const response = await csrfFetch(`/api/songs/${songId}`,{
+//     method: 'delete'
+//   })
+//   if(response.ok){
+//      await response.json()
+//     dispatch(remove(songId))
+//     return response
+//   }
+// }
+
+
+
+
+//? REDUCER
+
 let intialState = {};
 
 const songReducer = (state = intialState, action) => {
@@ -105,18 +140,23 @@ const songReducer = (state = intialState, action) => {
   //complex version of an if statement
   let newState;
 
+
+
   switch (action.type) {
     case GET_SONG:
-       newState = Object.assign({}, state);
-       newState.songs = action.payload;
+      return{
+        ...action.song
+      }
+      //  newState = Object.assign({}, state);
+      //  newState.songs = action.song;
         // [action.song.id]: action.song,
-        return newState
+        //return newState
 
 
     case GET_SONGS:
 
       newState = Object.assign({}, state);
-      newState.songs = action.payload;
+      newState.songs = action.songs;
 
       return newState;
 
@@ -136,6 +176,11 @@ const songReducer = (state = intialState, action) => {
         return newState;
 
 
+
+        case DELETE_SONG:
+          newState = {...state}
+          delete newState[action.songId]
+          return newState
 
 
     default:
