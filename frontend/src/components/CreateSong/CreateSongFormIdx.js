@@ -19,7 +19,8 @@ const CreateSongForm = ({ hideform }) => {
   // const album = useSelector(state => Object.values(state.albums[albumId]));
 
   //* States
-  const [errorMessages, setErrorMessages] = useState([]);
+  const [validationErrors, setValidationErrors] = useState([]);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [url, setUrl] = useState("");
@@ -38,14 +39,23 @@ const CreateSongForm = ({ hideform }) => {
   // const createUrl = e => setUrl(e.target.value);
 
   useEffect(() => {
-    // console.log(song, "-=-=-=-=-=");
+
   }, [song])
+
+  useEffect(() => {
+    const errors = [];
+    if (!title.length) errors.push('Please a title');
+    if (!description.length) errors.push('Please provide a description');
+    setValidationErrors(errors);
+  }, [title, description])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessages([]);
 
-    // console.log(user);
+    setHasSubmitted(true);
+    if (validationErrors.length) return alert(`Cannot Submit`);
+
+
 
     const payload = {
      // id,
@@ -64,13 +74,13 @@ const CreateSongForm = ({ hideform }) => {
 
   };
 
-  // console.log(song, "+++++");
+
 
   return (
     <form className="create-song-form" onSubmit={handleSubmit}>
       <h1 className="create-song-header">Create Song</h1>
       <ul>
-        {errorMessages.map((error, idx) => {
+        {validationErrors.map((error, idx) => {
           return <li key={idx}>{error}</li>;
         })}
       </ul>

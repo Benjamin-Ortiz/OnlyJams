@@ -57,7 +57,7 @@ module.exports = {
   userId: 8,
   title: 'Your Love is King',
   description: 'Scientifically a perfect song',
-  imageUrl: "https://upload.wikimedia.org/wikipedia/en/1/1d/Sade_-_Your_Love_Is_King.pngrl",
+  imageUrl: "https://i.discogs.com/Zm8oEb3Vq0bkBeqfKPS0myDhZ5X3zPpGXwPj0cT0Y0A/rs:fit/g:sm/q:90/h:600/w:587/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NDk0/NzctMTMzMDgxNTA0/NC5qcGVn.jpeg",
   url: 'url'
 },
 

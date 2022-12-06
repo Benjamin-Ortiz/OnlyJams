@@ -80,8 +80,6 @@ const putSong = (song) => ({
 export const editSong = (payload) => async (dispatch) => {
   const {songId,title,description,imageUrl,} = payload;
 
-  console.log(payload, '+-=-=-=-=');
-
   const response = await csrfFetch(`/api/songs/${songId}`, {
     method: "PUT",
     headers: {

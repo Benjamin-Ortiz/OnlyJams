@@ -11,10 +11,11 @@ const EditSongForm = ({hideForm}) => {
   const song = useSelector((state) => state.songs[songId]);
 
   //states
-  const [errors, setErrors] = useState([]);
+  const [validationErrors, setValidationErrors] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   //updates
   const updateTitle = (e) => setTitle(e.target.value);
@@ -25,8 +26,18 @@ const EditSongForm = ({hideForm}) => {
     dispatch(songActions.getAllSongs());
   }, [dispatch]);
 
+  useEffect(() => {
+    const errors = [];
+    if (!title.length) errors.push('Please a title');
+    if (!description.length) errors.push('Please provide a description');
+    setValidationErrors(errors);
+  }, [title, description])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setHasSubmitted(true);
+    if (validationErrors.length) return alert(`Cannot Submit`);
 
     const payload = {
       songId,
@@ -37,13 +48,12 @@ const EditSongForm = ({hideForm}) => {
 
     try {
       await dispatch(songActions.editSong(payload));
-      setErrors([]);
+      setValidationErrors([]);
       history.push(`/songs/${songId}`);
     } catch (e) {
       const response = await e.json();
-      setErrors(response.errors);
+      setValidationErrors(response.validationErrors);
     }
-    hideForm();
   };
 
   const cancelFunction = (e) => {
@@ -59,7 +69,7 @@ const EditSongForm = ({hideForm}) => {
       <h1>Update Song</h1>
 
       <ul>
-        {errors.map((error, id) => (
+        {validationErrors.map((error, id) => (
           <li key={id}>{error}</li>
         ))}
       </ul>
