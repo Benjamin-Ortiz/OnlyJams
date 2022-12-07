@@ -19,6 +19,18 @@ const removeUser = () => {
   };
 };
 
+export const demoLogIn = () => async (dispatch)=> {
+  const response = await csrfFetch('/api/session', {
+    method: 'POST',
+    body: JSON.stringify({
+      credential: 'TheKing@gmail.com',
+      password: 'H33H33'
+    }),
+  });
+  const data = await response.json();
+  dispatch(setUser(data));
+  return response;
+}
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;

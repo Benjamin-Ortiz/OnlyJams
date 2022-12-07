@@ -1,5 +1,17 @@
 .root{
     border-style: solid none;
+
+}
+
+.main-banner {
+
+}
+
+.trending-header {
+    font-size: 24px;
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 30px;
 }
 
 .main-div-album {

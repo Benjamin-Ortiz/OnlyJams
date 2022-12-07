@@ -3,6 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
+import DemoUser from "../DemoUser/DemoUserIdx"
 import { useHistory } from "react-router-dom";
 import "./Navigation.css";
 
@@ -39,8 +40,10 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <div className="nav-links-logged">
+        {/* add demo user */}
         <NavLink to="/login">Log In</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
+        <DemoUser />
       </div>
     );
   }

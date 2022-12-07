@@ -9,7 +9,7 @@ function AlbumsPage() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const albums = useSelector((state) => {return state.albums});
-  console.log(albums, "ALL ALBUMS")
+ // console.log(albums, "ALL ALBUMS")
 
 
 

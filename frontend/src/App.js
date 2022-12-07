@@ -21,6 +21,7 @@ import * as sessionActions from "./store/session";
 
 
 import Navigation from "./components/Navigation/NavigationIdx";
+import DemoUser from "./components/DemoUser/DemoUserIdx"
 import SongsPage from "./components/Songs/SongsIdx";
 import AlbumsPage from "./components/AlbumsAllPage/AlbumsIdx"
 
@@ -33,13 +34,13 @@ function App() {
 
   return (
     <>
+
+
+
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
 
-          <Route exact path="/">
-                <HomePage />
-              </Route>
 
           <Route exact path="/songs/edit/:songId">
             <EditSongForm />
@@ -84,6 +85,10 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+
+          <Route exact path="/">
+                <HomePage />
+              </Route>
 
         </Switch>
       )}
