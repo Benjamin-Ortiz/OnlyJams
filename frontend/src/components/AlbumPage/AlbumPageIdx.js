@@ -14,8 +14,7 @@ function AlbumPage() {
   const album = useSelector((state) => {return state.albums});
   console.log(album, 'ALBUM DETAILS');
 
-  let { albumId } = useParams();// when albumId gets updated
-  // const album = albums.albums[albumId]
+  let { albumId } = useParams();
 
 
 
@@ -42,7 +41,14 @@ const backButton = () => {
 
 //if youre the owner, delete, edit show
 
-// fix line
+// oh actually sorry I forgot you don't
+// have to be logged in to see albums. You can just use
+// optional chaining here since there's not a log going on.
+// Put a question mark before the dots before the .userId and .id on line 59.
+// Then get rid of the the code I just had you add
+//! && in jsx = a single line if condition, except if it
+//! doesnt pass, "skip to next line"
+
   return (
     <>
       <div className="main-div-album">
@@ -52,7 +58,8 @@ const backButton = () => {
           <div className="album-image-content">
             <img className="album-image" src={album.imageUrl} alt={album.title} />
           </div>
-          { album.userId === user.id && <>
+          { user &&
+          album.userId === user.id && <>
                 <button type="submit" className="album-edit-button" onClick={() => editAAlbum(albumId)}>
                     Edit album
                 </button>

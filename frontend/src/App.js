@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage/LoginForm";
 import SignupFormPage from "./components/SignupFormPage/SignupFormIdx";
+import HomePage from "./components/HomePage/HomePageIdx";
+
 import CreateSongForm from "./components/CreateSong/CreateSongFormIdx";
 import SongDetailsPage from "./components/SongDetails/SongDetailsIdx";
 import EditSongForm from "./components/EditSong/EditSongIdx";
@@ -34,6 +36,10 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+
+          <Route exact path="/">
+                <HomePage />
+              </Route>
 
           <Route exact path="/songs/edit/:songId">
             <EditSongForm />

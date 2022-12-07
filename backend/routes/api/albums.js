@@ -38,7 +38,7 @@ router.post("/", requireAuth, async (req, res) => {
     description,
     imageUrl,
   });
- 
+
    return res.json(newAlbum);
 });
 
@@ -46,7 +46,7 @@ router.post("/", requireAuth, async (req, res) => {
 
 
 //?Get All Albums
-router.get("/", requireAuth, async (req, res) => {
+router.get("/", async (req, res) => {
 
     const Albums = await Album.findAll()
 
@@ -73,7 +73,7 @@ router.get("/current", requireAuth, async (req, res) => {
 
 
 //? Get Details of an Album By Id
-router.get("/:albumId", requireAuth, async (req, res) => {
+router.get("/:albumId", async (req, res) => {
     const {albumId} = req.params;
 
 

@@ -1,4 +1,4 @@
-/* .nav-links-logged-in {
+.nav-links-logged-in {
  display: flex;
  justify-content: end;
 }
@@ -12,4 +12,28 @@
 .nav-links-logged-out {
     display: flex;
     justify-content: end;
-   } */
+   }
+
+   .nav-add-song {
+
+   }
+
+   .nav-add-album {
+
+   }
+
+   .nav-links-logged {
+
+   }
+
+   .home-button {
+
+   }
+
+   .create-buttons {
+
+   }
+
+   .nav-to-albums-link {
+
+   }

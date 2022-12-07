@@ -112,10 +112,14 @@ const albumReducer = (state = initialState, action) => {
     let newState;
 
   switch (action.type) {
+
+
     case GET_ALBUM:
+      
         return{
             ...action.album
           }
+
 
 
     case ALL_ALBUMS:

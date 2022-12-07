@@ -17,7 +17,7 @@ function AlbumsPage() {
     dispatch(albumActions.getAllAlbums());
   }, [dispatch]);
 
-  if (!user) return <Redirect to="/" />;
+  // if (!user) return <Redirect to="/" />;
 
   if (!albums) return null;
 
