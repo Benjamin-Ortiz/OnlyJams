@@ -5,44 +5,80 @@
     /* height: auto; */
     display: list-item;
     justify-content: center;
+    object-fit: scale-down;
     resize: auto;
     overflow: auto;
-
-
+    padding-left: 10%;
 }
 
 .main-banner-photo{
-    background-color: rgb(115, 29, 29);
+    background-color: rgb(0, 0, 0);
+    object-fit: contain;
     display: flex;
     justify-content: center;
     /* object-fit: scale-down; */
     width: 90%;
     height: 550px;
-    object-fit: scale-down;
 
+}
+
+.trending-header {
+    display: flex;
+    justify-content: center;
+}
+
+.album-image-container {
+ display: flex;
+ flex-wrap: wrap;
+ height: 200px;
+ width: 200px;
+ justify-content: space-between;
+ padding: 2.5%;
+
+}
+
+.album-image {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    position: relative;
+    justify-content: center;
+}
+
+.album-title-nav{
+    display: flex;
+    justify-content: center;
 }
 
 .main-div-album {
     height: 80%;
     position: relative;
+    justify-content: center;
     display: grid;
     grid-template-rows: auto;
     background-color: rgb(88, 87, 87);
 }
+.albums-container {
+   display: flex;
+   flex-wrap: wrap;
+   align-content: space-around;
 
-.album-section {
+}
+
+/* .album-section {
     display: grid;
     width: 100vw;
     height: 100%;
     min-height: fit-content;
     /* grid-template-rows: repeat(3, 1fr); */
-    grid-template-columns: repeat(4, 1fr);
-}
+    /* grid-template-columns: repeat(4, 1fr);
+} */
 
-.album-row {
+
+/* .album-row {
     border: 1px solid rgb(255, 0, 0);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -52,35 +88,4 @@
 .album-row:hover {
     cursor: pointer;
 }
-
-.album-image {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
-/**************************
-*       Album Nav Button
-***************************/
-.album-nav-button{
-    position: absolute;
-    left: .5vw;
-    bottom: 5.4vh;
-    padding: 1rem;
-    background-color: #FF5500;
-    color: white;
-}
-
-/**************************
-*       Add Album Container
-***************************/
-
-.add-album-container {
-    position: sticky;
-    bottom: 1.5vh;
-    left: 0.1vw;
-}
-
-.album-nav-button {
-    cursor: pointer;
-}
+*/

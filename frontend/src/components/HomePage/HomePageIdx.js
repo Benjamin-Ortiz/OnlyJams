@@ -40,14 +40,13 @@ const history = useHistory();
   <img src={photo1} class="main-banner-photo"></img>
     </div>
 
-<div className="albums-container">
     <div className="trending-header">Check Out These Albums</div>
+    {/* <h1 className="album-header">Check Out These Albums</h1> */}
     <div className="main-div-album">
-      <h1 className="album-header">Albums</h1>
+    <div className="albums-container">
       {albums.albums &&
         albums.albums.map((album) => {
           return (
-            <div className="album-row" key={album.id}>
               <div className="album-image-container">
                 <div className="album-image-content">
                   <img
@@ -56,7 +55,6 @@ const history = useHistory();
                     alt={album.title}
                   />
                 </div>
-              </div>
               <div className="album-details">
                 <div className="album-title">
                   <NavLink className="album-title-nav" to={`/albums/${album.id}`}>

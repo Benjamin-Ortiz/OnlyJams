@@ -1,3 +1,8 @@
+.active {
+    display: flex;
+    justify-content: flex-start;
+}
+
 .nav-links-logged-in {
  display: flex;
  justify-content: end;
@@ -23,11 +28,16 @@
    }
 
    .nav-links-logged {
+    display: flex;
+    justify-content: flex-end;
 
    }
 
    .home-button {
-
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
    }
 
    .create-buttons {
