@@ -3,7 +3,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import { addSong } from "../../store/song";
 import { useHistory } from "react-router-dom";
 import "./Navigation.css";
 
@@ -16,15 +15,25 @@ function Navigation({ isLoaded }) {
     history.push("/songs/create");
   };
 
+  const addAlbumNav = (e) => {
+    e.preventDefault();
+    history.push("/albums/create");
+  };
+
   let sessionLinks;
 
   if (sessionUser) {
     sessionLinks = (
       <div className="nav-links-logged-in">
+        <div className="profile-button">
+        <ProfileButton user={sessionUser} />
+        </div>
         <button className="nav-add-song" onClick={addSongNav}>
           Upload Your Song!
         </button>
-        <ProfileButton user={sessionUser} />
+        <button className="nav-add-album" onClick={addAlbumNav}>
+          Upload Your album!
+        </button>
       </div>
     );
   } else {
@@ -37,14 +46,25 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <div>
+    <div className="home-button">
+      <NavLink exact to="/">
+        Home
+      </NavLink>
+
+      <div className="create-buttons">
       <NavLink className="nav-to-songs-link" to="/songs">
         Discover All Songs!
       </NavLink>
 
-      <NavLink exact to="/">
-        Home
+      <NavLink className="nav-to-albums-link" to="/albums">
+        Check out the top 100 Albums!
       </NavLink>
+      </div>
+
+
+
+
+
       {isLoaded && sessionLinks}
     </div>
   );

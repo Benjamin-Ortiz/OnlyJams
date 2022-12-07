@@ -8,14 +8,14 @@ import CreateSongForm from "./components/CreateSong/CreateSongFormIdx";
 import SongDetailsPage from "./components/SongDetails/SongDetailsIdx";
 import EditSongForm from "./components/EditSong/EditSongIdx";
 
-import CreateAlbumForm from "./components/CreateAlbum/CreateAlbumFormIdx";
+import CreateAlbumForm from "./components/AlbumCreate/CreateAlbumFormIdx";
 import AlbumPage from "./components/AlbumPage/AlbumPageIdx";
-import EditAlbumForm from "./components/EditAlbum/EditAlbumIdx";
+import EditAlbumForm from "./components/AlbumEdit/EditAlbumIdx";
 
 
 import * as sessionActions from "./store/session";
-import * as songActions from "./store/song";
-import * as albumActions from "./store/album";
+// import * as songActions from "./store/song";
+// import * as albumActions from "./store/album";
 
 
 import Navigation from "./components/Navigation/NavigationIdx";
@@ -27,7 +27,6 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    // dispatch(songActions.getAllSongs());
   }, [dispatch]);
 
   return (

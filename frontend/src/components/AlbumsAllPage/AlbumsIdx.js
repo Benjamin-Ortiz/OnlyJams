@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import * as songActions from "../../store/song";
 import * as albumActions from "../../store/album";
 import "./Albums.css";
 
@@ -10,7 +9,7 @@ function AlbumsPage() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const albums = useSelector((state) => {return state.albums});
-  console.log(albums)
+  console.log(albums, "ALL ALBUMS")
 
 
 

@@ -1,10 +1,10 @@
 import "./CreateAlbumForm.css";
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as albumActions from "../../store/album";
-//import { createSong } from "../../store/song";
-//album actions?
+// useParams?
+
 
 
 
@@ -12,11 +12,7 @@ const CreateAlbumForm = ({ hideform }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const history = useHistory();
-  const song = useSelector((state)=> state)
-
-  // const {albumId} = useParams();
-  // const albums = useSelector(state => Object.values(state.albums));
-  // const album = useSelector(state => Object.values(state.albums[albumId]));
+  const album = useSelector((state)=> state)
 
   //* States
   const [validationErrors, setValidationErrors] = useState([]);
@@ -40,7 +36,7 @@ const CreateAlbumForm = ({ hideform }) => {
 
   useEffect(() => {
 
-  }, [song])
+  }, [album])
 
   useEffect(() => {
     const errors = [];
@@ -66,10 +62,10 @@ const CreateAlbumForm = ({ hideform }) => {
       imageUrl,
     }
 
-    //? find a way to make url === futuresong id
-    dispatch(songActions.createSong(payload))
-    //  history.push(`/songs/${song.songs.songs.id}`) //?work on for later
-    history.push(`/songs`)
+    //? find a way to make url === futurealbum id
+    dispatch(albumActions.createAlbum(payload))
+    //  history.push(`/albums/${song.songs.songs.id}`) //?work on for later
+    history.push(`/albums`)
     history.go(0)
 
   };
@@ -77,8 +73,8 @@ const CreateAlbumForm = ({ hideform }) => {
 
 
   return (
-    <form className="create-song-form" onSubmit={handleSubmit}>
-      <h1 className="create-song-header">Create Song</h1>
+    <form className="create-album-form" onSubmit={handleSubmit}>
+      <h1 className="create-album-header">Create Album</h1>
       <ul>
         {validationErrors.map((error, idx) => {
           return <li key={idx}>{error}</li>;
@@ -86,9 +82,9 @@ const CreateAlbumForm = ({ hideform }) => {
       </ul>
 
       <label>
-        Song Title
+      Album Title
         <input
-          className="create-song-text"
+          className="create-album-text"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -96,9 +92,9 @@ const CreateAlbumForm = ({ hideform }) => {
       </label>
 
       <label>
-        Song Description
+      Album Description
         <input
-          className="create-song-text"
+          className="create-album-text"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -116,8 +112,8 @@ const CreateAlbumForm = ({ hideform }) => {
         />
       </label>
 
-      <button className="button-create-song" type="submit">
-        Make The Next Hit!
+      <button className="button-create-album" type="submit">
+        See You At the Billboard 100!
       </button>
     </form>
   );

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import * as songActions from "../../store/song";
-import CreateSongForm from "../CreateSong/CreateSongFormIdx";
 import "./Songs.css";
 
 //establish function component
@@ -10,7 +9,7 @@ function SongsPage() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const songs = useSelector((state) => {return state.songs});
-  console.log(songs)
+  console.log(songs, 'All SONGS')
 
 
 

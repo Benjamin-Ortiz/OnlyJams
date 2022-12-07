@@ -7,8 +7,7 @@ const GET_SONGS = "song/GET_SONGS";
 const EDIT_SONG = 'song/EDIT_SONG';
 const ADD_SONG = "song/ADD_SONG";
 const DELETE_SONG = 'song/DELETE_SONG';
-// const GET_ARTIST = 'artist/GET_ARTIST'
-//action functions
+
 
 
  //todo GET
@@ -120,8 +119,6 @@ const songReducer = (state = intialState, action) => {
   //switch between actions, always NEEDS to return something
   //complex version of an if statement
   let newState;
-
-
 
   switch (action.type) {
     case GET_SONG:

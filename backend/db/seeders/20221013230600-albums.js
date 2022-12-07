@@ -26,7 +26,7 @@ module.exports = {
         userId: 4,
         title: 'Rhythm & Gangsta',
         description: 'Millenial Sunday cleaning music',
-        imageUrl: "https://en.wikipedia.org/wiki/R%26G_%28Rhythm_%26_Gangsta%29:_The_Masterpiece#/media/File:R_and_G_(Rhythm_and_Gangsta)_The_Masterpiece_(Snoop_Dog_album)_coverart.jpg"
+        imageUrl: "https://i.ytimg.com/vi/TaFwaUyxsZQ/maxresdefault.jpg"
       },
       {
         userId: 5,

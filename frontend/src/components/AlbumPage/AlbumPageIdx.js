@@ -1,44 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams, useHistory, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import * as songActions from "../../store/song";
-import EditSongForm from "../EditSong/EditSongIdx";
-import "./SongDetails.css";
 
-function SongDetailsPage() {
+import * as albumActions from "../../store/album"
+import "./AlbumPage.css";
+
+function AlbumPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const user = useSelector((state) => {return state.session.user;});
-  // const artists = useSelector((state) => {return state;})
-  // // console.log(artists, "=-=-=-=-=");
-  const song = useSelector((state) => {return state.songs});
-  console.log(song, 'SONG DETAILS');
 
-  let { songId } = useParams();// when songId gets updated
-  // const song = songs.songs[songId]
+  const album = useSelector((state) => {return state.albums});
+  console.log(album, 'ALBUM DETAILS');
+
+  let { albumId } = useParams();// when albumId gets updated
+  // const album = albums.albums[albumId]
 
 
 
 useEffect(() => {
 
-  if (songId) {
-    dispatch(songActions.getSongById(songId))
+  if (albumId) {
+    dispatch(albumActions.getAlbumById(albumId))
   }
-}, [dispatch, songId])
+}, [dispatch, albumId])
 
-  const deleteASong = (songId) => {
-    dispatch(songActions.removeSong(songId))
+  const deleteAnAlbum = (albumId) => {
+    dispatch(albumActions.removeAlbum(albumId))
 
-    history.push("/songs");
+    history.push("/albums");
 }
 
-  const editASong = (songId) => {
-    history.push(`/songs/edit/${songId}`);
+  const editAAlbum = (albumId) => {
+    history.push(`/albums/edit/${albumId}`);
 }
 
 const backButton = () => {
-  history.push('/songs')
+  history.push('/albums')
 }
 
 //if youre the owner, delete, edit show
@@ -46,32 +45,32 @@ const backButton = () => {
 // fix line
   return (
     <>
-      <div className="main-div-song">
-      <h1 className="song-header">{song.title}</h1>
-      <div className="song-row">
-        <div className="song-image-container">
-          <div className="song-image-content">
-            <img className="song-image" src={song.imageUrl} alt={song.title} />
+      <div className="main-div-album">
+      <h1 className="album-header">{album.title}</h1>
+      <div className="album-row">
+        <div className="album-image-container">
+          <div className="album-image-content">
+            <img className="album-image" src={album.imageUrl} alt={album.title} />
           </div>
-          { song.userId === user.id && <>
-                <button type="submit" className="song-edit-button" onClick={() => editASong(songId)}>
-                    Edit Song
+          { album.userId === user.id && <>
+                <button type="submit" className="album-edit-button" onClick={() => editAAlbum(albumId)}>
+                    Edit album
                 </button>
-                  <button type="submit" className="song-delete-button" onClick={() => deleteASong(songId)}>
-                  Delete Song
+                  <button type="submit" className="album-delete-button" onClick={() => deleteAnAlbum(albumId)}>
+                  Delete album
               </button>
               </>
                 }
         </div>
-        <div className="song-details">
-          <div className="song-title">
-          {song.title}
-            {/* <NavLink className="song-title-nav" to={`/songs/${song.id}`}>
-              // {song.title}
+        <div className="album-details">
+          <div className="album-title">
+          {album.title}
+            {/* <NavLink className="album-title-nav" to={`/albums/${album.id}`}>
+              // {album.title}
             </NavLink> */}
           </div>
-          <div className='song-artist'>{song.userId}</div>
-          <div className="song-description">{song.description}</div>
+          <div className='album-artist'>{album.userId}</div>
+          <div className="album-description">{album.description}</div>
         </div>
       </div>
       <Route>
@@ -83,4 +82,4 @@ const backButton = () => {
   )
       }
 
-export default SongDetailsPage;
+export default AlbumPage;

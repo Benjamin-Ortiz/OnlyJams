@@ -1,10 +1,11 @@
 import "./CreateSongForm.css";
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as songActions from "../../store/song";
 //import { createSong } from "../../store/song";
 //album actions?
+// useParams?
 
 
 
@@ -14,9 +15,6 @@ const CreateSongForm = ({ hideform }) => {
   const history = useHistory();
   const song = useSelector((state)=> state)
 
-  // const {albumId} = useParams();
-  // const albums = useSelector(state => Object.values(state.albums));
-  // const album = useSelector(state => Object.values(state.albums[albumId]));
 
   //* States
   const [validationErrors, setValidationErrors] = useState([]);
