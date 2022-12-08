@@ -12,13 +12,32 @@ const validateSignup = [
   //access the array of user emails
   //if email.exists(emailsArr)
   //res.json{custom status code and message}
+
+  check("firstName")
+  .exists({ checkFalsy: true })
+  .isAlpha('en-US')
+  .withMessage("Please provide a first name using only letters.")
+  .isLength({ min: 2 })
+  .withMessage("Please provide a first name with at least 2 characters."),
+
+
+  check("lastName")
+    .exists({ checkFalsy: true })
+    .isAlpha('en-US')
+    .withMessage("Please provide a last name using only letters.")
+    .isLength({ min: 2 })
+    .withMessage("Please provide a last name with at least 2 characters."),
+
+
   check("email")
     .exists({ checkFalsy: true })
     .isEmail()
+    // .exists()
     .withMessage("Please provide a valid email."),
 
   check("username")
     .exists({ checkFalsy: true })
+    // .exists()
     .isLength({ min: 4 })
     .withMessage("Please provide a username with at least 4 characters."),
 
@@ -36,7 +55,7 @@ const validateSignup = [
 router.post("/", validateSignup, async (req, res) => {
   const { email, password, username, firstName, lastName } = req.body;
   // const errors = validationResult(req);
-  
+
   // const token = await setTokenCookie (req, res)
 
   const duplicateEmail = await User.findOne({

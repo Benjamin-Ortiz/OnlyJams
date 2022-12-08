@@ -68,7 +68,6 @@ const CreateSongForm = ({ hideform }) => {
     dispatch(songActions.createSong(payload))
     //  history.push(`/songs/${song.songs.songs.id}`) //?work on for later
     history.push(`/songs`)
-    history.go(0)
 
   };
 

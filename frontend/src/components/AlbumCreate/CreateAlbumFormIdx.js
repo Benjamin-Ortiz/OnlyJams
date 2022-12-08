@@ -66,7 +66,6 @@ const CreateAlbumForm = ({ hideform }) => {
     dispatch(albumActions.createAlbum(payload))
     //  history.push(`/albums/${song.songs.songs.id}`) //?work on for later
     history.push(`/albums`)
-    history.go(0)
 
   };
 

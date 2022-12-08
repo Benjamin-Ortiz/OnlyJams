@@ -48,6 +48,7 @@ const validateLogin = [
 ];
 
 // Log in
+//! RENDER TO FRONT END
 router.post('/', validateLogin, async (req, res, next) => {
     const { credential, password } = req.body;
 

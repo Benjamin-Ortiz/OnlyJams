@@ -41,8 +41,8 @@ function SignupFormPage() {
 
       <label>
         First Name
-        <input
-          type="text"
+      <input
+          type={'text'}
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
@@ -64,7 +64,7 @@ function SignupFormPage() {
       <label>
         Email
         <input
-          type="text"
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
