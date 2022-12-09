@@ -113,47 +113,65 @@ export const removeSong = (songId) => async (dispatch) => {
 
 //? REDUCER
 
-let intialState = {};
+let intialState = {
+  songs: {
+    songs:{}
+  }
+};
 
 const songReducer = (state = intialState, action) => {
   //switch between actions, always NEEDS to return something
   //complex version of an if statement
-  let newState;
+
 
   switch (action.type) {
-    case GET_SONG:
-      return{
-        ...action.song
-      }
 
-    case GET_SONGS:
+    case GET_SONG: {
+      const newState = {...action.song}
+      newState.songs = {};
+      return newState;
+    }
 
-      newState = Object.assign({}, state);
+
+    case GET_SONGS: {
+      const newState = {};
+
       newState.songs = action.songs;
 
       return newState;
+    }
 
 
 
-    case ADD_SONG:
+
+    case ADD_SONG: {
+      const newState = {}
+
       newState = Object.assign({}, state);
       newState.songs = action.payload;
 
       return newState;
+    }
 
 
-      case EDIT_SONG:
-        newState = Object.assign({}, state);
-        newState.songs = action.payload;
-
-        return newState;
+      case EDIT_SONG: {
 
 
+     const newState = Object.assign({}, state);
+     newState.songs = action.payload;
 
-        case DELETE_SONG:
-          newState = {...state}
-          delete newState[action.songId]
-          return newState
+     return newState;
+      }
+
+
+
+        case DELETE_SONG: {
+
+          const newState = {...state, ...state.songs}
+           delete newState[action.songId]
+           return newState
+        }
+
 
 
     default:

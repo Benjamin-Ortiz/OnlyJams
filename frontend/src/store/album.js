@@ -106,49 +106,60 @@ export const removeAlbum = (albumId) => async (dispatch) => {
 
 // REDUCER
 
-let initialState = {};
+let initialState = {
+  albums:{
+    albums: {}
+  }
+};
 
 const albumReducer = (state = initialState, action) => {
-    let newState;
 
   switch (action.type) {
 
 
-    case GET_ALBUM:
-      
-        return{
-            ...action.album
-          }
+    case GET_ALBUM:{
+      const newState = {...action.album}
+      newState.albums = {};
+      return newState;
+    }
 
 
 
-    case ALL_ALBUMS:
+    case ALL_ALBUMS:{
+      const newState = {};
 
-        newState = Object.assign({}, state);
-        newState.albums = action.albums;
+      newState.albums = action.albums;
 
-        return newState;
+      return newState;
+    }
+
+    case ADD_ALBUM:{
+      const newState = {}
+
+      newState = Object.assign({}, state);
+      newState.albums = action.payload;
+
+      return newState;
+    }
+
+    case EDIT_ALBUM:{
 
 
-    case ADD_ALBUM:
-        newState = Object.assign({}, state);
-        newState.albums = action.payload;
+      const newState = Object.assign({}, state);
+      newState.albums = action.payload;
 
-        return newState;
+      return newState;
+}
 
-    case EDIT_ALBUM:
-        newState = Object.assign({}, state);
-        newState.albums = action.payload;
+    case DELETE_ALBUM:{
 
-        return newState;
-
-    case DELETE_ALBUM:
-        newState = {...state}
-        delete newState[action.albumId]
-        return newState
+      const newState = {...state, ...state.albums}
+       delete newState[action.albumId]
+       return newState
+    }
 
     default:
-      return state;
+      return state
   }
 };
 

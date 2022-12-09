@@ -8,8 +8,8 @@ import "./Songs.css";
 function SongsPage() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const songs = useSelector((state) => {return state.songs});
-  console.log(songs, 'All SONGS')
+  const pageSongs = useSelector((state) => Object.values(state.songs.songs));
+ // console.log(pageSongs, 'All SONGS')
 
 
 
@@ -17,16 +17,16 @@ function SongsPage() {
     dispatch(songActions.getAllSongs());
   }, [dispatch]);
 
-  // if (!user) return <Redirect to="/" />;
+  if (!user) return <Redirect to="/" />;
 
-  if (!songs) return null;
+  if (!pageSongs.length) return null;
 
   //! if user
   return (
     <div className="main-div-song">
       <h1 className="song-header">Songs</h1>
-      {songs.songs &&
-        songs.songs.map((song) => {
+      {pageSongs &&
+        pageSongs.map((song) => {
           return (
             <div className="song-row" key={song.id}>
               <div className="song-image-container">

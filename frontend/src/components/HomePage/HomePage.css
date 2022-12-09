@@ -1,7 +1,7 @@
 
 
 .home-main-banner {
-    max-width: 100%;
+    min-width: 600px;
     /* height: auto; */
     display: list-item;
     justify-content: center;
@@ -17,7 +17,7 @@
     object-fit: contain;
     display: flex;
     justify-content: center;
-    /* object-fit: scale-down; */
+    object-fit: scale-down;
     width: 90%;
     height: 550px;
 

@@ -8,8 +8,8 @@ import "./Albums.css";
 function AlbumsPage() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const albums = useSelector((state) => {return state.albums});
- // console.log(albums, "ALL ALBUMS")
+  const albums = useSelector((state) => Object.values(state.albums.albums)); //returns obj
+ //console.log(albums, "ALL ALBUMS")
 
 
 
@@ -19,14 +19,14 @@ function AlbumsPage() {
 
   // if (!user) return <Redirect to="/" />;
 
-  if (!albums) return null;
+  //if (!(Object.keys(albums.albums).length)) return null;
 
   //! if user
   return (
     <div className="main-div-album">
       <h1 className="album-header">Albums</h1>
-      {albums.albums &&
-        albums.albums.map((album) => {
+      {albums &&
+        albums.map((album) => {
           return (
             <div className="album-row" key={album.id}>
               <div className="album-image-container">

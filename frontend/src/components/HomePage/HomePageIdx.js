@@ -34,7 +34,7 @@ function HomePage() {
       <div className="home-main-banner">
         {/* <Navigation />
   <ProfileButton /> */}
-        <img src={photo1} class="home-main-banner-photo"></img>
+        <img src={photo1} className="home-main-banner-photo"></img>
       </div>
 
       <div className="home-stack-trend-and-contiainer">
@@ -46,7 +46,7 @@ function HomePage() {
               albums.albums.map((album) => {
                 // if length is > 8 stop loop
                 return (
-                  <div className="home-album-image-container">
+                  <div key={album.id} className="home-album-image-container">
                     <div className="home-album-image-content">
                       <img
                         className="home-album-image"
