@@ -59,7 +59,7 @@ const backButton = () => {
             <img className="album-image" src={album.imageUrl} alt={album.title} />
           </div>
           { user &&
-          album.userId === user.id && <>
+          album?.userId === user?.id && <>
                 <button type="submit" className="album-edit-button" onClick={() => editAAlbum(albumId)}>
                     Edit album
                 </button>
@@ -76,7 +76,7 @@ const backButton = () => {
               // {album.title}
             </NavLink> */}
           </div>
-          <div className='album-artist'>{album.userId}</div>
+          <div className='album-artist'>{album?.User?.username}</div>
           <div className="album-description">{album.description}</div>
         </div>
       </div>

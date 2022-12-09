@@ -22,6 +22,8 @@ function LoginFormPage() {
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
+        if (data && data.message) setErrors([data.message]);
+        if (data && data.error) setErrors(data.errors.values());
       });
   }
 

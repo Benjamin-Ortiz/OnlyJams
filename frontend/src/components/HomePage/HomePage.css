@@ -1,6 +1,6 @@
 
 
-.main-banner {
+.home-main-banner {
     max-width: 100%;
     /* height: auto; */
     display: list-item;
@@ -12,7 +12,7 @@
     padding-bottom: 20%;
 }
 
-.main-banner-photo{
+.home-main-banner-photo{
     background-color: rgb(0, 0, 0);
     object-fit: contain;
     display: flex;
@@ -23,12 +23,12 @@
 
 }
 
-.trending-header {
+.home-trending-header {
     display: flex;
     justify-content: center;
 }
 
-.album-image-container {
+.home-album-image-container {
  display: flex;
  flex-wrap: wrap;
  height: 200px;
@@ -38,7 +38,7 @@
 
 }
 
-.album-image {
+.home-album-image {
     height: 200px;
     width: 200px;
     object-fit: cover;
@@ -51,33 +51,33 @@
     justify-content: center;
 } */
 
-.main-div-album {
+.home-main-div-album {
     height: 80%;
     position: relative;
     justify-content: center;
     display: grid;
-    grid-column-start:3 ;
+    grid-column-start: 3;
     grid-template-rows: repeat(2, 500px);
     background-color: rgb(88, 87, 87);
     padding-top: 0%;
 }
-.albums-container {
+.home-albums-container {
    display: flex;
    flex-wrap: wrap;
  justify-content: space-evenly;
 }
 
-.album-description {
+.home-album-description {
     color: antiquewhite;
 }
 
-.stack-trend-and-contiainer{
+.home-stack-trend-and-contiainer{
     display: flex;
     flex-direction: column;
     padding-top: 0px;
 }
 
-.album-details{
+.home-album-details{
     height: 80%;
     position: relative;
     justify-content: center;

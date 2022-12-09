@@ -18,18 +18,27 @@ function SignupFormPage() {
 
   if (sessionUser) return <Redirect to="/" />;
 
+  //todo check if username already exists
+  //const users = s
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password, firstName, lastName }))
         .catch(async (res) => {
           const data = await res.json();
+         // console.log(data.message, 'FROM COMPONENT');
           if (data && data.errors) setErrors(data.errors);
+          if (data && data.message) setErrors([data.message]);
+          if (data && data.error) setErrors(data.errors.values());
         });
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
+
+
 
   return (
     <form onSubmit={handleSubmit}>

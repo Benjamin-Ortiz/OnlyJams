@@ -31,13 +31,14 @@ const validateSignup = [
 
   check("email")
     .exists({ checkFalsy: true })
+    //.withMessage("That email already exists.")
     .isEmail()
     // .exists()
     .withMessage("Please provide a valid email."),
 
+
   check("username")
-    .exists({ checkFalsy: true })
-    // .exists()
+    .exists({checkFalsy: true})
     .isLength({ min: 4 })
     .withMessage("Please provide a username with at least 4 characters."),
 

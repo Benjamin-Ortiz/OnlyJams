@@ -77,7 +77,7 @@ router.get("/current", requireAuth, async (req, res) => {
 });
 
 //? Get a Song By Id
-router.get("/:songId", requireAuth, async (req, res) => {
+router.get("/:songId", async (req, res) => {
   const { songId } = req.params;
 
 	const song = await Song.findOne({

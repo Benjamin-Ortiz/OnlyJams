@@ -31,38 +31,38 @@ function HomePage() {
 
   return (
     <>
-      <div className="main-banner">
+      <div className="home-main-banner">
         {/* <Navigation />
   <ProfileButton /> */}
-        <img src={photo1} class="main-banner-photo"></img>
+        <img src={photo1} class="home-main-banner-photo"></img>
       </div>
 
-      <div className="stack-trend-and-contiainer">
-        <div className="trending-header">Check Out These Albums</div>
+      <div className="home-stack-trend-and-contiainer">
+        <div className="home-trending-header">Check Out These Albums</div>
         {/* <h1 className="album-header">Check Out These Albums</h1> */}
-        <div className="main-div-album">
-          <div className="albums-container">
+        <div className="home-main-div-album">
+          <div className="home-albums-container">
             {albums.albums &&
               albums.albums.map((album) => {
                 // if length is > 8 stop loop
                 return (
-                  <div className="album-image-container">
-                    <div className="album-image-content">
+                  <div className="home-album-image-container">
+                    <div className="home-album-image-content">
                       <img
-                        className="album-image"
+                        className="home-album-image"
                         src={album.imageUrl}
                         alt={album.title}
                       />
-                      <div className="album-title">
+                      <div className="home-album-title">
                         <NavLink
-                          className="album-title-nav"
+                          className="home-album-title-nav"
                           to={`/albums/${album.id}`}
                         >
                           {album.title}
                         </NavLink>
                       </div>
                     </div>
-                    <div className="album-details">
+                    <div className="home-album-details">
                       {/* <div className='album-artist'>{album.username}</div> */}
                       {/* <div className="album-description">{album.description}</div> */}
                     </div>

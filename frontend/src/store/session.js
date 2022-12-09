@@ -77,22 +77,26 @@ export const restoreUser = () => async dispatch => {
   //* signup
   export const signup = (user) => async (dispatch) => {
     const { username, email, password, firstName, lastName } = user;
-    const response = await csrfFetch("/api/users", {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: JSON.stringify({
-        username,
-        email,
-        password,
-        firstName,
-        lastName
-      }),
-    });
-    const data = await response.json();
-    dispatch(setUser(data));
-    return response;
+      const response = await csrfFetch("/api/users", {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+          username,
+          email,
+          password,
+          firstName,
+          lastName
+        }),
+      });
+      const data = await response.json();
+
+
+      dispatch(setUser(data));
+      console.log(data, 'FROM THUNK');
+      return response;
+
   };
 
   //* logout

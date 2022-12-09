@@ -10,10 +10,15 @@ function SongDetailsPage() {
   const history = useHistory();
 
   const user = useSelector((state) => {return state.session.user;});
+
+  console.log(user, 'USER');
+  const song = useSelector((state) => {return state.songs});
+  console.log(song, 'SONG');
+
+
+  // console.log(artist, 'ARTIST');
   // const artists = useSelector((state) => {return state;})
   // // console.log(artists, "=-=-=-=-=");
-  const song = useSelector((state) => {return state.songs});
-  console.log(song, 'SONG DETAILS');
 
   let { songId } = useParams();// when songId gets updated
   // const song = songs.songs[songId]
@@ -53,7 +58,7 @@ const backButton = () => {
           <div className="song-image-content">
             <img className="song-image" src={song.imageUrl} alt={song.title} />
           </div>
-          { song.userId === user.id && <>
+          { song?.userId === user?.id && <>
                 <button type="submit" className="song-edit-button" onClick={() => editASong(songId)}>
                     Edit Song
                 </button>
@@ -70,7 +75,7 @@ const backButton = () => {
               // {song.title}
             </NavLink> */}
           </div>
-          <div className='song-artist'>{song.userId}</div>
+          <div className='song-artist'>{song?.User?.username}</div>
           <div className="song-description">{song.description}</div>
         </div>
       </div>
