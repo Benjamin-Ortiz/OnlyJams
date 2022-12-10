@@ -1,8 +1,21 @@
 .active {
     display: flex;
     justify-content: flex-start;
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
+    padding: 2px;
 }
 
+.profile-button{
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
+}
 .nav-links-logged-in {
  display: flex;
  justify-content: end;
@@ -17,33 +30,85 @@
 .nav-links-logged-out {
     display: flex;
     justify-content: end;
+
    }
 
    .nav-add-song {
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
+    padding: 2px;
 
    }
 
    .nav-add-album {
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
+    padding: 5px;
 
    }
 
    .nav-links-logged {
     display: flex;
     justify-content: flex-end;
+    /* background-color: black; */
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
 
    }
 
    .home-button {
-    background-color: aqua;
+    background-image: url(https://i.pinimg.com/originals/e9/60/c5/e960c532c6e1b234eed8463e71520d3b.jpg);
     display: flex;
     align-items: center;
     justify-content: space-between;
    }
+   .sign-up {
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
+   }
+   .log-in:hover {
+   }
+   .log-in{
+
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
+   }
 
    .create-buttons {
+
 
    }
 
    .nav-to-albums-link {
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
+    text-align: center;
+    align-items: center;
+   }
 
+   .nav-to-songs-link {
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
+    text-align: center;
+    align-items: center;
    }

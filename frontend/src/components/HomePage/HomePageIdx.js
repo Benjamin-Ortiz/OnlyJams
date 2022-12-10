@@ -41,19 +41,26 @@ function HomePage() {
         <div className="home-main-div-album">
           <div className="home-albums-container">
             {albums &&
-              albums.map((album) => {
-                // if length is > 8 stop loop
-
+              albums.map((album, i, top8) => {
+                // if length is > 8 stop .map loop
+                //element, index, array
 
                 { if (album.id === 6) {
                   return (
                     <div key={album.id} className="home-album-image-container">
                       <div className="home-album-image-content">
-                        <img
+                        <a href={`/albums/${album.id}`}>
+                          <img
                           className="home-album-image"
                           src={photo2}
                           alt={album.title}
-                        />
+
+                          />
+                        </a>
+
+
+
+
                         <div className="home-album-title">
                           <NavLink
                             className="home-album-title-nav"
@@ -78,11 +85,15 @@ function HomePage() {
                 return (
                   <div key={album.id} className="home-album-image-container">
                     <div className="home-album-image-content">
-                      <img
-                        className="home-album-image"
-                        src={album.imageUrl}
-                        alt={album.title}
-                      />
+                    <a href={`/albums/${album.id}`}>
+                          <img
+                          className="home-album-image"
+                          src={album.imageUrl}
+                          alt={album.title}
+
+                          />
+                        </a>
+
                       <div className="home-album-title">
                         <NavLink
                           className="home-album-title-nav"

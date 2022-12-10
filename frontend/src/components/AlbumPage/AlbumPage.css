@@ -68,6 +68,12 @@
     color: rgb(255, 102, 0);;
 }
 
+.j-album-title-nav {
+    font-size: 1.75rem;
+    text-decoration: none;
+    color: rgb(255, 255, 255);;
+}
+
 .album-title{
     margin-bottom: 1rem;
 }

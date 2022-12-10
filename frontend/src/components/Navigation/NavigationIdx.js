@@ -40,9 +40,13 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <div className="nav-links-logged">
-        {/* add demo user */}
+        <div className="log-in">
         <NavLink to="/login">Log In</NavLink>
+        </div>
+        <div className="sign-up">
         <NavLink to="/signup">Sign Up</NavLink>
+        </div>
+
         <DemoUser />
       </div>
     );
@@ -50,7 +54,7 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="home-button">
-      <NavLink exact to="/">
+      <NavLink className='home-butt' exact to="/">
         Home
       </NavLink>
 
@@ -60,7 +64,7 @@ function Navigation({ isLoaded }) {
       </NavLink>
 
       <NavLink className="nav-to-albums-link" to="/albums">
-        Check out the top 100 Albums!
+        Top 100 Albums!
       </NavLink>
       </div>
 

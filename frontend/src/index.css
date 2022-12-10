@@ -2,9 +2,36 @@
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
+    background: linear-gradient(180deg, rgba(3, 4, 94,.8), rgba(2, 62, 138,0) 70.71%),
+    linear-gradient(127deg, rgba(0, 150, 199,.8), rgba(0, 180, 216,0) 70.71%),
+    linear-gradient(336deg, rgba(72, 202, 228,.8), rgba(0, 119, 182,0) 70.71%);
 }
 
-.home-Button {
+
+.home-butt {
     display: flex;
     justify-content: flex-start;
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
+    padding: 2px;
+
+
+}
+.home-Button {
+        display: flex;
+        justify-content: flex-start;
+        background-color: black;
+        color: antiquewhite;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        border-color: orange;
+        border-style: double;
+        padding: 2px;
+}
+
+button:hover {
+    background-color: red;
+    border-style: ridge;
 }

@@ -55,7 +55,12 @@ const backButton = () => {
   return (
     <>
       <div className="main-div-album">
-      <h1 className="album-header">{album.title}</h1>
+      <div className="album-title">
+          {album.title}
+            <a className="j-album-title-nav" href='https://www.youtube.com/watch?v=izGwDsrQ1eQ'>
+               {album.title}
+            </a>
+          </div>
       <div className="album-row">
         <div className="album-image-container">
           <div className="album-image-content">
@@ -73,12 +78,6 @@ const backButton = () => {
                 }
         </div>
         <div className="album-details">
-          <div className="album-title">
-          {album.title}
-            {/* <NavLink className="album-title-nav" to={`/albums/${album.id}`}>
-              // {album.title}
-            </NavLink> */}
-          </div>
           <div className='album-artist'>{album?.User?.username}</div>
           <div className="album-description">{album.description}</div>
         </div>
