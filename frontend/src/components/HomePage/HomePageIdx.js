@@ -45,70 +45,78 @@ function HomePage() {
                 // if length is > 8 stop .map loop
                 //element, index, array
 
-                { if (album.id === 6) {
-                  return (
-                    <div key={album.id} className="home-album-image-container">
-                      <div className="home-album-image-content">
-                        <a href={`/albums/${album.id}`}>
-                          <img
-                          className="home-album-image"
-                          src={photo2}
-                          alt={album.title}
+                {if (i<9) {
+                  { if (album.id === 6) {
+                    return (
+                     <div key={album.id} className="home-album-image-container">
+                       <div className="home-album-image-content">
+                         <a href={`/albums/${album.id}`}>
+                           <img
+                           className="home-album-image"
+                           src={photo2}
+                           alt={album.title}
 
-                          />
-                        </a>
+                           />
+                         </a>
 
 
 
 
-                        <div className="home-album-title">
-                          <NavLink
-                            className="home-album-title-nav"
-                            to={`/albums/${album.id}`}
-                          >
-                            {album.title}
-                          </NavLink>
-                        </div>
-                      </div>
-                      <div className="home-album-details">
-                        {/* <div className='album-artist'>{album.username}</div> */}
-                        {/* <div className="album-description">{album.description}</div> */}
-                      </div>
-                    </div>
-                  );
+                         <div className="home-album-title">
+                           <NavLink
+                             className="home-album-title-nav"
+                             to={`/albums/${album.id}`}
+                           >
+                             {album.title}
+                           </NavLink>
+                         </div>
+                       </div>
+                       <div className="home-album-details">
+                         {/* <div className='album-artist'>{album.username}</div> */}
+                         {/* <div className="album-description">{album.description}</div> */}
+                       </div>
+                     </div>
+                   );
+
+                 }
+               }
+
+
+
+                 return (
+                   <div key={album.id} className="home-album-image-container">
+                     <div className="home-album-image-content">
+                     <a href={`/albums/${album.id}`}>
+                           <img
+                           className="home-album-image"
+                           src={album.imageUrl}
+                           alt={album.title}
+
+                           />
+                         </a>
+
+                       <div className="home-album-title">
+                         <NavLink
+                           className="home-album-title-nav"
+                           to={`/albums/${album.id}`}
+                         >
+                           {album.title}
+                         </NavLink>
+                       </div>
+                     </div>
+                     <div className="home-album-details">
+                       {/* <div className='album-artist'>{album.username}</div> */}
+                       {/* <div className="album-description">{album.description}</div> */}
+                     </div>
+                   </div>
+                 );
 
                 }
               }
 
 
 
-                return (
-                  <div key={album.id} className="home-album-image-container">
-                    <div className="home-album-image-content">
-                    <a href={`/albums/${album.id}`}>
-                          <img
-                          className="home-album-image"
-                          src={album.imageUrl}
-                          alt={album.title}
 
-                          />
-                        </a>
-
-                      <div className="home-album-title">
-                        <NavLink
-                          className="home-album-title-nav"
-                          to={`/albums/${album.id}`}
-                        >
-                          {album.title}
-                        </NavLink>
-                      </div>
-                    </div>
-                    <div className="home-album-details">
-                      {/* <div className='album-artist'>{album.username}</div> */}
-                      {/* <div className="album-description">{album.description}</div> */}
-                    </div>
-                  </div>
-                );
               })}
           </div>
         </div>

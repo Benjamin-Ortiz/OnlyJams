@@ -28,7 +28,8 @@
 .home-trending-header {
     text-align: center;
     font-size: 30px;
-    background-color: aqua;
+    background:rgb(0, 0, 0);
+    color: antiquewhite;
 }
 
 .home-album-image-container {
@@ -66,18 +67,24 @@
     padding-top: 0%;
 }
 .home-albums-container {
-   /* display: grid; */
-   flex-wrap: wrap;
-   justify-content: space-evenly;
+   display: grid;
+   /* flex-wrap: wrap; */
+   /* justify-content: space-evenly; */
    text-align: center;
-    background-color: black;
-    border: 15px solid rgb(255, 102, 0);
-    bottom: 50px;
+    /* background-color: black; */
+    /* border: 15px solid rgb(255, 102, 0); */
+    /* padding-bottom: 50px; */
     min-width: 900px;
 
-    display: grid;
-    grid-column-start:5;
-    grid-template-columns: repeat(3, 40px);
+    /* display: grid; */
+	/* grid-column: 2 / span 4; */
+    /* grid-column-start:5; */
+
+    grid-template-columns: minmax(25%, 4);
+
+    grid-template-columns: repeat(4, 25%);
+    /* grid-template-columns: repeat (auto, minmax(min(25%/4, max(25%, 25%/8)), 1fr)); */
+    grid-gap: 20px;
 
 
 }
@@ -89,7 +96,11 @@
 .home-stack-trend-and-contiainer{
     display: flex;
     flex-direction: column;
-    padding-top: 0px;
+    /* padding-top: 0px; */
+   justify-content: space-evenly;
+    border: 15px solid rgb(255, 102, 0);
+
+
 }
 
 .home-album-details{

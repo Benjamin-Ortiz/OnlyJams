@@ -45,6 +45,8 @@ const CreateAlbumForm = ({ hideform }) => {
     setValidationErrors(errors);
   }, [title, description])
 
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

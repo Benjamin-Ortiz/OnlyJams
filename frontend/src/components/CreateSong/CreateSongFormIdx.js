@@ -1,4 +1,5 @@
 import "./CreateSongForm.css";
+import defaultPhoto from '../../images/defaultCover.jpg'
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +23,7 @@ const CreateSongForm = ({ hideform }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [url, setUrl] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("{defaultPhoto}");
 
   //* Updates
   const updateTitle = (e) => setTitle(e.target.value);
@@ -40,6 +41,14 @@ const CreateSongForm = ({ hideform }) => {
 
   }, [song])
 
+  const noImgURL = (imageUrl) => {
+    const photo = defaultPhoto;
+
+    if (imageUrl === null || '') {
+      return imageUrl = photo
+    } else return imageUrl
+  }
+
   useEffect(() => {
     const errors = [];
     if (!title.length) errors.push('Please a title');
@@ -53,16 +62,18 @@ const CreateSongForm = ({ hideform }) => {
     setHasSubmitted(true);
     if (validationErrors.length) return alert(`Cannot Submit`);
 
-
-
-    const payload = {
+    let payload = {
      // id,
       userId: user.id,
       title,
       description,
       url,
-      imageUrl,
+      imageUrl
     }
+
+     //noImgURL(payload.imageUrl)
+
+    console.log(payload, 'PAYLOAD');
 
     //? find a way to make url === futuresong id
     dispatch(songActions.createSong(payload))
@@ -101,6 +112,22 @@ const CreateSongForm = ({ hideform }) => {
           onChange={(e) => setDescription(e.target.value)}
         />
       </label>
+
+
+      {/* { !imageUrl
+      // return (
+      //     <label>
+      //     Image Url
+      //     <input
+      //       className="create-imageUrl-text"
+      //       type="text"
+      //       placeholder="Image URL"
+      //       value={imageUrl}
+      //       onChange={(e) => setImageUrl(e.target.value)}
+      //     />
+      //   </label>
+      //   )
+        } */}
 
       <label>
         Image Url
