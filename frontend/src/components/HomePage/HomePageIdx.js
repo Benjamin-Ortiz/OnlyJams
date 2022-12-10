@@ -1,4 +1,5 @@
 import photo1 from "../../images/homePageCSS/sadeLiveBanner.jpeg";
+import photo2 from "../../images/albumImg/Photo2.jpg"
 import React, { useEffect } from "react";
 import { NavLink, Redirect, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -42,6 +43,38 @@ function HomePage() {
             {albums &&
               albums.map((album) => {
                 // if length is > 8 stop loop
+
+
+                { if (album.id === 6) {
+                  return (
+                    <div key={album.id} className="home-album-image-container">
+                      <div className="home-album-image-content">
+                        <img
+                          className="home-album-image"
+                          src={photo2}
+                          alt={album.title}
+                        />
+                        <div className="home-album-title">
+                          <NavLink
+                            className="home-album-title-nav"
+                            to={`/albums/${album.id}`}
+                          >
+                            {album.title}
+                          </NavLink>
+                        </div>
+                      </div>
+                      <div className="home-album-details">
+                        {/* <div className='album-artist'>{album.username}</div> */}
+                        {/* <div className="album-description">{album.description}</div> */}
+                      </div>
+                    </div>
+                  );
+
+                }
+              }
+
+
+
                 return (
                   <div key={album.id} className="home-album-image-container">
                     <div className="home-album-image-content">

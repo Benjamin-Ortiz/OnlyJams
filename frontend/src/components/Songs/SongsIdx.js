@@ -17,8 +17,6 @@ function SongsPage() {
     dispatch(songActions.getAllSongs());
   }, [dispatch]);
 
-  if (!user) return <Redirect to="/" />;
-
   if (!pageSongs.length) return null;
 
   //! if user
