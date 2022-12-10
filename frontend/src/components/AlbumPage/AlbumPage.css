@@ -4,10 +4,19 @@
 }
 
 .main-div-album {
-    margin: 6em;
+    /* margin: 6em;
     background-color: black;
     border: 15px solid rgb(255, 102, 0);
     width: 80%
+    display: flex;*/
+     align-items: center;
+    justify-content: center;
+    min-width: 550px;
+    /* margin: 6em; */
+    background-color: black;
+    border: 15px solid rgb(255, 102, 0);
+    width: 80%
+
 }
 
 .album-header{

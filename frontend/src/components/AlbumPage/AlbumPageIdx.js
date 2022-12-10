@@ -1,3 +1,4 @@
+import photo2 from "../../images/albumImg/Photo2.jpg"
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams, useHistory, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -48,6 +49,49 @@ const backButton = () => {
 // Then get rid of the the code I just had you add
 //! && in jsx = a single line if condition, except if it
 //! doesnt pass, "skip to next line"
+
+
+//  if (album.id === 6) {
+//   return (
+//     <>
+//       <div className="main-div-album">
+//       <h1 className="album-header">{album.title}</h1>
+//       <div className="album-row">
+//         <div className="album-image-container">
+//           <div className="album-image-content">
+//             <img className="album-image" src={photo2} alt={album.title} />
+//           </div>
+//           { user &&
+//           album?.userId === user?.id && <>
+//                 <button type="submit" className="album-edit-button" onClick={() => editAAlbum(albumId)}>
+//                     Edit album
+//                 </button>
+//                   <button type="submit" className="album-delete-button" onClick={() => deleteAnAlbum(albumId)}>
+//                   Delete album
+//               </button>
+//               </>
+//                 }
+//         </div>
+//         <div className="album-details">
+//           <div className="album-title">
+//           {album.title}
+//             {/* <NavLink className="album-title-nav" to={`/albums/${album.id}`}>
+//               // {album.title}
+//             </NavLink> */}
+//           </div>
+//           <div className='album-artist'>{album?.User?.username}</div>
+//           <div className="album-description">{album.description}</div>
+//         </div>
+//       </div>
+//       <Route>
+//         <button className="back_button" onClick={() => backButton()}>Back</button>
+//       </Route>
+
+//     </div>
+//     </>
+//   )
+// }
+
 
   return (
     <>

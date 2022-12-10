@@ -12,10 +12,7 @@ import "./HomePage.css";
 function HomePage() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const albums = useSelector((state) => {
-    return state.albums;
-  });
-  console.log(albums, "HOME PAGE");
+  const albums = useSelector((state) => Object.values(state.albums.albums)); //returns obj
   const albumId = useParams();
 
   useEffect(() => {
@@ -42,8 +39,8 @@ function HomePage() {
         {/* <h1 className="album-header">Check Out These Albums</h1> */}
         <div className="home-main-div-album">
           <div className="home-albums-container">
-            {albums.albums &&
-              albums.albums.map((album) => {
+            {albums &&
+              albums.map((album) => {
                 // if length is > 8 stop loop
                 return (
                   <div key={album.id} className="home-album-image-container">

@@ -1,5 +1,4 @@
-
-.main-div-album {
+.albums-main-div-album {
     margin: 6em;
     background-color: black;
     border: 15px solid rgb(255, 102, 0);
@@ -8,7 +7,8 @@
 }
 
 
-.album-row {
+.albums-album-row {
+    display: flex;
     margin-top: 2rem;
     margin-bottom: 2rem;
     margin-left: 1rem;
@@ -19,7 +19,7 @@
 }
 
 
-.album-image-container {
+.albums-album-image-container {
     height: 20%;
     width: 20%;
     padding-bottom: 2.5%;
@@ -28,7 +28,7 @@
 }
 
 
-.album-header {
+.albums-album-header {
     text-align: center;
     font: bold;
     color: white;
@@ -36,32 +36,32 @@
 
 
 
-.album-image {
+.albums-album-image {
     height: 100%;
     width: 100%;
     min-width: 64px;
 }
 
-.album-details {
+.albums-album-details {
     margin-left: 5rem;
     /* background-color: blue; */
 }
 
-.album-title-nav {
+.albums-album-title-nav {
     font-size: 1.75rem;
     text-decoration: none;
     color: rgb(255, 102, 0);
 }
 
-.album-title{
+.albums-album-title{
     margin-bottom: 1rem;
 }
 
-.album-artist{
+.albums-album-artist{
     color: red;
 }
 
-.album-description {
+.albums-album-description {
     font-weight: 500;
     margin-left: .15rem;
 }
