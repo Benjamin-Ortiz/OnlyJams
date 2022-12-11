@@ -28,7 +28,7 @@
 .home-trending-header {
     text-align: center;
     font-size: 30px;
-    background:rgb(0, 0, 0);
+    background:rgb(2, 62, 138);
     color: antiquewhite;
 }
 
@@ -54,6 +54,11 @@
 
 .home-album-title-nav{
   padding: 5%;
+  border: 2.5px solid rgb(255, 102, 0);
+  border-color: rgb(222, 128, 7);
+  background-color: black;
+  border-style: double;
+  color: rgb(255, 255, 255);
 }
 
 .home-main-div-album {
@@ -63,7 +68,7 @@
     display: grid;
     grid-column-start: 3;
     grid-template-rows: repeat(2);
-    background-color: rgb(88, 87, 87);
+    background-color: rgb(3, 4, 94);
     padding-top: 0%;
 }
 .home-albums-container {
