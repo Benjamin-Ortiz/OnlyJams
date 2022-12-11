@@ -9,13 +9,17 @@
     border: 15px solid rgb(255, 102, 0);
     width: 80%*/
     /* display: flex; */
-     align-items: center;
-    justify-content: center;
-    min-width: 550px;
-    /* margin: 6em; */
+
+    /* width: 80%; */
+    border-style: groove;
+    /* border-radius: 7px; */
+    margin: 6em;
     background-color: black;
     border: 15px solid rgb(255, 102, 0);
-    width: 80%
+    border-radius: 7px;
+    border-style: double;
+    width: 80%;
+    min-width: 800px;
 
 }
 
@@ -64,7 +68,6 @@
 
 .album-title-nav {
     font-size: 1.75rem;
-    text-decoration: none;
     color: rgb(255, 102, 0);;
 }
 

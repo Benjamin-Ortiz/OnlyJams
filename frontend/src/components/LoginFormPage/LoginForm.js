@@ -32,9 +32,12 @@ function LoginFormPage() {
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
+
+      <div className="labels-container">
       <label>
         Username or Email
         <input
+        className='input'
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
@@ -50,7 +53,9 @@ function LoginFormPage() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button type="submit-button">Log In</button>
+      </div>
+
     </form>
   );
 }

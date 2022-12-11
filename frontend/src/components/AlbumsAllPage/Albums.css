@@ -2,8 +2,10 @@
     margin: 6em;
     background-color: black;
     border: 15px solid rgb(255, 102, 0);
+    border-style: dashed;
+    width: 80%;
+    border-radius: 7px;
 
-    width: 80%
 }
 
 

@@ -18,7 +18,7 @@
 }
 .nav-links-logged-in {
  display: flex;
- justify-content: end;
+ /* justify-content: end; */
 }
 
 .nav-to-songs-link {
@@ -71,21 +71,38 @@
     justify-content: space-between;
    }
    .sign-up {
-    background-color: black;
-    color: antiquewhite;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    border-color: orange;
+    padding: 2px;
+    border: 2.5px solid rgb(255, 102, 0);
+    border-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.573);
     border-style: double;
+    border-radius: 10px;
+    color: rgb(255, 102, 0);
    }
+
+   .sign-up:hover {
+    background-color: rgb(255, 102, 0);
+    color: aliceblue;
+    border-style: ridge;
+    border-color: rgb(43, 64, 253);
+   }
+
+
    .log-in:hover {
+    background-color: rgb(255, 102, 0);
+    color: aliceblue;
+    border-style: ridge;
+    border-color: rgb(43, 64, 253);
    }
    .log-in{
 
-    background-color: black;
-    color: antiquewhite;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    border-color: orange;
+    padding: 2px;
+    border: 2.5px solid rgb(255, 102, 0);
+    border-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.573);
     border-style: double;
+    border-radius: 10px;
+    color: rgb(255, 102, 0);
    }
 
    .create-buttons {

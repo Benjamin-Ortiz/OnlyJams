@@ -41,10 +41,10 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <div className="nav-links-logged">
         <div className="log-in">
-        <NavLink to="/login">Log In</NavLink>
+        <NavLink className='log-in-button' to="/login">Log In</NavLink>
         </div>
         <div className="sign-up">
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink className='sing-up-button' to="/signup">Sign Up</NavLink>
         </div>
 
         <DemoUser />

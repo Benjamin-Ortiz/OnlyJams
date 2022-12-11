@@ -145,7 +145,7 @@ const songReducer = (state = intialState, action) => {
 
 
     case ADD_SONG: {
-      const newState = {}
+      let newState = {}
 
       newState = Object.assign({}, state);
       newState.songs = action.payload;

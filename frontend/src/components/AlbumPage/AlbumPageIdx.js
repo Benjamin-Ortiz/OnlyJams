@@ -113,12 +113,9 @@ const backButton = () => {
                 }
         </div>
         <div className="album-details">
-          <div className="album-title">
+          {/* <div className="album-title">
           {album.title}
-            {/* <NavLink className="album-title-nav" to={`/albums/${album.id}`}>
-              // {album.title}
-            </NavLink> */}
-          </div>
+          </div> */}
           <div className='album-artist'>{album?.User?.username}</div>
           <div className="album-description">{album.description}</div>
         </div>
