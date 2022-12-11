@@ -32,25 +32,25 @@ module.exports = {
         userId: 5,
         title: 'Monster',
         description: 'fa-shun as the kids say',
-        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRva23iJHLD4q1iJXcf0E9uvf5uyzJL3Bo_E5NMTO-mpQT2hcoonxPQSisHDsvquk242vc&usqp=CAU"
+        imageUrl: "https://onlyjamsbucket.s3.amazonaws.com/images/albumImg/gagaAlbum.jpg"
     },
     {
       userId: 6,
       title: 'Invincible',
       description: 'This title did not age well',
-      imageUrl: "https://upload.wikimedia.org/wikipedia/en/9/98/Mjinvincible.jpg"
+      imageUrl: "https://onlyjamsbucket.s3.amazonaws.com/images/albumImg/mjAlbum.jpg"
   },
   {
     userId: 7,
     title: 'Future/Sex/LoveSounds',
     description: 'the uncool little brother of album titles',
-    imageUrl: "https://upload.wikimedia.org/wikipedia/en/1/16/Justin_Timberlake_-_FutureSex_LoveSounds.png"
+    imageUrl: "https://onlyjamsbucket.s3.amazonaws.com/images/albumImg/jtAlbum.jpg"
 },
 {
   userId: 8,
   title: 'Love Deluxe',
   description: 'Her love is Queen',
-  imageUrl: "https://media.pitchfork.com/photos/5929c366eb335119a49ed6d3/1:1/w_600/d74062df.jpg"
+  imageUrl: "https://onlyjamsbucket.s3.amazonaws.com/images/albumImg/sadeAlbum.jpg"
 },
 {
   userId: 8,

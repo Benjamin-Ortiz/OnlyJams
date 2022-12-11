@@ -89,6 +89,10 @@
 
 }
 
+/* .album-row:hover {
+    cursor: pointer;
+} */
+
 .home-album-description {
     color: antiquewhite;
 }
@@ -133,7 +137,5 @@
     color: white;
 }
 
-.album-row:hover {
-    cursor: pointer;
-}
+
 */

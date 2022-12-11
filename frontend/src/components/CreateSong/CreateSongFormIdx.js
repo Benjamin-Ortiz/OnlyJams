@@ -23,7 +23,7 @@ const CreateSongForm = ({ hideform }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [url, setUrl] = useState("");
-  const [imageUrl, setImageUrl] = useState("{defaultPhoto}");
+  const [imageUrl, setImageUrl] = useState("https://onlyjamsbucket.s3.amazonaws.com/images/defaultCover.jpg")
 
   //* Updates
   const updateTitle = (e) => setTitle(e.target.value);
@@ -34,20 +34,28 @@ const CreateSongForm = ({ hideform }) => {
   //*creates
   // const createTitle = e => setTitle(e.target.value);
   // const createDescription = e => setDescription(e.target.value);
-  // const createimageUrl = e => setimageUrl(e.target.value);
+   const createimageUrl = e => setImageUrl(e.target.value);
   // const createUrl = e => setUrl(e.target.value);
 
   useEffect(() => {
 
   }, [song])
 
-  const noImgURL = (imageUrl) => {
-    const photo = defaultPhoto;
+  const noImgURL = (e) => {
+    const cover = e.target.files[0];
+    if (cover) {
+        setImageUrl(cover);
+    }
+};
 
-    if (imageUrl === null || '') {
-      return imageUrl = photo
-    } else return imageUrl
-  }
+
+  // const noImgURL = (imageUrl) => {
+  //   const photo = defaultPhoto;
+
+  //   if (imageUrl === null || '') {
+  //     return imageUrl = photo
+  //   } else return imageUrl
+  // }
 
   useEffect(() => {
     const errors = [];
@@ -73,7 +81,7 @@ const CreateSongForm = ({ hideform }) => {
 
      //noImgURL(payload.imageUrl)
 
-    console.log(payload, 'PAYLOAD');
+
 
     //? find a way to make url === futuresong id
     dispatch(songActions.createSong(payload))
@@ -87,26 +95,26 @@ const CreateSongForm = ({ hideform }) => {
   return (
     <form className="create-song-form" onSubmit={handleSubmit}>
       <h1 className="create-song-header">Create Song</h1>
-      <ul>
+      <ul className="song-form-errors">
         {validationErrors.map((error, idx) => {
           return <li key={idx}>{error}</li>;
         })}
       </ul>
 
-      <label>
+      <label className="song-title-label">
         Song Title
         <input
-          className="create-song-text"
+          className="create-song-title-text"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </label>
 
-      <label>
+      <label className="song-description-label">
         Song Description
         <input
-          className="create-song-text"
+          className="create-song-description-text"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -129,14 +137,14 @@ const CreateSongForm = ({ hideform }) => {
       //   )
         } */}
 
-      <label>
+      <label className="imageUrl-label">
         Image Url
         <input
           className="create-imageUrl-text"
           type="text"
           placeholder="Image URL"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          //value={imageUrl}
+          onChange={noImgURL}
         />
       </label>
 

@@ -24,40 +24,40 @@ module.exports = {
         albumId: 1,
         userId: 4,
         title: 'Beautiful',
-        description: "Snoop Dogg letting you know you're special",
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/4/46/Snoop_Dogg_-_Beautiful.jpg/220px-Snoop_Dogg_-_Beautiful.jpg',
+        description: "Snoop Dogg letting you know you're special, and other daily affirmations",
+        imageUrl: 'https://onlyjamsbucket.s3.amazonaws.com/images/songImg/snoopSingle.jpg',
         url: 'url'
       },
       {
         albumId: 2,
         userId: 5,
-        title: 'Bad romance',
-        description: 'I want your design',
-        imageUrl: "https://upload.wikimedia.org/wikipedia/en/c/cc/Lady_Gaga_-_Bad_Romance.png",
+        title: 'Just Dance',
+        description: 'People Doing the Macarena, Idk Ive never left the house',
+        imageUrl: "https://onlyjamsbucket.s3.amazonaws.com/images/songImg/1-just-dance.jpg",
         url: 'url'
     },
     {
       albumId: 3,
       userId: 6,
-      title: 'Heaven can wait',
-      description: 'because they dont want me yet',
-      imageUrl: "https://upload.wikimedia.org/wikipedia/en/9/98/Mjinvincible.jpg",
+      title: 'Dirty Diana',
+      description: 'A song about using soap or something, I dont know, Ive only listened to the clean version of this song',
+      imageUrl: "https://onlyjamsbucket.s3.amazonaws.com/images/songImg/mjSingle.jpg",
       url: 'url'
   },
   {
     albumId: 4,
     userId: 7,
-    title: 'Suit and Tie?',
-    description: 'stupid beatbox noises',
+    title: 'Senorita',
+    description: 'A song about seniors citizens saying "He aint know any better, hes just boy" ',
     imageUrl: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/7954/7954662_so.jpg",
     url: 'url'
 },
 {
   albumId: 5,
   userId: 8,
-  title: 'Your Love is King',
-  description: 'Scientifically a perfect song',
-  imageUrl: "https://i.discogs.com/Zm8oEb3Vq0bkBeqfKPS0myDhZ5X3zPpGXwPj0cT0Y0A/rs:fit/g:sm/q:90/h:600/w:587/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NDk0/NzctMTMzMDgxNTA0/NC5qcGVn.jpeg",
+  title: 'Hang On To Your Love',
+  description: 'Damn girl, Im trying!',
+  imageUrl: "https://onlyjamsbucket.s3.amazonaws.com/images/songImg/sadeSingle.jpg",
   url: 'url'
 },
 

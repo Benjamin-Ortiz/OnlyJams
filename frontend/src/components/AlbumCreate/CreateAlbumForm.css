@@ -1,0 +1,76 @@
+.album-form-errors {
+    background-color: black;
+    color: rgb(133, 133, 244);
+    font-weight: 300;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: rgb(133, 133, 244);
+    border-style: double;
+    padding: 2px;
+}
+
+.create-album-text{
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color:rgb(133, 133, 244);
+    border-style: double;
+    padding: 2px;
+}
+
+.create-album-description-text {
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: rgb(133, 133, 244);
+    border-style: double;
+    padding: 2px;
+
+}
+
+.create-imageUrl-text{
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: rgb(133, 133, 244);
+    border-style: double;
+    padding: 2px;
+
+}
+
+.button-create-album{
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
+    padding: 2px;
+
+}
+
+.album-title-label{
+    background-color: rgb(2, 48, 71);
+    color: rgb(251, 133, 0);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: rgb(33, 158, 188);
+    border-style: double;
+    padding: 2px;
+}
+
+.album-description-label{
+    background-color: rgb(2, 48, 71);
+    color: rgb(251, 133, 0);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: rgb(33, 158, 188);
+    border-style: double;
+    padding: 2px;
+}
+
+.imageUrl-label{
+    background-color: rgb(2, 48, 71);
+    color: rgb(251, 133, 0);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: rgb(33, 158, 188);
+    border-style: double;
+    padding: 2px;
+
+}

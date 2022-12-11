@@ -20,7 +20,7 @@ const CreateAlbumForm = ({ hideform }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [url, setUrl] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("https://onlyjamsbucket.s3.amazonaws.com/images/defaultCover.jpg")
 
   //* Updates
   const updateTitle = (e) => setTitle(e.target.value);
@@ -31,12 +31,21 @@ const CreateAlbumForm = ({ hideform }) => {
   //*creates
   // const createTitle = e => setTitle(e.target.value);
   // const createDescription = e => setDescription(e.target.value);
-  // const createimageUrl = e => setimageUrl(e.target.value);
+   const createimageUrl = e => setImageUrl(e.target.value);
   // const createUrl = e => setUrl(e.target.value);
 
   useEffect(() => {
 
   }, [album])
+
+
+  const noImgURL = (e) => {
+    const cover = e.target.files[0];
+    if (cover) {
+        setImageUrl(cover);
+    }
+};
+
 
   useEffect(() => {
     const errors = [];
@@ -45,7 +54,7 @@ const CreateAlbumForm = ({ hideform }) => {
     setValidationErrors(errors);
   }, [title, description])
 
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,13 +85,13 @@ const CreateAlbumForm = ({ hideform }) => {
   return (
     <form className="create-album-form" onSubmit={handleSubmit}>
       <h1 className="create-album-header">Create Album</h1>
-      <ul>
+      <ul className="album-form-errors">
         {validationErrors.map((error, idx) => {
           return <li key={idx}>{error}</li>;
         })}
       </ul>
 
-      <label>
+      <label className="album-title-label">
       Album Title
         <input
           className="create-album-text"
@@ -92,24 +101,24 @@ const CreateAlbumForm = ({ hideform }) => {
         />
       </label>
 
-      <label>
+      <label className="album-description-label">
       Album Description
         <input
-          className="create-album-text"
+          className="create-album-description-text"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
       </label>
 
-      <label>
+      <label className="imageUrl-label">
         Image Url
         <input
           className="create-imageUrl-text"
           type="text"
           placeholder="Image URL"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          //value={imageUrl}
+          onChange={noImgURL}
         />
       </label>
 

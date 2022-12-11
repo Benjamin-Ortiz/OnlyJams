@@ -7,8 +7,8 @@
     /* margin: 6em;
     background-color: black;
     border: 15px solid rgb(255, 102, 0);
-    width: 80%
-    display: flex;*/
+    width: 80%*/
+    /* display: flex; */
      align-items: center;
     justify-content: center;
     min-width: 550px;
@@ -71,11 +71,14 @@
 .j-album-title-nav {
     font-size: 1.75rem;
     text-decoration: none;
-    color: rgb(255, 255, 255);;
+    color: rgb(255, 255, 255);
+
 }
 
 .album-title{
+  text-align: center;
     margin-bottom: 1rem;
+
 }
 
 .album-artist{
@@ -85,4 +88,14 @@
 .album-description {
     font-weight: 500;
     margin-left: .15rem;
+}
+
+
+.back_button{
+    background-color: black;
+    color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: orange;
+    border-style: double;
+    padding: 2px;
 }
