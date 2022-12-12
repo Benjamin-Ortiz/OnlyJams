@@ -1,5 +1,4 @@
 
-import photo2 from "../../images/albumImg/Photo2.jpg"
 import React, { useEffect } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";

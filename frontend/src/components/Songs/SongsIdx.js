@@ -17,15 +17,21 @@ function SongsPage() {
     dispatch(songActions.getAllSongs());
   }, [dispatch]);
 
-  if (!pageSongs.length) return null;
+  //if (!pageSongs.length) return null;
+
 
   //! if user
+
   return (
     <div className="main-div-song">
       <h1 className="song-header">Songs</h1>
-      
+
       {pageSongs &&
         pageSongs.map((song) => {
+
+
+
+
           return (
             <div className="song-row" key={song.id}>
               <div className="song-image-container">
