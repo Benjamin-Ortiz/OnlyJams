@@ -20,7 +20,9 @@ const CreateAlbumForm = ({ hideform }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [url, setUrl] = useState("");
-  const [imageUrl, setImageUrl] = useState("https://onlyjamsbucket.s3.amazonaws.com/images/defaultCover.jpg")
+ // const [imageUrl, setImageUrl] = useState("https://onlyjamsbucket.s3.amazonaws.com/images/defaultCover.jpg")
+  const [imageUrl, setImageUrl] = useState("")
+
 
   //* Updates
   const updateTitle = (e) => setTitle(e.target.value);
@@ -39,12 +41,12 @@ const CreateAlbumForm = ({ hideform }) => {
   }, [album])
 
 
-  const noImgURL = (e) => {
-    const cover = e.target.files[0];
-    if (cover) {
-        setImageUrl(cover);
-    }
-};
+//   const noImgURL = (e) => {
+//     const cover = e.target.files[0];
+//     if (cover) {
+//         setImageUrl(cover);
+//     }
+// };
 
 
   useEffect(() => {
@@ -117,8 +119,10 @@ const CreateAlbumForm = ({ hideform }) => {
           className="create-imageUrl-text"
           type="text"
           placeholder="Image URL"
-          //value={imageUrl}
-          onChange={noImgURL}
+          value={imageUrl}
+          //onChange={noImgURL}
+          onChange={(e) => setImageUrl(e.target.value)}
+
         />
       </label>
 
