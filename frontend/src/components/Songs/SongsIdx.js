@@ -27,7 +27,7 @@ function SongsPage() {
       <h1 className="song-header">Songs</h1>
 
       {pageSongs &&
-        pageSongs.map((song) => {
+        pageSongs?.map((song) => {
 
 
 
