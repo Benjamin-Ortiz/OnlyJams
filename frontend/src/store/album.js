@@ -134,7 +134,7 @@ const albumReducer = (state = initialState, action) => {
     }
 
     case ADD_ALBUM:{
-      const newState = {}
+      let newState = {}
 
       newState = Object.assign({}, state);
       newState.albums = action.payload;

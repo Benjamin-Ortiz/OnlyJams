@@ -51,45 +51,45 @@ const backButton = () => {
 //! doesnt pass, "skip to next line"
 
 
- if (album.id === 6) {
-  return (
-    <>
-      <div className="main-div-album">
-      <div className="album-title">
-          {album.title}
-            <a className="j-album-title-nav" href='https://www.youtube.com/watch?v=izGwDsrQ1eQ'>
-               {album.title}
-            </a>
-          </div>
-      <div className="album-row">
-        <div className="album-image-container">
-          <div className="album-image-content">
-            <img className="album-image" src={photo2} alt={album.title} />
-          </div>
-          { user &&
-          album?.userId === user?.id && <>
-                <button type="submit" className="album-edit-button" onClick={() => editAAlbum(albumId)}>
-                    Edit album
-                </button>
-                  <button type="submit" className="album-delete-button" onClick={() => deleteAnAlbum(albumId)}>
-                  Delete album
-              </button>
-              </>
-                }
-        </div>
-        <div className="album-details">
-          <div className='album-artist'>{album?.User?.username}</div>
-          <div className="album-description">{album.description}</div>
-        </div>
-      </div>
-      <Route>
-        <button className="back_button" onClick={() => backButton()}>Back</button>
-      </Route>
+//  if (album.id === 6) {
+//   return (
+//     <>
+//       <div className="main-div-album">
+//       <div className="album-title">
+//           {album.title}
+//             <a className="j-album-title-nav" href='https://www.youtube.com/watch?v=izGwDsrQ1eQ'>
+//                {album.title}
+//             </a>
+//           </div>
+//       <div className="album-row">
+//         <div className="album-image-container">
+//           <div className="album-image-content">
+//             <img className="album-image" src={photo2} alt={album.title} />
+//           </div>
+//           { user &&
+//           album?.userId === user?.id && <>
+//                 <button type="submit" className="album-edit-button" onClick={() => editAAlbum(albumId)}>
+//                     Edit album
+//                 </button>
+//                   <button type="submit" className="album-delete-button" onClick={() => deleteAnAlbum(albumId)}>
+//                   Delete album
+//               </button>
+//               </>
+//                 }
+//         </div>
+//         <div className="album-details">
+//           <div className='album-artist'>{album?.User?.username}</div>
+//           <div className="album-description">{album.description}</div>
+//         </div>
+//       </div>
+//       <Route>
+//         <button className="back_button" onClick={() => backButton()}>Back</button>
+//       </Route>
 
-    </div>
-    </>
-  )
-}
+//     </div>
+//     </>
+//   )
+// }
 
 
   return (

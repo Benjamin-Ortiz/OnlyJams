@@ -52,12 +52,12 @@ module.exports = {
   description: 'Her love is Queen',
   imageUrl: "https://onlyjamsbucket.s3.amazonaws.com/images/albumImg/sadeAlbum.jpg"
 },
-{
-  userId: 8,
-  title: 'Poodietootin',
-  description: 'an album by Sade and Aventura',
-  imageUrl: ""
-},
+// {
+//   userId: 8,
+//   title: 'Poodietootin',
+//   description: 'an album by Sade and Aventura',
+//   imageUrl: ""
+// },
 
 
     ], {});

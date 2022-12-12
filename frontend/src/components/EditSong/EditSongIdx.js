@@ -75,6 +75,7 @@ const EditSongForm = ({hideForm}) => {
         ))}
       </ul>
 
+<label>
       <input
         className="edit-song-text"
         type="text"
@@ -82,6 +83,11 @@ const EditSongForm = ({hideForm}) => {
         onChange={updateTitle}
         placeholder = 'Title'
       />
+
+</label>
+
+<label>
+
       <input
         className="edit-song-description"
         type="text"
@@ -89,6 +95,10 @@ const EditSongForm = ({hideForm}) => {
         onChange={updateDescription}
         placeholder = 'Description'
       />
+</label>
+
+<label>
+
       <input
         className="edit-song-imageUrl"
         type="text"
@@ -96,6 +106,7 @@ const EditSongForm = ({hideForm}) => {
         onChange={updateImageUrl}
         placeholder = 'Image Url'
       />
+</label>
 
       <button type="submit">Update Song</button>
       <button type="button" onClick={cancelFunction}>

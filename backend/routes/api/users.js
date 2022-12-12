@@ -98,15 +98,37 @@ router.post("/", validateSignup, async (req, res) => {
     password,
   });
 
+  console.log(user, 'BEFORE PARSE');
 
-  let userObj = user.toJSON(); //! creates user promise aka js obj
+  //let userObj = user.toJSON(); //! creates user promise aka js obj
 
-  token = await setTokenCookie(res, user);
-  userObj.token = token
 
-  return res.json(
-    userObj
-  );
+ // const token = await setTokenCookie(res, user);
+
+  //userObj.token = token;
+
+ // console.log(userObj, 'USEEER');
+
+  return res.json({...user.toSafeObject()});
 });
+
+
+// router.post('/signup', validateSignup, async (req, res) => {
+//   const { firstName, lastName, email, username, password } = req.body;
+//   const check = await User.findOne({ where: { email } });
+
+//   if (check) {
+//       let err = new Error("Email must be unique");
+//       err.status = 403;
+//       err.errors = ["Email must be unique"];
+//       throw err;
+//   }
+
+  // const user = await User.signUp({ firstName, lastName, email, username, password });
+
+  // // const token = await setTokenCookie(res, user);
+
+  // return res.json({ ...user.toSafeObject() });
+// })
 
 module.exports = router;

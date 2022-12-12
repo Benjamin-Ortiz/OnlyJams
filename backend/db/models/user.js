@@ -50,18 +50,7 @@ module.exports = (sequelize, DataTypes) => {
         email,
         hashedPassword
       });
-
-      //todo backend username check
-      // const usernameCheck = await User.FindOne({
-      //   where: {username: username}
-      // })
-
-      // if (usernameCheck) {
-      //         return Promise("That username is already taken.");
-      //       }else {
-      //         return await User.scope('currentUser').findByPk(user.id);
-      //     }
-
+      return await User.scope('currentUser').findByPk(user.id);
 
      }
 
