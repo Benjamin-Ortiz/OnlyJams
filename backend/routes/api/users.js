@@ -98,7 +98,7 @@ router.post("/", validateSignup, async (req, res) => {
     password,
   });
 
-  console.log(user, 'BEFORE PARSE');
+  // console.log(user, 'BEFORE PARSE');
 
   //let userObj = user.toJSON(); //! creates user promise aka js obj
 

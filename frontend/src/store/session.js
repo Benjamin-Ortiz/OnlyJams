@@ -94,7 +94,6 @@ export const restoreUser = () => async dispatch => {
 
 
       dispatch(setUser(data));
-      console.log(data, 'FROM THUNK');
       return response;
 
   };

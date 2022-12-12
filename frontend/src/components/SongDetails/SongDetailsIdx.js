@@ -11,19 +11,13 @@ function SongDetailsPage() {
 
   const user = useSelector((state) => {return state.session.user;});
 
-  console.log(user, 'USER');
+
   const song = useSelector((state) => {return state.songs});
-  console.log(song, 'SONG');
 
 
-  // console.log(artist, 'ARTIST');
-  // const artists = useSelector((state) => {return state;})
-  // // console.log(artists, "=-=-=-=-=");
+
 
   let { songId } = useParams();// when songId gets updated
-  // const song = songs.songs[songId]
-
-
 
 useEffect(() => {
 
