@@ -4,7 +4,7 @@
 
 ![soundcloud-dbdiagram]
 
-[soundcloud-dbdiagram]: ../assets/soundcloud_dbdiagram.png
+[soundcloud-dbdiagram]: ../frontend/src/images/READMEImages/updatedSchema.png
 
 ## API Documentation
 
