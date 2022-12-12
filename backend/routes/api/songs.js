@@ -24,12 +24,22 @@ router.post("/", requireAuth, async (req, res) => {
 
   let { title, description, url, imageUrl, albumId } = req.body;
   // albumId = this.toString(albumId);
-
-  let album = await Album.findByPk(albumId);
-
+  //let album = await Album.findByPk(albumId);
   // const albumExists = await A
 
+
+      const newSingle = await Song.create({
+      userId: user.id,
+      title,
+      description,
+      url,
+      imageUrl,
+    });
+    res.status(201);
+    res.json(newSingle);
+
   //?  Create a Song without an Album Id
+  //! buggy because souncloud project sucks
   // if (albumId === null || albumId === undefined || albumId=== '') {
   //   const newSingle = await Song.create({
   //     userId: user.id,
@@ -43,25 +53,25 @@ router.post("/", requireAuth, async (req, res) => {
   //   return res.json(newSingle);
   // }
 
-  if (album) {
-    //logic
-    const newSingle = await Song.create({
-      userId: user.id,
-      albumId: albumId,
-      title,
-      description,
-      url,
-      imageUrl,
-    });
+  // if (album) {
+  //   //logic
+  //   const newSingle = await Song.create({
+  //     userId: user.id,
+  //     albumId: albumId,
+  //     title,
+  //     description,
+  //     url,
+  //     imageUrl,
+  //   });
 
-    return res.json(newSingle);
-  } //?  Error Check Invalid Id
-  else {
-    res.json({
-      message: "Album couldn't be found",
-      statusCode: 404,
-    });
-  }
+  //   return res.json(newSingle);
+  // } //?  Error Check Invalid Id
+  // else {
+  //   res.json({
+  //     message: "Album couldn't be found",
+  //     statusCode: 404,
+  //   });
+  // }
 });
 
 //? Get All Songs By Current User
@@ -117,7 +127,7 @@ router.put("/:songId", requireAuth, async (req, res) => {
   if (song) {
     song.update({
       userId: user.id,
-      albumId: song.albumId,
+      // albumId: song.albumId,
       title,
       description,
       url,
