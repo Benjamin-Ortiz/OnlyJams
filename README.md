@@ -1,4 +1,21 @@
 # SoundCloud Clone
+## Overview
+A SoundCloud Clone inspired by original layout, and aesthetic complete with:
+    * Full CRUD implementations for songs and albums
+    * Sign Up/Log in features
+    * Home Page
+    * Navigation Bar
+    * User Specific PUT/DELETE options
+    
+## List of Technologies Used
+    *
+    *
+    *
+    *
+    *
+
+
+## How to Launch
 
 ## Database Schema Design
 
