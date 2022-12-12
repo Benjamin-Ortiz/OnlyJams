@@ -30,17 +30,18 @@ router.post("/", requireAuth, async (req, res) => {
   // const albumExists = await A
 
   //?  Create a Song without an Album Id
-  if (albumId === null || albumId === undefined) {
-    const newSingle = await Song.create({
-      userId: user.id,
-      title,
-      description,
-      url,
-      imageUrl,
-    });
+  // if (albumId === null || albumId === undefined || albumId=== '') {
+  //   const newSingle = await Song.create({
+  //     userId: user.id,
+  //     albumId: null,
+  //     title,
+  //     description,
+  //     url,
+  //     imageUrl,
+  //   });
 
-    return res.json(newSingle);
-  }
+  //   return res.json(newSingle);
+  // }
 
   if (album) {
     //logic
