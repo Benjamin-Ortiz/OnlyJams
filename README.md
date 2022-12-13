@@ -1,6 +1,6 @@
 # SoundCloud Clone
 ## Overview
-A SoundCloud Clone inspired by original layout, and aesthetic complete with:
+### A SoundCloud Clone inspired by original layout, and aesthetic complete with:
     * Full CRUD implementations for songs and albums
     * Sign Up/Log in features
     * Home Page
