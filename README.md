@@ -28,7 +28,7 @@ A SoundCloud Clone inspired by original layout, and aesthetic complete with:
 * 3. Split terminal, cd into frontend & backend
 * 4. in backend run 
       * npx dotenv sequelize db:migrate 
-      *npx dotenv sequelize db:seed:all
+      * npx dotenv sequelize db:seed:all
 * 5. npm start on both terminals
 * 6. Have Fun :)
 
