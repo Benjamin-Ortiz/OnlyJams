@@ -1,6 +1,6 @@
 # SoundCloud Clone
 ## Overview
-A SoundCloud Clone inspired by original layout, and aesthetic complete with:
+### A SoundCloud Clone inspired by original layout, and aesthetic complete with:
     * Full CRUD implementations for songs and albums
     * Sign Up/Log in features
     * Home Page
@@ -8,14 +8,29 @@ A SoundCloud Clone inspired by original layout, and aesthetic complete with:
     * User Specific PUT/DELETE options
     
 ## List of Technologies Used
-    *
-    *
-    *
-    *
-    *
+### Backend
+    * JavaScript
+    * CSRF 
+    * Bcrypt.js
+    * Sequelize.js 
+    * Express.js
+    * PostgreSQL
+### Frontend
+    * JavaScript
+    * React
+    * Redux
+    * HTML/CSS
 
 
 ## How to Launch
+* 1. Clone Repository
+* 2. npm i at root menu
+* 3. Split terminal, cd into frontend & backend
+* 4. in backend run 
+      * npx dotenv sequelize db:migrate 
+      * npx dotenv sequelize db:seed:all
+* 5. npm start on both terminals
+* 6. Have Fun :)
 
 ## Database Schema Design
 
