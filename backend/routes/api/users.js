@@ -103,13 +103,22 @@ router.post("/", validateSignup, async (req, res) => {
   //let userObj = user.toJSON(); //! creates user promise aka js obj
 
 
- // const token = await setTokenCookie(res, user);
+ const token = await setTokenCookie(res, user);
 
   //userObj.token = token;
-
  // console.log(userObj, 'USEEER');
 
-  return res.json({...user.toSafeObject()});
+ const newUser = await User.findByPk(user.id);
+
+ newUser.dataValues['token'] = token;
+
+ let info = JSON.parse(JSON.stringify(newUser,
+   ["id","firstName","lastName","email","username",
+   "token"]));
+ return res.json(
+   info
+ );
+
 });
 
 
