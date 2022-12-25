@@ -46,8 +46,6 @@ const CreateSongForm = ({ hideform }) => {
     const cover = e.target.files[0];
     if (cover) {
         setImageUrl(cover);
-    } else {
-      setImageUrl()
     }
 };
 
@@ -123,6 +121,22 @@ const CreateSongForm = ({ hideform }) => {
         />
       </label>
 
+
+      {/* { !imageUrl
+      // return (
+      //     <label>
+      //     Image Url
+      //     <input
+      //       className="create-imageUrl-text"
+      //       type="text"
+      //       placeholder="Image URL"
+      //       value={imageUrl}
+      //       onChange={(e) => setImageUrl(e.target.value)}
+      //     />
+      //   </label>
+      //   )
+        } */}
+
       <label className="imageUrl-label">
         Image Url
         <input
@@ -132,7 +146,7 @@ const CreateSongForm = ({ hideform }) => {
           value={imageUrl}
           //onChange={noImgURL}
           onChange={(e) =>
-            updateImageUrl(e.target.value)
+            setImageUrl(e.target.value)
           }
         />
       </label>
