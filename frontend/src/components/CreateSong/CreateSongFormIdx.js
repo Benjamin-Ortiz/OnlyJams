@@ -1,12 +1,9 @@
 import "./CreateSongForm.css";
-import defaultPhoto from '../../images/defaultCover.jpg'
+//import defaultPhoto from '../../images/defaultCover.jpg'
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as songActions from "../../store/song";
-//import { createSong } from "../../store/song";
-//album actions?
-// useParams?
 
 
 
@@ -77,7 +74,7 @@ const CreateSongForm = ({ hideform }) => {
       title,
       description,
       url,
-      imageUrl
+      imageUrl:"https://onlyjamsbucket.s3.amazonaws.com/images/defaultCover.jpg"
     }
      //noImgURL(payload.imageUrl)
 
@@ -143,11 +140,9 @@ const CreateSongForm = ({ hideform }) => {
           className="create-imageUrl-text"
           type="text"
           placeholder="Image URL"
-          value={imageUrl}
-          //onChange={noImgURL}
-          onChange={(e) =>
-            setImageUrl(e.target.value)
-          }
+          //value={imageUrl}
+          onChange={noImgURL}
+          //onChange={(e) => setImageUrl(e.target.value)}
         />
       </label>
 

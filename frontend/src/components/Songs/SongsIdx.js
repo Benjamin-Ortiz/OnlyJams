@@ -28,10 +28,6 @@ function SongsPage() {
 
       {pageSongs &&
         pageSongs?.map((song) => {
-
-
-
-
           return (
             <div className="song-row" key={song.id}>
               <div className="song-image-container">
