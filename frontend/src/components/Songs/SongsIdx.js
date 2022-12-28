@@ -9,7 +9,7 @@ function SongsPage() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const pageSongs = useSelector((state) => Object.values(state.songs.songs));
- // console.log(pageSongs, 'All SONGS')
+
 
 
 
