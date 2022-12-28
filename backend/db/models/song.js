@@ -12,10 +12,6 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
 
-    static async getAllSongs(){
-      return await Song.findAll()
-    }
-
     static associate(models) {
       // define association here
       Song.belongsTo(models.User, {
