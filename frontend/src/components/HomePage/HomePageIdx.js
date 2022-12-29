@@ -85,7 +85,7 @@ function HomePage() {
 
                  return (
                    <div key={album.id} className="home-album-image-container">
-                     <div className="home-album-image-content">
+                     <div key={album.id} className="home-album-image-content">
                      <a href={`/albums/${album.id}`}>
                            <img
                            className="home-album-image"
@@ -95,7 +95,7 @@ function HomePage() {
                            />
                          </a>
 
-                       <div className="home-album-title">
+                       <div key={album.id} className="home-album-title">
                          <NavLink
                            className="home-album-title-nav"
                            to={`/albums/${album.id}`}
@@ -104,7 +104,7 @@ function HomePage() {
                          </NavLink>
                        </div>
                      </div>
-                     <div className="home-album-details">
+                     <div key={album.id} className="home-album-details">
                        {/* <div className='album-artist'>{album.username}</div> */}
                        {/* <div className="album-description">{album.description}</div> */}
                      </div>

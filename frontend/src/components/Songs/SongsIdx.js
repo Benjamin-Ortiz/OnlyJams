@@ -27,9 +27,9 @@ function SongsPage() {
       <h1 className="song-header">Songs</h1>
 
       {pageSongs &&
-        pageSongs?.map((song) => {
+        pageSongs.map((song, index) => {
           return (
-            <div className="song-row" key={song.id}>
+            <div key={song.id} className="song-row" >
               <div className="song-image-container">
                 <div className="song-image-content">
                   <img
