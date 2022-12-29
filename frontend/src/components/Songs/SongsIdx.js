@@ -27,12 +27,12 @@ function SongsPage() {
       <h1 className="song-header">Songs</h1>
 
       {pageSongs &&
-        pageSongs.map((song, index) => {
+        pageSongs.map((song) => {
           return (
             <div key={song.id} className="song-row" >
               <div className="song-image-container">
                 <div className="song-image-content">
-                  <img
+                  <img key={song.id}
                     className="song-image"
                     src={song.imageUrl}
                     alt={song.title}
@@ -48,6 +48,7 @@ function SongsPage() {
                 {/* <div className='song-artist'>{song.username}</div> */}
                 <div className="song-description">{song.description}</div>
               </div>
+              {console.log(`loaded song ${song.title}`)}
             </div>
           );
         })}
