@@ -41,14 +41,6 @@ const CreateAlbumForm = ({ hideform }) => {
   }, [album])
 
 
-  const noImgURL = (e) => {
-    const cover = e.target.files[0];
-    if (cover) {
-        setImageUrl(cover);
-    }
-};
-
-
   useEffect(() => {
     const errors = [];
     if (!title.length) errors.push('Please a title');
@@ -63,8 +55,6 @@ const CreateAlbumForm = ({ hideform }) => {
 
     setHasSubmitted(true);
     if (validationErrors.length) return alert(`Cannot Submit`);
-
-
 
     const payload = {
      // id,
@@ -119,8 +109,8 @@ const CreateAlbumForm = ({ hideform }) => {
           className="create-imageUrl-text"
           type="text"
           placeholder="Image URL"
-          //value={imageUrl}
-          onChange={noImgURL}
+          value={imageUrl}
+          onChange={updateImageUrl}
           //onChange={(e) => setImageUrl(e.target.value)}
 
         />

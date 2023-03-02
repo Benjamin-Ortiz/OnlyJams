@@ -1,12 +1,13 @@
 import { csrfFetch } from "./csrf";
 
+//action creator
 const GET_ALBUM = "album/GET_ALBUM";
 const ALL_ALBUMS = "album/ALL_ALBUMS";
 const EDIT_ALBUM = "album/EDIT_ALBUM";
 const ADD_ALBUM = "album/ADD_ALBUM";
 const DELETE_ALBUM = "album/DELETE_ALBUM";
 
-//todo GET
+//todo thunk GET
 const getAlbum = (album) =>({
     type: GET_ALBUM,
     album

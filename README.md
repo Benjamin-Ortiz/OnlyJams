@@ -6,13 +6,13 @@
     * Home Page
     * Navigation Bar
     * User Specific PUT/DELETE options
-    
+
 ## List of Technologies Used
 ### Backend
     * JavaScript
-    * CSRF 
+    * CSRF
     * Bcrypt.js
-    * Sequelize.js 
+    * Sequelize.js
     * Express.js
     * PostgreSQL
 ### Frontend
@@ -26,15 +26,15 @@
 * 1. Clone Repository
 * 2. npm i at root menu
 * 3. Split terminal, cd into frontend & backend
-* 4. in backend run 
-      * npx dotenv sequelize db:migrate 
+* 4. in backend run
+      * npx dotenv sequelize db:migrate
       * npx dotenv sequelize db:seed:all
 * 5. npm start on both terminals
 * 6. Have Fun :)
 
 ## Database Schema Design
 
-![soundcloud-dbdiagram]
+[soundcloud-dbdiagram]
 
 [soundcloud-dbdiagram]: ../frontend/src/images/READMEImages/updatedSchema.png
 

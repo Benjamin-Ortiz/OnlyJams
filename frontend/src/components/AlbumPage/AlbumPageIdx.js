@@ -14,7 +14,7 @@ function AlbumPage() {
 
   const album = useSelector((state) => {return state.albums});
 
-  let { albumId } = useParams();
+  let { albumId } = useParams()
 
 
 
@@ -38,6 +38,7 @@ useEffect(() => {
 const backButton = () => {
   history.push('/albums')
 }
+
   return (
     <>
       <div className="main-div-album">
@@ -66,6 +67,7 @@ const backButton = () => {
           <div className="album-description">{album.description}</div>
         </div>
       </div>
+      {/* song mapping component */}
       <Route>
         <button className="back_button" onClick={() => backButton()}>Back</button>
       </Route>

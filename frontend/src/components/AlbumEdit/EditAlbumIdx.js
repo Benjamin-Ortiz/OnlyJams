@@ -65,9 +65,9 @@ const EditAlbumForm = ({ hideForm }) => {
   const noImgURL = (e) => {
     const cover = e.target.files[0];
     if (cover) {
-        setImageUrl(cover);
+      setImageUrl(cover);
     }
-};
+  };
 
   //if album belongs to user then
 
@@ -81,38 +81,38 @@ const EditAlbumForm = ({ hideForm }) => {
         ))}
       </ul>
 
-          <label>
-            New Title
-            <input
-        className="edit-album-text"
-        type="text"
-        value={title}
-        onChange={updateTitle}
-        placeholder="Title"
-      />
-          </label>
+      <label>
+        New Title
+        <input
+          className="edit-album-text"
+          type="text"
+          value={title}
+          onChange={updateTitle}
+          placeholder="Title"
+        />
+      </label>
 
-          <label>
-          New Description
-      <input
-        className="edit-album-description"
-        type="text"
-        value={description}
-        onChange={updateDescription}
-        placeholder="Description"
-      />
-          </label>
+      <label>
+        New Description
+        <input
+          className="edit-album-description"
+          type="text"
+          value={description}
+          onChange={updateDescription}
+          placeholder="Description"
+        />
+      </label>
 
-          <label>
-          New Image URL
-      <input
-        className="edit-album-imageUrl"
-        type="text"
-       // value={imageUrl}
-        onChange={noImgURL}
-        placeholder="Image Url"
-      />
-          </label>
+      <label>
+        New Image URL
+        <input
+          className="edit-album-imageUrl"
+          type="text"
+          // value={imageUrl}
+          onChange={noImgURL}
+          placeholder="Image Url"
+        />
+      </label>
 
       <button type="submit">Update Album</button>
       <button type="button" onClick={cancelFunction}>
