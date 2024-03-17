@@ -40,6 +40,8 @@ const setTokenCookie = (res, user) => {
         return next();
       }
 
+      
+
       try {
         const { id } = jwtPayload.data;
         req.user = await User.scope('currentUser').findByPk(id);

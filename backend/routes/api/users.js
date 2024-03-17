@@ -112,9 +112,8 @@ router.post("/", validateSignup, async (req, res) => {
 
  newUser.dataValues['token'] = token;
 
- let info = JSON.parse(JSON.stringify(newUser,
-   ["id","firstName","lastName","email","username",
-   "token"]));
+ let info = JSON.parse(
+  JSON.stringify(newUser, ["id","firstName","lastName","email","username","token"]));
  return res.json(
    info
  );
